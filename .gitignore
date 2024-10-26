@@ -1,0 +1,15 @@
+# Ignorar todos os arquivos de log
+*.log
+
+# Ignorar diretórios bin e obj
+/bin/
+/obj/
+
+# Ignorar arquivos temporários do sistema
+*.tmp
+*.swp
+
+# Ignorar configurações do Code::Blocks
+*.layout
+*.depend
+*.cbp
