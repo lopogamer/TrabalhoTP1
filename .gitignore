@@ -1,9 +1,9 @@
 *.log
-bin/
-obj/
+*bin/
+*obj/
 .vs/
 .cph/
-html/
+*html/
 *.tmp
 *.swp
 
