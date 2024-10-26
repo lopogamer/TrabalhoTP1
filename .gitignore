@@ -4,7 +4,8 @@
 # Ignorar diretórios bin e obj
 /bin/
 /obj/
-
+.vs/
+.cph/
 # Ignorar arquivos temporários do sistema
 *.tmp
 *.swp
