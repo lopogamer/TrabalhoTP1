@@ -4,8 +4,7 @@
 #include <string>
 using namespace std;
 
-class Senha
-{
+class Senha {
 private:
     string senha;
     bool validar(string);
@@ -15,13 +14,11 @@ public:
     string GetSenha() const;
 };
 
-inline string Senha::GetSenha() const
-{
+inline string Senha::GetSenha() const {
     return senha;
 }
 
-class Horario
-{
+class Horario {
 private:
     string hora;
     bool Validar(string);
@@ -31,13 +28,11 @@ public:
     string GetHora() const;
 };
 
-inline string Horario::GetHora() const
-{
+inline string Horario::GetHora() const {
     return hora;
 }
 
-class Dinheiro
-{
+class Dinheiro {
 private:
     string quantidade;
     bool Validar(const string&);
@@ -47,13 +42,11 @@ public:
     string GetDinheiro() const;
 };
 
-inline string Dinheiro::GetDinheiro() const
-{
+inline string Dinheiro::GetDinheiro() const {
     return quantidade;
 }
 
-class Avaliacao
-{
+class Avaliacao {
 private:
     int digito_;
     bool Validar(int valor) const;
@@ -63,25 +56,50 @@ public:
     int getValor() const;
 };
 
-inline int Avaliacao::getValor() const
-{
+inline int Avaliacao::getValor() const {
     return digito_;
 }
 
-class Nome
-{
+class Nome {
 private:
     string nome_;
     bool Validar(string nome);
 
 public:
     bool setNome(string nome);
-    string getNome();
+    string getNome() const;
 };
 
-inline string Nome::getNome()
-{
+inline string Nome::getNome() const {
     return nome_;
+}
+
+class Duracao {
+private:
+    int valor;
+    bool validar(int);
+
+public:
+    bool SetValor(int);
+    int GetValor() const;
+};
+
+inline int Duracao::GetValor() const {
+    return valor;
+}
+
+class Codigo {
+private:
+    string codigo;
+    bool validar(string&);
+
+public:
+    bool SetCodigo(string);
+    string GetCodigo() const;
+};
+
+inline string Codigo::GetCodigo() const {
+    return codigo;
 }
 
 #endif // DOMINIOS_H_INCLUDED
