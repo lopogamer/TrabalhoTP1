@@ -6,6 +6,7 @@
 /obj/
 .vs/
 .cph/
+/html/
 # Ignorar arquivos temporários do sistema
 *.tmp
 *.swp
