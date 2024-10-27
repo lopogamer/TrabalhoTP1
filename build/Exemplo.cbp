@@ -7,12 +7,13 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/Exemplo" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="../bin/Debug/Exemplo" prefix_auto="1" extension_auto="1" />
+				<Option object_output="C:/Users/luanr/Estudo/TP1/Aula1/Exemplo/obj/Debug" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="../include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -32,9 +33,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Dominios.cpp" />
-		<Unit filename="Dominios.h" />
-		<Unit filename="main.cpp" />
+		<Unit filename="../include/Dominios.h" />
+		<Unit filename="../src/Dominios.cpp" />
+		<Unit filename="../src/main.cpp" />
 		<Extensions>
 			<AutoVersioning>
 				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
