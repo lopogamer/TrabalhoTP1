@@ -15,3 +15,19 @@
 1729906364 c:\users\luanr\estudo\tp1\aula1\exemplo\dominios.h
 	<string>
 
+1729952424 source:c:\users\luanr\estudo\tp1\aula1\exemplo\src\dominios.cpp
+	"Dominios.h"
+	<string>
+	<vector>
+	<stdexcept>
+	<iostream>
+	<regex>
+
+1729952451 c:\users\luanr\estudo\tp1\aula1\exemplo\include\dominios.h
+	<string>
+
+1729944885 source:c:\users\luanr\estudo\tp1\aula1\exemplo\src\main.cpp
+	"Dominios.h"
+	<iostream>
+	<locale>
+
