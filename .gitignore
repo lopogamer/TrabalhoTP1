@@ -1,5 +1,3 @@
-.vs/
-.cph/
 *html/
-*.tmp
+*temp/
 *.swp
