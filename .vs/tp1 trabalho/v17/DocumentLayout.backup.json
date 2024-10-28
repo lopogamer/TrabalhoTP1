@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\JoaoG\\source\\repos\\tp1 trabalho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\JoaoG\\source\\repos\\tp1 trabalho\\src\\Dominios.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Dominios.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\JoaoG\\source\\repos\\tp1 trabalho\\include\\Dominios.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:include\\Dominios.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\JoaoG\\source\\repos\\tp1 trabalho\\src\\Dominios.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\Dominios.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\JoaoG\\source\\repos\\tp1 trabalho\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,26 +30,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Dominios.h",
               "DocumentMoniker": "C:\\Users\\JoaoG\\source\\repos\\tp1 trabalho\\include\\Dominios.h",
               "RelativeDocumentMoniker": "include\\Dominios.h",
               "ToolTip": "C:\\Users\\JoaoG\\source\\repos\\tp1 trabalho\\include\\Dominios.h",
               "RelativeToolTip": "include\\Dominios.h",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAowH4AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-10-28T15:39:02.307Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Dominios.cpp",
               "DocumentMoniker": "C:\\Users\\JoaoG\\source\\repos\\tp1 trabalho\\src\\Dominios.cpp",
               "RelativeDocumentMoniker": "src\\Dominios.cpp",
               "ToolTip": "C:\\Users\\JoaoG\\source\\repos\\tp1 trabalho\\src\\Dominios.cpp",
               "RelativeToolTip": "src\\Dominios.cpp",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAAAJYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAAALkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-10-28T15:38:52.096Z",
               "EditorCaption": ""

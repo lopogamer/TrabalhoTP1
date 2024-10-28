@@ -2,6 +2,8 @@
 #define DOMINIOS_H_INCLUDED
 
 #include <string>
+#include <iomanip>
+#include <sstream>
 using namespace std;
 
 class Senha {

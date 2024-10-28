@@ -2,7 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\include",
-    "\\obj"
+    "\\obj",
+    "\\obj\\Debug",
+    "\\src"
   ],
   "SelectedNode": "\\include\\Dominios.h",
   "PreviewInSolutionExplorer": false
