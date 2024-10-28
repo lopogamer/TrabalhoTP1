@@ -147,3 +147,41 @@ bool Codigo::SetCodigo(string codigo) {
         return false;
     }
 }
+
+bool Data::validar(int d, int m, int a) const {
+    if (m < 1 || m > 12) {
+        return false;
+    }
+
+    if (d < 1 || d > 31) {
+        return false;
+    }
+
+    if (a < 0 || a > 99) {
+        return false;
+    }
+
+    int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    // Ajusta para fevereiro em ano bissexto
+    if (m == 2 && bissexto(a)) diasPorMes[1] = 29;
+
+    return d >= 1 && d <= diasPorMes[m - 1];
+
+}
+
+bool Data::bissexto(int a) const {
+    return (a % 4 == 0 && a % 100 != 0) || a % 400 == 0;
+}
+
+bool Data::SetData(int d, int m, int a) {
+    if (validar(d, m, a)) {
+        dia_ = d;
+        mes_ = m;
+        ano_ = a;
+        return true;
+    }
+    return false;
+}
+
+

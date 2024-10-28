@@ -102,4 +102,26 @@ inline string Codigo::GetCodigo() const {
     return codigo;
 }
 
+class Data
+{
+private:
+    int dia_, mes_, ano_;
+    bool validar(int d, int m, int a) const;
+    bool bissexto(int a) const;
+
+public:
+    bool SetData(int d, int m, int a);
+    string GetData() const;
+};
+
+inline string Data::GetData() const
+{
+    ostringstream oss;
+    oss << (dia_ < 10 ? "0" : "") << dia_ << "-"
+        << (mes_ < 10 ? "0" : "") << mes_ << "-"
+        << (ano_ < 10 ? "0" : "") << ano_;
+    return oss.str();
+
+}
+
 #endif // DOMINIOS_H_INCLUDED
