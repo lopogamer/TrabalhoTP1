@@ -1,4 +1,5 @@
 #include "Dominios.h"
+#include "Entidade.h"
 #include <iostream>
 #include <locale>
 using namespace std;
