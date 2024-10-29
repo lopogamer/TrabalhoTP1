@@ -34,7 +34,9 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="../include/Dominios.h" />
+		<Unit filename="../include/Entidade.h" />
 		<Unit filename="../src/Dominios.cpp" />
+		<Unit filename="../src/Entidade.cpp" />
 		<Unit filename="../src/main.cpp" />
 		<Extensions>
 			<AutoVersioning>
