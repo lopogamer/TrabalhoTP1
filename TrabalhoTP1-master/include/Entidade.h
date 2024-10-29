@@ -17,8 +17,8 @@ private:
 class Conta
 {
 private:
-    Codigo codigo_;
-    Senha senha_;
+    Codigo codigo;
+    Senha senha;
 
 public:
     void SetCodigo(const Codigo&);
@@ -34,9 +34,9 @@ public:
 class Viagem
 {
 private:
-    Codigo codigo_;
-    Nome nome_;
-    Avaliacao avaliacao_;
+    Codigo codigo;
+    Nome nome;
+    Avaliacao avaliacao;
 
 public:
     void SetCodigo(const Codigo&);
