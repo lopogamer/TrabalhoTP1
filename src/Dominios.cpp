@@ -123,7 +123,7 @@ bool Nome::Validar(string nome)
 bool Nome::SetNome(string nome)
 {
     if (Validar(nome)) {
-        nome = nome;
+        this -> nome = nome;
         return true;
     }
     return false;
