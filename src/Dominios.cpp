@@ -73,21 +73,22 @@ string Horario::GetHora() const
     return hora;
 }
 
-bool Dinheiro::Validar(const string& quantidade)
+void Dinheiro::Validar(const string& quantidade)
 {
-    regex pattern(R"(^(200000(\.00?)?|[0-1]?\d{1,5}(\.\d{1,2})?)$)");
-    return regex_match(quantidade, pattern);
+    regex pattern(R"(^(200\.000(,00?)?|[0-1]?(?:\d{1,3}(?:\.\d{3})*)(,\d{1,2})?)$)");
+    if (!regex_match(quantidade, pattern))
+        throw invalid_argument("Quantidade de dinheiro invalida");
 }
 
-bool Dinheiro::SetDinheiro(string quantidade)
+void Dinheiro::SetDinheiro(string quantidade)
 {
-    if (Validar(quantidade)) {
-        this->quantidade = quantidade;
+    try{
+        Validar(quantidade);
         cout << "Dinheiro Setado com sucesso" << endl;
-        return true;
-    } else {
-        cout << "Dinheiro N�o Setado" << endl;
-        return false;
+        this->quantidade = quantidade;
+    }
+    catch(invalid_argument &e){
+        cout << e.what() << endl;
     }
 }
 
@@ -134,18 +135,22 @@ string Nome::GetNome() const
     return nome;
 }
 
-bool Duracao::Validar(int valor)
+void Duracao::Validar(int valor)
 {
-    return valor >= 0 && valor <= 360;
+    if(valor < 0 || valor > 360)
+        throw invalid_argument("Valor de duracao invalido");
 }
 
-bool Duracao::SetValor(int valor)
+void Duracao::SetValor(int valor)
 {
-    if (Validar(valor)) {
+    try{
+        Validar(valor);
+        cout << "Duracao Setada com sucesso" << endl;
         this->valor = valor;
-        return true;
     }
-    return false;
+    catch(invalid_argument &e){
+        cout << e.what() << endl;
+    }
 }
 
 int Duracao::GetValor() const

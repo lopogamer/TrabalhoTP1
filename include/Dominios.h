@@ -30,9 +30,9 @@ class Dinheiro
 {
 private:
     string quantidade;
-    bool Validar(const string&);
+    void Validar(const string&);
 public:
-    bool SetDinheiro(string);
+    void SetDinheiro(string);
     string GetDinheiro() const;
 };
 
@@ -60,9 +60,9 @@ class Duracao
 {
 private:
     int valor;
-    bool Validar(int);
+    void Validar(int);
 public:
-    bool SetValor(int);
+    void SetValor(int);
     int GetValor() const;
 };
 
