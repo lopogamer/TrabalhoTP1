@@ -82,12 +82,11 @@ void Dinheiro::Validar(const string& quantidade)
 
 void Dinheiro::SetDinheiro(string quantidade)
 {
-    try{
+    try {
         Validar(quantidade);
         cout << "Dinheiro Setado com sucesso" << endl;
         this->quantidade = quantidade;
-    }
-    catch(invalid_argument &e){
+    } catch(invalid_argument& e) {
         cout << e.what() << endl;
     }
 }
@@ -143,12 +142,11 @@ void Duracao::Validar(int valor)
 
 void Duracao::SetValor(int valor)
 {
-    try{
+    try {
         Validar(valor);
         cout << "Duracao Setada com sucesso" << endl;
         this->valor = valor;
-    }
-    catch(invalid_argument &e){
+    } catch(invalid_argument& e) {
         cout << e.what() << endl;
     }
 }
