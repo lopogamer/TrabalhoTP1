@@ -80,7 +80,7 @@ class Data
 {
 private:
     string data;
-    bool Validar(const string& data) const;
+    void Validar(const string& data) const;
     bool bissexto(int ano) const
     {
         return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);

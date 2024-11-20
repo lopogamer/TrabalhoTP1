@@ -179,31 +179,47 @@ string Codigo::GetCodigo() const
     return codigo;
 }
 
-bool Data::SetData(const string& data)
-{
-    if (Validar(data)) {
+bool Data::SetData(const string& data){
+    try {
+        Validar(data);
         this->data = data;
         return true;
-    } else
+    }
+    catch (invalid_argument &exp) {
+        cout << "Erro: " << exp.what() << endl;
         return false;
+    }
 }
 
-bool Data::Validar(const string& data) const
-{
-    if (data.length() != 8 || data[2] != '-' || data[5] != '-')
-        return false;
-    int dia = stoi(data.substr(0, 2));
-    int mes = stoi(data.substr(3, 2));
-    int ano = stoi(data.substr(6, 2));
+
+
+void Data::Validar(const string& data) const{
+    if (data.length() != 8 || data[2] != '-'|| data[5] != '-')
+        throw invalid_argument("Argumento invalido");
+
+    int dia = std::stoi(data.substr(0, 2));
+    int mes = std::stoi(data.substr(3, 2));
+    int ano = std::stoi(data.substr(6, 2));
+
     if (mes < 1 || mes > 12 || dia < 1 || dia > 31 || ano < 0 || ano > 99)
-        return false;
+        throw invalid_argument("Argumento invalido");
+
     int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-    if (mes == 2) {
-        if (bissexto(ano + 2000))
-            diasPorMes[1] = 29;
+
+
+    if (mes == 2 && bissexto(ano + 2000)) { // Considera ano 2000+ para simplificação
+	diasPorMes[1] = 29;
     }
-    return dia <= diasPorMes[mes - 1];
+
+    if (mes == 2 && dia == 29 && !bissexto(ano + 2000)) {
+	throw invalid_argument("Argumento invalido");
+    }
+
+    if (dia > diasPorMes[mes - 1]) {
+	throw invalid_argument("Argumento invalido");
+    }
 }
+
 
 
 string Data::GetData() const
