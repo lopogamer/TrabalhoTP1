@@ -26,3 +26,30 @@
 	<iostream>
 	<locale>
 
+1732058661 source:c:\users\joaog\documents\github\trabalhotp1\src\entidade.cpp
+	"Entidade.h"
+	"Dominios.h"
+
+1732058661 c:\users\joaog\documents\github\trabalhotp1\include\entidade.h
+	"Dominios.h"
+	<string>
+
+1732060488 c:\users\joaog\documents\github\trabalhotp1\include\dominios.h
+	<string>
+	<iomanip>
+	<sstream>
+
+1732060459 source:c:\users\joaog\documents\github\trabalhotp1\src\main.cpp
+	"Dominios.h"
+	"Entidade.h"
+	<iostream>
+	<locale>
+
+1732060619 source:c:\users\joaog\documents\github\trabalhotp1\src\dominios.cpp
+	"Dominios.h"
+	<string>
+	<vector>
+	<stdexcept>
+	<iostream>
+	<regex>
+

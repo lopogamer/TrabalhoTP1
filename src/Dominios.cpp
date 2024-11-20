@@ -115,19 +115,25 @@ int Avaliacao::GetValor() const
     return digito;
 }
 
-bool Nome::Validar(string nome)
-{
-    return nome.length() <= 30 && !nome.empty();
+void Nome::Validar(string nome){
+    if(nome.length() > 30 || nome.empty())
+        throw invalid_argument("Argumento invalido");
 }
 
-bool Nome::SetNome(string nome)
-{
-    if (Validar(nome)) {
-        this -> nome = nome;
+
+bool Nome::SetNome(string nome){
+    try{
+        Validar(nome);
+        this-> nome = nome;
         return true;
     }
-    return false;
+    catch(invalid_argument &exp){
+        cout << "Erro: " << exp.what() << endl;
+        return false;
+    }
 }
+
+
 
 string Nome::GetNome() const
 {

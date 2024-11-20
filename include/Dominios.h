@@ -50,7 +50,7 @@ class Nome
 {
 private:
     string nome;
-    bool Validar(string nome);
+    void Validar(string nome);
 public:
     bool SetNome(string nome);
     string GetNome() const;
