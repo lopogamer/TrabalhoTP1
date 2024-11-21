@@ -38,5 +38,9 @@ Para formatar o código:
      ./Trabalho
      ```
 
-Essas instruções ajudam a formatar, compilar e rodar o código no Windows usando AStyle e Make.
+Essas instruções ajudam a formatar, compilar e rodar o código no Windows usando AStyle e Make.]
 
+5. **Antes e Apos terminar de modificar o projeto use o make clean**
+     ```bash
+    make clean
+    ```
