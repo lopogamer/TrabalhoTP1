@@ -75,20 +75,23 @@ string Horario::GetHora() const
 
 void Dinheiro::Validar(const string& quantidade)
 {
-    regex pattern(R"(^(200\.000(,00?)?|[0-1]?(?:\d{1,3}(?:\.\d{3})*)(,\d{1,2})?)$)");
-    if (!regex_match(quantidade, pattern))
-        throw invalid_argument("Quantidade de dinheiro invalida");
+    regex padrao(R"(^(([1-9]\d{0,2}(\.\d{3})*|[0-9]\d{0,4}|200\.000),00|[0-9]\d{0,4},\d{2}|[1-9]\d{0,2}(\.\d{3})*,\d{2}|0,\d{2})$)");
+    if (!regex_match(quantidade, padrao))
+        throw invalid_argument("Valor Invalido");
+    string valorsemponto = quantidade;
+    valorsemponto.erase(remove(valorsemponto.begin(), valorsemponto.end(), '.'), valorsemponto.end());
+    string parte_int = valorsemponto.substr(0, valorsemponto.find(','));
+    string parte_dec = valorsemponto.substr(valorsemponto.find(',') + 1);
+    long valorcomparacao = stol(parte_int) * 100 + stol(parte_dec);
+    if (valorcomparacao > 20000000)
+        throw invalid_argument("Valor Invalido");
+        
 }
 
 void Dinheiro::SetDinheiro(string quantidade)
 {
-    try {
-        Validar(quantidade);
-        cout << "Dinheiro Setado com sucesso" << endl;
-        this->quantidade = quantidade;
-    } catch(invalid_argument& e) {
-        cout << e.what() << endl;
-    }
+    Validar(quantidade);
+    this->quantidade = quantidade;
 }
 
 string Dinheiro::GetDinheiro() const
