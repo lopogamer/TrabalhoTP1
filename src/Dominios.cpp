@@ -117,20 +117,13 @@ int Avaliacao::GetValor() const
 
 void Nome::Validar(string nome){
     if(nome.length() > 30 || nome.empty())
-        throw invalid_argument("Argumento invalido");
+        throw invalid_argument("Valor invalido");
 }
 
 
-bool Nome::SetNome(string nome){
-    try{
-        Validar(nome);
-        this-> nome = nome;
-        return true;
-    }
-    catch(invalid_argument &exp){
-        cout << "Erro: " << exp.what() << endl;
-        return false;
-    }
+void Nome::SetNome(string nome){
+    Validar(nome);
+    this -> nome = nome;
 }
 
 
@@ -179,30 +172,22 @@ string Codigo::GetCodigo() const
     return codigo;
 }
 
-bool Data::SetData(const string& data){
-    try {
-        Validar(data);
-        this->data = data;
-        return true;
-    }
-    catch (invalid_argument &exp) {
-        cout << "Erro: " << exp.what() << endl;
-        return false;
-    }
+void Data::SetData(const string& data){
+    Validar(data);
+    this -> data = data;
 }
-
 
 
 void Data::Validar(const string& data) const{
     if (data.length() != 8 || data[2] != '-'|| data[5] != '-')
-        throw invalid_argument("Argumento invalido");
+        throw invalid_argument("Valor invalido");
 
     int dia = std::stoi(data.substr(0, 2));
     int mes = std::stoi(data.substr(3, 2));
     int ano = std::stoi(data.substr(6, 2));
 
     if (mes < 1 || mes > 12 || dia < 1 || dia > 31 || ano < 0 || ano > 99)
-        throw invalid_argument("Argumento invalido");
+        throw invalid_argument("Valor invalido");
 
     int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -212,11 +197,11 @@ void Data::Validar(const string& data) const{
     }
 
     if (mes == 2 && dia == 29 && !bissexto(ano + 2000)) {
-	throw invalid_argument("Argumento invalido");
+	throw invalid_argument("Valor invalido");
     }
 
     if (dia > diasPorMes[mes - 1]) {
-	throw invalid_argument("Argumento invalido");
+	throw invalid_argument("Valor invalido");
     }
 }
 

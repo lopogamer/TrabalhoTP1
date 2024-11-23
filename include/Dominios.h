@@ -52,7 +52,7 @@ private:
     string nome;
     void Validar(string nome);
 public:
-    bool SetNome(string nome);
+    void SetNome(string nome);
     string GetNome() const;
 };
 
@@ -86,7 +86,7 @@ private:
         return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
     }
 public:
-    bool SetData(const string& data);
+    void SetData(const string& data);
     string GetData() const;
 };
 
