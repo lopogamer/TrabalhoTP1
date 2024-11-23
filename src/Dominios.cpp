@@ -96,23 +96,22 @@ string Dinheiro::GetDinheiro() const
     return quantidade;
 }
 
-bool Avaliacao::Validar(int valor) const
+void Avaliacao::Validar(int valor) const
 {
-    return valor >= 0 && valor <= 5;
-}
-
-bool Avaliacao::SetValor(int valor)
-{
-    if (Validar(valor)) {
-        return true;
-        this->digito = digito;
+    if (valor < 0 || valor > 5){
+        throw invalid_argument("Valor invalido");
     }
-    return false;
 }
 
-int Avaliacao::GetValor() const
+void Avaliacao::SetAvaliacao(int valor)
 {
-    return digito;
+    Validar(valor);
+    this -> valor = valor;
+}
+
+int Avaliacao::GetAvaliacao() const
+{
+    return valor;
 }
 
 void Nome::Validar(string nome){
@@ -125,7 +124,6 @@ void Nome::SetNome(string nome){
     Validar(nome);
     this -> nome = nome;
 }
-
 
 
 string Nome::GetNome() const

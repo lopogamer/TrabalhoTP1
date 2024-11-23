@@ -39,11 +39,11 @@ public:
 class Avaliacao
 {
 private:
-    int digito;
-    bool Validar(int digito) const;
+    int valor;
+    void Validar(int valor) const;
 public:
-    bool SetValor(int valor);
-    int GetValor() const;
+    void SetAvaliacao(int valor);
+    int GetAvaliacao() const;
 };
 
 class Nome

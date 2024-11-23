@@ -34,19 +34,19 @@
 	"Dominios.h"
 	<string>
 
-1732362815 c:\users\joaog\documents\github\trabalhotp1\include\dominios.h
+1732380743 c:\users\joaog\documents\github\trabalhotp1\include\dominios.h
 	<string>
 	<iomanip>
 	<sstream>
 
-1732364270 source:c:\users\joaog\documents\github\trabalhotp1\src\main.cpp
+1732380665 source:c:\users\joaog\documents\github\trabalhotp1\src\main.cpp
 	"Dominios.h"
 	"Entidade.h"
 	<iostream>
 	<locale>
 	<stdexcept>
 
-1732363711 source:c:\users\joaog\documents\github\trabalhotp1\src\dominios.cpp
+1732380763 source:c:\users\joaog\documents\github\trabalhotp1\src\dominios.cpp
 	"Dominios.h"
 	<string>
 	<vector>
