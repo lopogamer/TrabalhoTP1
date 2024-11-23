@@ -42,9 +42,7 @@
 		<Unit filename="../include/Testes.h" />
 		<Unit filename="../src/Dominios.cpp" />
 		<Unit filename="../src/Entidade.cpp" />
-		<Unit filename="../src/Testes.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="../src/Testes.cpp" />
 		<Unit filename="../src/main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

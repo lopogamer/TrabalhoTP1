@@ -8,8 +8,8 @@ using namespace std;
 
 class TUNome {
 private:
-    const string NOME_VALIDO = "";
-    const string NOME_INVALIDO = "Joao";
+    const string NOME_VALIDO = "Nome";
+    const string NOME_INVALIDO = "";
     Nome* nome;
     int estado;
     void setUp();
