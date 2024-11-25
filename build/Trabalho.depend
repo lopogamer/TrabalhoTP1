@@ -39,7 +39,8 @@
 	<iomanip>
 	<sstream>
 
-1732398965 source:c:\users\joaog\documents\github\trabalhotp1\src\main.cpp
+1732551635 source:c:\users\joaog\documents\github\trabalhotp1\src\main.cpp
+	"Entidade.h"
 	"Dominios.h"
 	"Testes.h"
 	<iostream>
@@ -53,12 +54,12 @@
 	<iostream>
 	<regex>
 
-1732398990 c:\users\joaog\documents\github\trabalhotp1\include\testes.h
+1732551914 c:\users\joaog\documents\github\trabalhotp1\include\testes.h
 	<string>
 	<iostream>
 	"Dominios.h"
 
-1732393284 source:c:\users\joaog\documents\github\trabalhotp1\src\testes.cpp
+1732551596 source:c:\users\joaog\documents\github\trabalhotp1\src\testes.cpp
 	"Testes.h"
 	<iostream>
 

@@ -22,4 +22,22 @@ public:
     int run();
 };
 
+class TUData {
+private:
+	const string DATA_VALIDA = "29-02-20";
+	const string DATA_INVALIDA = "00-00-00";
+	Data* data;
+	int estado;
+	void setUp();
+	void tearDown();
+	void TestarCasoValido();
+	void TestarCasoInvalido();
+public:
+	const static int SUCESSO = 0;
+	const static int FALHA = -1;
+	int run();
+};
+
+
+
 #endif // TESTES_H_INCLUDED
