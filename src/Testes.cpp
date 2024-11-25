@@ -101,3 +101,52 @@ int TUData::run()
 }
 
 
+void TUAvaliacao::setUp()
+{
+	avaliacao = new Avaliacao();
+	estado = SUCESSO;
+}
+
+void TUAvaliacao::tearDown()
+{
+	delete avaliacao;
+}
+
+void TUAvaliacao::TestarCasoValido()
+{
+	try {
+		avaliacao->SetAvaliacao(AVALIACAO_VALIDA);
+		if (avaliacao->GetAvaliacao() != AVALIACAO_VALIDA) {
+			estado = FALHA;
+		}
+	}
+	catch (invalid_argument& e) {
+		cout << "Falhou no valor valido" << endl;
+		estado = FALHA;
+	}
+}
+
+void TUAvaliacao::TestarCasoInvalido()
+{
+	try {
+		avaliacao->SetAvaliacao(AVALIACAO_INVALIDA);
+		cout << avaliacao->GetAvaliacao() << endl;
+		estado = FALHA;
+	}
+	catch (invalid_argument& e) {
+		if (avaliacao->GetAvaliacao() == AVALIACAO_INVALIDA) {
+			estado = FALHA;
+		}
+	}
+}
+
+int TUAvaliacao::run()
+{
+	setUp();
+	TestarCasoValido();
+	TestarCasoInvalido();
+	tearDown();
+	return estado;
+}
+
+

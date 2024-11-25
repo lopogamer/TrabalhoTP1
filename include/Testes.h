@@ -39,5 +39,22 @@ public:
 };
 
 
+class TUAvaliacao {
+private:
+	static const int AVALIACAO_VALIDA = 4;
+	static const int AVALIACAO_INVALIDA = 7;
+	Avaliacao* avaliacao;
+	int estado;
+	void setUp();
+	void tearDown();
+	void TestarCasoValido();
+	void TestarCasoInvalido();
+public:
+	const static int SUCESSO = 0;
+	const static int FALHA = -1;
+	int run();
+};
+
+
 
 #endif // TESTES_H_INCLUDED
