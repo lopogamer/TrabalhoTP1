@@ -1,77 +1,38 @@
 #ifndef TESTES_H_INCLUDED
 #define TESTES_H_INCLUDED
-//Avalicao
-void TUavaliacao::setUp(){
-    avaliacao = new Avaliacao();
-    estado = SUCESSO;
-}
-void TUavaliacao::tearDown(){
-    delete avaliacao;
-}
-void TUavaliacao::TestarCasoValido(){
-    try{
-        avaliacao->SetValor(VALOR_VALIDO);
-        if(avaliacao->GetValor() != VALOR_VALIDO){
-            estado = FALHA;
-        }
-    }catch(invalid_argument &e){
-        estado = FALHA;
-    }
-}
-void TUavaliacao::TestarCasoInvalido(){
-    try{
-        avaliacao->SetValor(VALOR_INVALIDO);
-        estado = FALHA;
-    }catch(invalid_argument &e){
-        if(avaliacao->GetValor() == VALOR_INVALIDO){
-            estado = FALHA;
-        }
-    }
-}
+#include "Dominios.h"
 
-int TUavaliacao::run(){
-    setUp();
-    TestarCasoValido();
-    TestarCasoInvalido();
-    tearDown();
-    return estado;
-}
+class TUavaliacao{
+    private:
+        const static int VALOR_VALIDO = 5;
+        const static int VALOR_INVALIDO = 6;
+        Avaliacao *avaliacao;
+        int estado;
+        void setUp();
+        void tearDown();
+        void TestarCasoValido();
+        void TestarCasoInvalido();
+    public:
+        const static int SUCESSO = 0;
+        const static int FALHA = 1;
+        int run();
+};
 
-//Codigo
-void TUcodigo::setUp(){
-    codigo = new Avaliacao();
-    estado = SUCESSO;
-}
-void TUcodigo::tearDown(){
-    delete codigo;
-}
-void TUcodigo::TestarCasoValido(){
-    try{
-        codigo->SetCodigo(VALOR_VALIDO);
-        if(codigo->GetCodigo() != VALOR_VALIDO){
-            estado = FALHA;
-        }
-    }catch(invalid_argument &e){
-        estado = FALHA;
-    }
-}
-void TUcodigo::TestarCasoInvalido(){
-    try{
-        codigo->SetCodigo(VALOR_INVALIDO);
-        estado = FALHA;
-    }catch(invalid_argument &e){
-        if(codigo->GetCodigo() == VALOR_INVALIDO){
-            estado = FALHA;
-        }
-    }
-}
-
-int TUcodigo::run(){
-    setUp();
-    TestarCasoValido();
-    TestarCasoInvalido();
-    tearDown();
-    return estado;
-}
+class TUcodigo{
+    private:
+        //const std::string;
+        //const std::string  static VALOR_VALIDO = "59575";
+        //const static string VALOR_INVALIDO = "54321";
+        Codigo *codigo;
+        int estado;
+        void setUp();
+        void tearDown();
+        void TestarCasoValido();
+        void TestarCasoInvalido();
+    public:
+        const static int SUCESSO = 0;
+        const static int FALHA = 1;
+        int run();
+};
 
 #endif // TESTES_H_INCLUDED
