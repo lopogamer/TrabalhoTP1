@@ -4,13 +4,13 @@ using namespace std;
 
 void TUNome::setUp()
 {
-	nome = new Nome();
-	estado = SUCESSO;
+    nome = new Nome();
+    estado = SUCESSO;
 }
 
 void TUNome::tearDown()
 {
-	delete nome;
+    delete nome;
 }
 
 void TUNome::TestarCasoValido()
@@ -29,14 +29,14 @@ void TUNome::TestarCasoValido()
 
 void TUNome::TestarCasoInvalido()
 {
-	try {
-		nome->SetNome(NOME_INVALIDO);
-		cout << nome->GetNome() << endl;
-		estado = FALHA;
+    try {
+        nome->SetNome(NOME_INVALIDO);
+        cout << nome->GetNome() << endl;
+        estado = FALHA;
 	}
-	catch (invalid_argument& e) {
-		if (nome->GetNome() == NOME_INVALIDO) {
-			estado = FALHA;
+    catch (invalid_argument& e) {
+        if (nome->GetNome() == NOME_INVALIDO) {
+        estado = FALHA;
 		}
 	}
 }
@@ -53,8 +53,8 @@ int TUNome::run()
 
 void TUData::setUp()
 {
-	data = new Data();
-	estado = SUCESSO;
+    data = new Data();
+    estado = SUCESSO;
 }
 
 void TUData::tearDown()
