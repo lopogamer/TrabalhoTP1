@@ -9,34 +9,32 @@ using namespace std;
 void Senha::Validar(string senha)
 {
     if (senha.size() != 5)
-        throw invalid_argument("Senha invalida");
+        throw invalid_argument("Valor invalido");
     vector<bool> Duplicado(10, false);
     for (int i = 0; i < 5; i++) {
         if (senha[i] < '0' || senha[i] > '9')
-            throw invalid_argument("Senha invalida");
+            throw invalid_argument("Valor invalido");
         if (Duplicado[senha[i] - '0'])
-            throw invalid_argument("Senha invalida");
+            throw invalid_argument("Valor invalido");
         Duplicado[senha[i] - '0'] = true;
     }
     bool crescente = true, decrescente = true;
     for (int i = 0; i < 4; i++) {
         if (senha[i] + 1 != senha[i + 1])
-            throw invalid_argument("Senha invalida");
+            crescente = false;
         if (senha[i] - 1 != senha[i + 1])
-            throw invalid_argument("Senha invalida");
+            decrescente = false;
+
     }
+    if(crescente || decrescente)
+        throw invalid_argument("Valor invalido");
 }
 
 void Senha::SetSenha(string senha)
 {
-    try{
         Validar(senha);
         this->senha = senha;
-        cout << "Senha Definida Com Sucesso" << endl;
 
-    }  catch(invalid_argument &exp){
-        cout << "Erro: " << exp.what() << endl;
-    }
 }
 
 string Senha::GetSenha() const
@@ -47,24 +45,20 @@ string Senha::GetSenha() const
 void Horario::Validar(string hora)
 {
     if (hora.size() != 5 || hora[2] != ':')
-        throw invalid_argument("Horario invalido1");
+        throw invalid_argument("Valor invalido");
     string Horas = hora.substr(0, 2);
     string Minutos = hora.substr(3, 2);
     int horasInt = stoi(Horas);
     int minutosInt = stoi(Minutos);
     if (!((horasInt >= 0 && horasInt <= 23) && (minutosInt >= 0 && minutosInt <= 59)))
-        throw invalid_argument("Horario invalido2");
+        throw invalid_argument("Valor invalido");
 }
 
 void Horario::SetHora(string hora)
 {
-    try{
         Validar(hora);
         this->hora = hora;
-        cout << "Hora Definida Com Sucesso" << endl;
-    } catch(invalid_argument &exp) {
-        cout << "Erro: " << exp.what() << endl;
-    }
+
 }
 
 string Horario::GetHora() const
