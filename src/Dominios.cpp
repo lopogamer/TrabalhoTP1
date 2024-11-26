@@ -145,13 +145,8 @@ void Duracao::Validar(int valor)
 
 void Duracao::SetValor(int valor)
 {
-    try {
-        Validar(valor);
-        cout << "Duracao Setada com sucesso" << endl;
-        this->valor = valor;
-    } catch(invalid_argument& e) {
-        cout << e.what() << endl;
-    }
+    Validar(valor);
+    this->valor = valor;
 }
 
 int Duracao::GetValor() const

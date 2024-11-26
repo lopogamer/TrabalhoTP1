@@ -20,4 +20,21 @@ class TUDinheiro{
         int run();
 };
 
+class TUDuracao{
+    private:
+        inline const static int VALOR_VALIDO = 21;
+        inline const static int VALOR_INVALIDO = 765;
+        Duracao *duracao;
+        int estado;
+        void setUp();
+        void tearDown();
+        void TestarCasoValido();
+        void TestarCasoInvalido();
+
+    public:
+        const static int SUCESSO = 0;
+        const static int FALHA = -1;
+        int run();
+};
+
 #endif // TESTES_H_INCLUDED

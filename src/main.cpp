@@ -9,9 +9,16 @@ int main()
 {
     TUDinheiro testeDinheiro;
     switch (testeDinheiro.run()){
-        case TUDinheiro::SUCESSO: cout << "Teste de dinheiro bem sucedido" << endl;
+        case TUDinheiro::SUCESSO: cout << "DINHEIRO - SUCESSO" << endl;
             break;
-        case TUDinheiro::FALHA: cout << "Teste de dinheiro falhou" << endl;
+        case TUDinheiro::FALHA: cout << "DINHEIRO - FALHA" << endl;
+            break;
+    }
+    TUDuracao testeDuracao;
+    switch (testeDuracao.run()){
+        case TUDuracao::SUCESSO: cout << "DURACAO - SUCESSO" << endl;
+            break;
+        case TUDuracao::FALHA: cout << "DURACAO - FALHA" << endl;
             break;
     }
     setlocale(LC_ALL, "portuguese");

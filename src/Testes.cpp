@@ -24,7 +24,6 @@ void TUDinheiro::TestarCasoValido()
     }
     catch(invalid_argument  &e)
     {
-        cout << "falhou no valor valido" << endl;
         estado = FALHA;
     }
 }
@@ -32,7 +31,6 @@ void TUDinheiro::TestarCasoInvalido()
 {
     try{
         dinheiro->SetDinheiro(VALOR_INVALIDO);
-        cout << dinheiro->GetDinheiro() << endl;
         estado = FALHA;
     }
     catch(invalid_argument  &e)
@@ -51,4 +49,51 @@ int TUDinheiro::run()
     TestarCasoInvalido();
     tearDown();
     return estado;
+}
+
+int TUDuracao::run(){
+    setUp();
+    TestarCasoValido();
+    TestarCasoInvalido();
+    tearDown();
+    return estado;
+}
+void TUDuracao::setUp()
+{
+    duracao = new Duracao();
+    estado = SUCESSO;
+}
+
+void TUDuracao::tearDown()
+{
+    delete duracao;
+}
+
+void TUDuracao::TestarCasoValido()
+{
+    try{
+        duracao->SetValor(VALOR_VALIDO);
+        if(duracao->GetValor()!= VALOR_VALIDO)
+        {
+            estado = FALHA;
+        }
+    }
+    catch(invalid_argument  &e)
+    {
+        estado = FALHA;
+    }
+}
+void TUDuracao::TestarCasoInvalido()
+{
+    try{
+        duracao->SetValor(VALOR_INVALIDO);
+        estado = FALHA;
+    }
+    catch(invalid_argument  &e)
+    {
+        if(duracao->GetValor() == VALOR_INVALIDO)
+        {
+            estado = FALHA;
+        }
+    }
 }
