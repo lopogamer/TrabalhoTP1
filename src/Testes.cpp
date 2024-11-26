@@ -43,11 +43,11 @@ void TUNome::TestarCasoInvalido()
 
 int TUNome::run()
 {
-setUp();
-TestarCasoValido();
-TestarCasoInvalido();
-tearDown();
-return estado;
+    setUp();
+    TestarCasoValido();
+    TestarCasoInvalido();
+    tearDown();
+    return estado;
 }
 
 
