@@ -26,3 +26,22 @@
 	<iostream>
 	<locale>
 
+1732023855 source:c:\users\gui66\desktop\facul\tp1\trabalhotp1\src\entidade.cpp
+	"Entidade.h"
+	"Dominios.h"
+
+1732023855 c:\users\gui66\desktop\facul\tp1\trabalhotp1\include\entidade.h
+	"Dominios.h"
+	<string>
+
+1732025615 c:\users\gui66\desktop\facul\tp1\trabalhotp1\include\dominios.h
+	<string>
+	<iomanip>
+	<sstream>
+
+1732026877 source:c:\users\gui66\desktop\facul\tp1\trabalhotp1\src\main.cpp
+	"Dominios.h"
+	"Entidade.h"
+	<iostream>
+	<locale>
+

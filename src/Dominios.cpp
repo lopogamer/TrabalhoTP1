@@ -6,37 +6,36 @@
 #include <regex>
 using namespace std;
 
-bool Senha::Validar(string senha)
+void Senha::Validar(string senha)
 {
     if (senha.size() != 5)
-        return false;
+        throw invalid_argument("Senha invalida");
     vector<bool> Duplicado(10, false);
     for (int i = 0; i < 5; i++) {
         if (senha[i] < '0' || senha[i] > '9')
-            return false;
+            throw invalid_argument("Senha invalida");
         if (Duplicado[senha[i] - '0'])
-            return false;
+            throw invalid_argument("Senha invalida");
         Duplicado[senha[i] - '0'] = true;
     }
     bool crescente = true, decrescente = true;
     for (int i = 0; i < 4; i++) {
         if (senha[i] + 1 != senha[i + 1])
-            crescente = false;
+            throw invalid_argument("Senha invalida");
         if (senha[i] - 1 != senha[i + 1])
-            decrescente = false;
+            throw invalid_argument("Senha invalida");
     }
-    return !(crescente || decrescente);
 }
 
-bool Senha::SetSenha(string senha)
+void Senha::SetSenha(string senha)
 {
-    if (Validar(senha)) {
+    try{
+        Validar(senha);
         this->senha = senha;
         cout << "Senha Definida Com Sucesso" << endl;
-        return true;
-    } else {
-        cout << "Erro ao definir a senha: Senha inv�lida" << endl;
-        return false;
+
+    }  catch(invalid_argument &exp){
+        cout << "Erro: " << exp.what() << endl;
     }
 }
 
@@ -45,26 +44,26 @@ string Senha::GetSenha() const
     return senha;
 }
 
-bool Horario::Validar(string hora)
+void Horario::Validar(string hora)
 {
     if (hora.size() != 5 || hora[2] != ':')
-        return false;
+        throw invalid_argument("Horario invalido1");
     string Horas = hora.substr(0, 2);
     string Minutos = hora.substr(3, 2);
     int horasInt = stoi(Horas);
     int minutosInt = stoi(Minutos);
-    return (horasInt >= 0 && horasInt <= 23) && (minutosInt >= 0 && minutosInt <= 59);
+    if (!((horasInt >= 0 && horasInt <= 23) && (minutosInt >= 0 && minutosInt <= 59)))
+        throw invalid_argument("Horario invalido2");
 }
 
-bool Horario::SetHora(string hora)
+void Horario::SetHora(string hora)
 {
-    if (Validar(hora)) {
+    try{
+        Validar(hora);
         this->hora = hora;
         cout << "Hora Definida Com Sucesso" << endl;
-        return true;
-    } else {
-        cout << "Erro ao definir Horario." << endl;
-        return false;
+    } catch(invalid_argument &exp) {
+        cout << "Erro: " << exp.what() << endl;
     }
 }
 
