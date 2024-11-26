@@ -36,7 +36,7 @@ public:
     string GetDinheiro() const;
 };
 
-class Avaliacao/**/
+class Avaliacao
 {
 private:
     int digito;

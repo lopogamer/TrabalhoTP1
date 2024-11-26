@@ -20,9 +20,8 @@ class TUavaliacao{
 
 class TUcodigo{
     private:
-        //const std::string;
-        //const std::string  static VALOR_VALIDO = "59575";
-        //const static string VALOR_INVALIDO = "54321";
+        const string VALOR_VALIDO = "aZ42tK";
+        const string VALOR_INVALIDO = "0";
         Codigo *codigo;
         int estado;
         void setUp();

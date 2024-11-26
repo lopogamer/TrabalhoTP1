@@ -38,7 +38,7 @@ int TUavaliacao::run(){
 
 //Codigo
 void TUcodigo::setUp(){
-    codigo = new Avaliacao();
+    codigo = new Codigo();
     estado = SUCESSO;
 }
 void TUcodigo::tearDown(){
