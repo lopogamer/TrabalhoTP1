@@ -8,18 +8,18 @@ using namespace std;
 
 class TUNome {
 private:
-    const string NOME_VALIDO = "Nome";
-    const string NOME_INVALIDO = "";
-    Nome* nome;
-    int estado;
-    void setUp();
-    void tearDown();
-    void TestarCasoValido();
-    void TestarCasoInvalido();
+	const string NOME_VALIDO = "Nome";
+    	const string NOME_INVALIDO = "";
+    	Nome* nome;
+    	int estado;
+    	void setUp();
+    	void tearDown();
+    	void TestarCasoValido();
+    	void TestarCasoInvalido();
 public:
-    const static int SUCESSO = 0;
-    const static int FALHA = -1;
-    int run();
+    	const static int SUCESSO = 0;
+    	const static int FALHA = -1;
+    	int run();
 };
 
 class TUData {
