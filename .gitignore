@@ -2,3 +2,4 @@
 *temp/
 *.swp
 .vs/
+*obj/
