@@ -2,4 +2,4 @@
 *temp/
 *.swp
 .vs/
-obj/
+*obj/
