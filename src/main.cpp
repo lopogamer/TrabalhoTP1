@@ -1,5 +1,3 @@
-#include "Dominios.h"
-#include "Entidade.h"
 #include "Testes.h"
 #include <iostream>
 #include <locale>
