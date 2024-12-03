@@ -97,8 +97,6 @@ void TUDuracao::TestarCasoInvalido()
         }
     }
 }
-using namespace std;
-#include <iostream>
 
 void TUSenha::setUp()
 {
