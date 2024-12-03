@@ -66,6 +66,15 @@ int main()
         case TUSenha::FALHA: cout << "SENHA - FALHA" << endl;
             break;
     }
+    cout << endl;
+    cout << "TESTE DE ENTIDADES" << endl;
+    TUHospedagem testeHospedagem;
+    switch(testeHospedagem.run()){
+        case TUHospedagem::SUCESSO: cout << "HOSPEDAGEM - SUCESSO" << endl;
+            break;
+        case TUHospedagem::FALHA : cout << "FALHA" << endl;
+            break;
+    }
     return 0;
 
 }
