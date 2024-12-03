@@ -1,3 +1,4 @@
+#include "Entidade.h"
 #include "Dominios.h"
 #include "Entidade.h"
 #include "Testes.h"
@@ -8,6 +9,16 @@ using namespace std;
 
 int main()
 {
+
+	TUAvaliacao teste3;
+	switch (teste3.run()) {
+		case TUAvaliacao::SUCESSO:cout << "SUCESSO - DOMINIO AVALIACAO" << endl;
+			break;
+		case TUAvaliacao::FALHA:cout << "FALHA - DOMINIO AVALIACAO" << endl;
+			break;
+	}
+
+
     TUDinheiro testeDinheiro;
     switch (testeDinheiro.run()){
         case TUDinheiro::SUCESSO: cout << "DINHEIRO - SUCESSO" << endl;
@@ -54,4 +65,5 @@ int main()
             break;
     }
     return 0;
+
 }

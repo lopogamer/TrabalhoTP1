@@ -92,38 +92,35 @@ string Dinheiro::GetDinheiro() const
     return quantidade;
 }
 
-void Avaliacao::Validar(int valor)
+void Avaliacao::Validar(int valor) const
 {
-    if(!(valor >= 0 && valor <= 5))
-    {
-        throw invalid_argument("Argumento inválido.");
+    if (valor < 0 || valor > 5){
+        throw invalid_argument("Valor invalido");
     }
 }
 
-void Avaliacao::SetValor(int valor)
+void Avaliacao::SetAvaliacao(int valor)
 {
     Validar(valor);
-    this->digito = valor;
+    this -> valor = valor;
 }
 
-int Avaliacao::GetValor() const
+int Avaliacao::GetAvaliacao() const
 {
-    return digito;
+    return valor;
 }
 
-bool Nome::Validar(string nome)
-{
-    return nome.length() <= 30 && !nome.empty();
+void Nome::Validar(string nome){
+    if(nome.length() > 30 || nome.empty())
+        throw invalid_argument("Valor invalido");
 }
 
-bool Nome::SetNome(string nome)
-{
-    if (Validar(nome)) {
-        this -> nome = nome;
-        return true;
-    }
-    return false;
+
+void Nome::SetNome(string nome){
+    Validar(nome);
+    this -> nome = nome;
 }
+
 
 string Nome::GetNome() const
 {
@@ -167,31 +164,39 @@ string Codigo::GetCodigo() const
     return codigo;
 }
 
-bool Data::SetData(const string& data)
-{
-    if (Validar(data)) {
-        this->data = data;
-        return true;
-    } else
-        return false;
+void Data::SetData(const string& data){
+    Validar(data);
+    this -> data = data;
 }
 
-bool Data::Validar(const string& data) const
-{
-    if (data.length() != 8 || data[2] != '-' || data[5] != '-')
-        return false;
-    int dia = stoi(data.substr(0, 2));
-    int mes = stoi(data.substr(3, 2));
-    int ano = stoi(data.substr(6, 2));
+
+void Data::Validar(const string& data) const{
+    if (data.length() != 8 || data[2] != '-'|| data[5] != '-')
+        throw invalid_argument("Valor invalido");
+
+    int dia = std::stoi(data.substr(0, 2));
+    int mes = std::stoi(data.substr(3, 2));
+    int ano = std::stoi(data.substr(6, 2));
+
     if (mes < 1 || mes > 12 || dia < 1 || dia > 31 || ano < 0 || ano > 99)
-        return false;
+        throw invalid_argument("Valor invalido");
+
     int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-    if (mes == 2) {
-        if (bissexto(ano + 2000))
-            diasPorMes[1] = 29;
+
+
+    if (mes == 2 && bissexto(ano + 2000)) { // Considera ano 2000+ para simplificação
+	diasPorMes[1] = 29;
     }
-    return dia <= diasPorMes[mes - 1];
+
+    if (mes == 2 && dia == 29 && !bissexto(ano + 2000)) {
+	throw invalid_argument("Valor invalido");
+    }
+
+    if (dia > diasPorMes[mes - 1]) {
+	throw invalid_argument("Valor invalido");
+    }
 }
+
 
 
 string Data::GetData() const
