@@ -2,18 +2,18 @@
 #define TESTES_ENTIDADES_H_INCLUDED
 #include "Testes_Dominios.h"
 #include "Dominios.h"
-
+using namespace std;
 
 class TUViagem{
     private:
-        const string VALOR_VALIDO_CODIGO = "aBcCz6";
-        const string VALOR_VALIDO_NOME = "Nome";
-        static const int VALOR_VALIDO3 = 4;
+        const string CODIGO_VALIDO = "aBcCz6";
+        const string NOME_VALIDO = "Nome";
+        static const int AVALIACAO_VALIDO = 4;
         Viagem* viagem;
         int estado;
         void setUp();
         void tearDown();
-        void testarCenario();
+        void testarCenarioSucesso();
     public:
         const static int SUCESSO = 0;
         const static int FALHA = = -1;
@@ -22,13 +22,13 @@ class TUViagem{
 
 class TUConta{
     private:
-        const string VALOR_VALIDO1 = "aBcCz6";
-        const string VALOR_VALIDO2 = "16274";
-        Viagem* viagem;
+        const string CODIGO_VALIDO = "aBcCz6";
+        const string SENHA_VALIDO = "16274";
+        Conta* conta;
         int estado;
         void setUp();
         void tearDown();
-        void testarCenario();
+        void testarCenarioSucesso();
     public:
         const static int SUCESSO = 0;
         const static int FALHA = = -1;
