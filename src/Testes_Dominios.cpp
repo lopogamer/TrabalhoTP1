@@ -1,4 +1,4 @@
-#include "Testes.h"
+#include "Testes_Dominios.h"
 #include <iostream>
 using namespace std;
 
@@ -97,22 +97,22 @@ int TUData::run()
 }
 
 
-void TUAvaliacao::setUp()
+void TUavaliacao::setUp()
 {
 	avaliacao = new Avaliacao();
 	estado = SUCESSO;
 }
 
-void TUAvaliacao::tearDown()
+void TUavaliacao::tearDown()
 {
 	delete avaliacao;
 }
 
-void TUAvaliacao::TestarCasoValido()
+void TUavaliacao::TestarCasoValido()
 {
 	try {
-		avaliacao->SetAvaliacao(AVALIACAO_VALIDA);
-		if (avaliacao->GetAvaliacao() != AVALIACAO_VALIDA) {
+		avaliacao->SetValor(VALOR_VALIDO);
+		if (avaliacao->GetValor() != VALOR_VALIDO) {
 			estado = FALHA;
 		}
 	}
@@ -121,21 +121,21 @@ void TUAvaliacao::TestarCasoValido()
 	}
 }
 
-void TUAvaliacao::TestarCasoInvalido()
+void TUavaliacao::TestarCasoInvalido()
 {
 	try {
-		avaliacao->SetAvaliacao(AVALIACAO_INVALIDA);
-		cout << avaliacao->GetAvaliacao() << endl;
+		avaliacao->SetValor(VALOR_INVALIDO);
+		cout << avaliacao->GetValor() << endl;
 		estado = FALHA;
 	}
 	catch (invalid_argument& e) {
-		if (avaliacao->GetAvaliacao() == AVALIACAO_INVALIDA) {
+		if (avaliacao->GetValor() == VALOR_INVALIDO) {
 			estado = FALHA;
 		}
 	}
 }
 
-int TUAvaliacao::run()
+int TUavaliacao::run()
 {
 	setUp();
 	TestarCasoValido();
@@ -144,41 +144,6 @@ int TUAvaliacao::run()
 	return estado;
 }
 
-void TUavaliacao::setUp(){
-    avaliacao = new Avaliacao();
-    estado = SUCESSO;
-}
-void TUavaliacao::tearDown(){
-    delete avaliacao;
-}
-void TUavaliacao::TestarCasoValido(){
-    try{
-        avaliacao->SetValor(VALOR_VALIDO);
-        if(avaliacao->GetValor() != VALOR_VALIDO){
-            estado = FALHA;
-        }
-    }catch(invalid_argument &e){
-        estado = FALHA;
-    }
-}
-void TUavaliacao::TestarCasoInvalido(){
-    try{
-        avaliacao->SetValor(VALOR_INVALIDO);
-        estado = FALHA;
-    }catch(invalid_argument &e){
-        if(avaliacao->GetValor() == VALOR_INVALIDO){
-            estado = FALHA;
-        }
-    }
-}
-
-int TUavaliacao::run(){
-    setUp();
-    TestarCasoValido();
-    TestarCasoInvalido();
-    tearDown();
-    return estado;
-}
 
 //Codigo
 void TUcodigo::setUp(){

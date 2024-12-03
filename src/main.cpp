@@ -1,24 +1,34 @@
-#include "Entidade.h"
-#include "Dominios.h"
-#include "Entidade.h"
-#include "Testes.h"
+#include "Testes_Dominios.h"
+#include "Testes_Entidades.h"
 #include <iostream>
 #include <locale>
-#include "Testes.h"
 using namespace std;
 
 int main()
 {
-
-	TUAvaliacao teste3;
-	switch (teste3.run()) {
-		case TUAvaliacao::SUCESSO:cout << "SUCESSO - DOMINIO AVALIACAO" << endl;
-			break;
-		case TUAvaliacao::FALHA:cout << "FALHA - DOMINIO AVALIACAO" << endl;
-			break;
-	}
-
-
+    setlocale(LC_ALL, "portuguese");
+    cout << "TESTE DE DOMINIOS" << endl;
+    TUavaliacao teste;
+    switch(teste.run()){
+        case TUavaliacao::SUCESSO: cout << "AVALIACAO - SUCESSO" << endl;
+            break;
+        case TUavaliacao::FALHA:   cout << "AVALIACAO - FALHA" << endl;
+            break;
+    }
+    TUcodigo teste2;
+    switch(teste2.run()){
+        case TUcodigo::SUCESSO: cout << "CODIGO - SUCESSO " << endl;
+            break;
+        case TUcodigo::FALHA:   cout << " CODIGO - FALHA" << endl;
+            break;
+    }
+    TUData teste_data;
+    switch (teste_data.run()){
+        case TUData::SUCESSO: cout << "DATA - SUCESSO" << endl;
+            break;
+        case TUData::FALHA: cout << "DATA - FALHA" << endl;
+            break;
+    }
     TUDinheiro testeDinheiro;
     switch (testeDinheiro.run()){
         case TUDinheiro::SUCESSO: cout << "DINHEIRO - SUCESSO" << endl;
@@ -41,27 +51,19 @@ int main()
             break;
     }
 
+
+    TUNome testeNome;
+    switch (testeNome.run()){
+        case TUNome::SUCESSO: cout << "NOME - SUCESSO" << endl;
+            break;
+        case TUNome::FALHA: cout << "NOME - FALHA" << endl;
+            break;
+    }
     TUSenha testeSenha;
     switch (testeSenha.run()){
         case TUSenha::SUCESSO: cout << "SENHA - SUCESSO" << endl;
             break;
         case TUSenha::FALHA: cout << "SENHA - FALHA" << endl;
-            break;
-    }
-    setlocale(LC_ALL, "portuguese");
-    TUavaliacao teste;
-    switch(teste.run()){
-        case TUavaliacao::SUCESSO: cout << "SUCESSO  - DOMINIO AVALICAO" << endl;
-            break;
-        case TUavaliacao::FALHA:   cout << "FALHA   - DOMINIO  AVALIACAO" << endl;
-            break;
-    }
-
-    TUcodigo teste2;
-    switch(teste2.run()){
-        case TUcodigo::SUCESSO: cout << "SUCESSO  - DOMINIO CODIGO" << endl;
-            break;
-        case TUcodigo::FALHA:   cout << "FALHA   - DOMINIO CODIGO" << endl;
             break;
     }
     return 0;

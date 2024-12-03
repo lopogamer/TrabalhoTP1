@@ -92,20 +92,20 @@ string Dinheiro::GetDinheiro() const
     return quantidade;
 }
 
-void Avaliacao::Validar(int valor) const
+void Avaliacao::Validar(int valor)
 {
     if (valor < 0 || valor > 5){
         throw invalid_argument("Valor invalido");
     }
 }
 
-void Avaliacao::SetAvaliacao(int valor)
+void Avaliacao::SetValor(int valor)
 {
     Validar(valor);
     this -> valor = valor;
 }
 
-int Avaliacao::GetAvaliacao() const
+int Avaliacao::GetValor() const
 {
     return valor;
 }

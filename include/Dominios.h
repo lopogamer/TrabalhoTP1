@@ -39,10 +39,10 @@ public:
 class Avaliacao
 {
 private:
-    int digito;
-    void Validar(int digito);
+    int valor;
+    void Validar(int);
 public:
-    void SetValor(int valor);
+    void SetValor(int);
     int GetValor() const;
 };
 
