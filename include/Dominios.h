@@ -10,9 +10,9 @@ class Senha
 {
 private:
     string senha;
-    bool Validar(string);
+    void Validar(string);
 public:
-    bool SetSenha(string);
+    void SetSenha(string);
     string GetSenha() const;
 };
 
@@ -20,9 +20,9 @@ class Horario
 {
 private:
     string hora;
-    bool Validar(string);
+    void Validar(string);
 public:
-    bool SetHora(string);
+    void SetHora(string);
     string GetHora() const;
 };
 
