@@ -66,6 +66,7 @@ int main()
         case TUSenha::FALHA: cout << "SENHA - FALHA" << endl;
             break;
     }
+    cout << endl;
     cout << "TESTE DE ENTIDADES" << endl;
     TUAtividade testeAtividade;
     switch (testeAtividade.run()){
