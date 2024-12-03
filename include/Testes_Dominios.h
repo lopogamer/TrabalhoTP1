@@ -8,8 +8,8 @@ using namespace std;
 
 class TUNome {
 private:
-	const string NOME_VALIDO = "Nome";
-    const string NOME_INVALIDO = "";
+	const string VALOR_VALIDO = "Nome";
+    const string VALOR_INVALIDO = "";
     Nome* nome;
     int estado;
     void setUp();
@@ -24,8 +24,8 @@ public:
 
 class TUData {
 private:
-	const string DATA_VALIDA = "29-02-20";
-	const string DATA_INVALIDA = "00-00-00";
+	const string VALOR_VALIDO = "29-02-20";
+	const string VALOR_INVALIDO = "00-00-00";
 	Data* data;
 	int estado;
 	void setUp();
