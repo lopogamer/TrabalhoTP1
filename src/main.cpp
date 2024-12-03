@@ -72,7 +72,7 @@ int main()
     switch(testeHospedagem.run()){
         case TUHospedagem::SUCESSO: cout << "HOSPEDAGEM - SUCESSO" << endl;
             break;
-        case TUHospedagem::FALHA : cout << "FALHA" << endl;
+        case TUHospedagem::FALHA : cout << "HOSPEDAGEM - FALHA" << endl;
             break;
     }
     return 0;
