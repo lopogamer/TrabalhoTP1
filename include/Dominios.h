@@ -40,9 +40,9 @@ class Avaliacao
 {
 private:
     int digito;
-    bool Validar(int digito) const;
+    void Validar(int digito);
 public:
-    bool SetValor(int valor);
+    void SetValor(int valor);
     int GetValor() const;
 };
 
@@ -66,13 +66,13 @@ public:
     int GetValor() const;
 };
 
-class Codigo
+class Codigo/**/
 {
 private:
     string codigo;
-    bool Validar(string&);
+    void Validar(string&);
 public:
-    bool SetCodigo(string);
+    void SetCodigo(string);
     string GetCodigo() const;
 };
 

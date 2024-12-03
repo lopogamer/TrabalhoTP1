@@ -92,18 +92,18 @@ string Dinheiro::GetDinheiro() const
     return quantidade;
 }
 
-bool Avaliacao::Validar(int valor) const
+void Avaliacao::Validar(int valor)
 {
-    return valor >= 0 && valor <= 5;
+    if(!(valor >= 0 && valor <= 5))
+    {
+        throw invalid_argument("Argumento inválido.");
+    }
 }
 
-bool Avaliacao::SetValor(int valor)
+void Avaliacao::SetValor(int valor)
 {
-    if (Validar(valor)) {
-        return true;
-        this->digito = digito;
-    }
-    return false;
+    Validar(valor);
+    this->digito = valor;
 }
 
 int Avaliacao::GetValor() const
@@ -147,19 +147,19 @@ int Duracao::GetValor() const
     return valor;
 }
 
-bool Codigo::Validar(string& codigo)
+void Codigo::Validar(string& codigo)
 {
     regex pattern("^[A-Za-z0-9]{6}$");
-    return regex_match(codigo, pattern);
+    if (!regex_match(codigo, pattern))
+    {
+        throw invalid_argument("Argumento inválido.");
+    }
 }
 
-bool Codigo::SetCodigo(string codigo)
+void Codigo::SetCodigo(string codigo)
 {
-    if (Validar(codigo)) {
-        this->codigo = codigo;
-        return true;
-    }
-    return false;
+    Validar(codigo);
+    this->codigo = codigo;
 }
 
 string Codigo::GetCodigo() const
