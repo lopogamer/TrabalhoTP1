@@ -2,5 +2,6 @@
 *temp/
 *.swp
 .vs/
-.vscode/
+*.vscode/
 *obj/
+*build/

@@ -6,16 +6,16 @@
 #include <regex>
 using namespace std;
 
-bool Senha::Validar(string senha)
+void Senha::Validar(string senha)
 {
     if (senha.size() != 5)
-        return false;
+        throw invalid_argument("Valor invalido");
     vector<bool> Duplicado(10, false);
     for (int i = 0; i < 5; i++) {
         if (senha[i] < '0' || senha[i] > '9')
-            return false;
+            throw invalid_argument("Valor invalido");
         if (Duplicado[senha[i] - '0'])
-            return false;
+            throw invalid_argument("Valor invalido");
         Duplicado[senha[i] - '0'] = true;
     }
     bool crescente = true, decrescente = true;
@@ -24,20 +24,17 @@ bool Senha::Validar(string senha)
             crescente = false;
         if (senha[i] - 1 != senha[i + 1])
             decrescente = false;
+
     }
-    return !(crescente || decrescente);
+    if(crescente || decrescente)
+        throw invalid_argument("Valor invalido");
 }
 
-bool Senha::SetSenha(string senha)
+void Senha::SetSenha(string senha)
 {
-    if (Validar(senha)) {
+        Validar(senha);
         this->senha = senha;
-        cout << "Senha Definida Com Sucesso" << endl;
-        return true;
-    } else {
-        cout << "Erro ao definir a senha: Senha inv�lida" << endl;
-        return false;
-    }
+
 }
 
 string Senha::GetSenha() const
@@ -45,27 +42,23 @@ string Senha::GetSenha() const
     return senha;
 }
 
-bool Horario::Validar(string hora)
+void Horario::Validar(string hora)
 {
     if (hora.size() != 5 || hora[2] != ':')
-        return false;
+        throw invalid_argument("Valor invalido");
     string Horas = hora.substr(0, 2);
     string Minutos = hora.substr(3, 2);
     int horasInt = stoi(Horas);
     int minutosInt = stoi(Minutos);
-    return (horasInt >= 0 && horasInt <= 23) && (minutosInt >= 0 && minutosInt <= 59);
+    if (!((horasInt >= 0 && horasInt <= 23) && (minutosInt >= 0 && minutosInt <= 59)))
+        throw invalid_argument("Valor invalido");
 }
 
-bool Horario::SetHora(string hora)
+void Horario::SetHora(string hora)
 {
-    if (Validar(hora)) {
+        Validar(hora);
         this->hora = hora;
-        cout << "Hora Definida Com Sucesso" << endl;
-        return true;
-    } else {
-        cout << "Erro ao definir Horario." << endl;
-        return false;
-    }
+
 }
 
 string Horario::GetHora() const
@@ -99,38 +92,35 @@ string Dinheiro::GetDinheiro() const
     return quantidade;
 }
 
-bool Avaliacao::Validar(int valor) const
+void Avaliacao::Validar(int valor)
 {
-    return valor >= 0 && valor <= 5;
+    if (valor < 0 || valor > 5){
+        throw invalid_argument("Valor invalido");
+    }
 }
 
-bool Avaliacao::SetValor(int valor)
+void Avaliacao::SetValor(int valor)
 {
-    if (Validar(valor)) {
-        return true;
-        this->digito = digito;
-    }
-    return false;
+    Validar(valor);
+    this -> valor = valor;
 }
 
 int Avaliacao::GetValor() const
 {
-    return digito;
+    return valor;
 }
 
-bool Nome::Validar(string nome)
-{
-    return nome.length() <= 30 && !nome.empty();
+void Nome::Validar(string nome){
+    if(nome.length() > 30 || nome.empty())
+        throw invalid_argument("Valor invalido");
 }
 
-bool Nome::SetNome(string nome)
-{
-    if (Validar(nome)) {
-        this -> nome = nome;
-        return true;
-    }
-    return false;
+
+void Nome::SetNome(string nome){
+    Validar(nome);
+    this -> nome = nome;
 }
+
 
 string Nome::GetNome() const
 {
@@ -154,19 +144,19 @@ int Duracao::GetValor() const
     return valor;
 }
 
-bool Codigo::Validar(string& codigo)
+void Codigo::Validar(string& codigo)
 {
     regex pattern("^[A-Za-z0-9]{6}$");
-    return regex_match(codigo, pattern);
+    if (!regex_match(codigo, pattern))
+    {
+        throw invalid_argument("Argumento inválido.");
+    }
 }
 
-bool Codigo::SetCodigo(string codigo)
+void Codigo::SetCodigo(string codigo)
 {
-    if (Validar(codigo)) {
-        this->codigo = codigo;
-        return true;
-    }
-    return false;
+    Validar(codigo);
+    this->codigo = codigo;
 }
 
 string Codigo::GetCodigo() const
@@ -174,31 +164,39 @@ string Codigo::GetCodigo() const
     return codigo;
 }
 
-bool Data::SetData(const string& data)
-{
-    if (Validar(data)) {
-        this->data = data;
-        return true;
-    } else
-        return false;
+void Data::SetData(const string& data){
+    Validar(data);
+    this -> data = data;
 }
 
-bool Data::Validar(const string& data) const
-{
-    if (data.length() != 8 || data[2] != '-' || data[5] != '-')
-        return false;
-    int dia = stoi(data.substr(0, 2));
-    int mes = stoi(data.substr(3, 2));
-    int ano = stoi(data.substr(6, 2));
+
+void Data::Validar(const string& data) const{
+    if (data.length() != 8 || data[2] != '-'|| data[5] != '-')
+        throw invalid_argument("Valor invalido");
+
+    int dia = std::stoi(data.substr(0, 2));
+    int mes = std::stoi(data.substr(3, 2));
+    int ano = std::stoi(data.substr(6, 2));
+
     if (mes < 1 || mes > 12 || dia < 1 || dia > 31 || ano < 0 || ano > 99)
-        return false;
+        throw invalid_argument("Valor invalido");
+
     int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-    if (mes == 2) {
-        if (bissexto(ano + 2000))
-            diasPorMes[1] = 29;
+
+
+    if (mes == 2 && bissexto(ano + 2000)) { // Considera ano 2000+ para simplificação
+	diasPorMes[1] = 29;
     }
-    return dia <= diasPorMes[mes - 1];
+
+    if (mes == 2 && dia == 29 && !bissexto(ano + 2000)) {
+	throw invalid_argument("Valor invalido");
+    }
+
+    if (dia > diasPorMes[mes - 1]) {
+	throw invalid_argument("Valor invalido");
+    }
 }
+
 
 
 string Data::GetData() const

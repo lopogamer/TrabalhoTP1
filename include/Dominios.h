@@ -10,9 +10,9 @@ class Senha
 {
 private:
     string senha;
-    bool Validar(string);
+    void Validar(string);
 public:
-    bool SetSenha(string);
+    void SetSenha(string);
     string GetSenha() const;
 };
 
@@ -20,9 +20,9 @@ class Horario
 {
 private:
     string hora;
-    bool Validar(string);
+    void Validar(string);
 public:
-    bool SetHora(string);
+    void SetHora(string);
     string GetHora() const;
 };
 
@@ -39,10 +39,10 @@ public:
 class Avaliacao
 {
 private:
-    int digito;
-    bool Validar(int digito) const;
+    int valor;
+    void Validar(int);
 public:
-    bool SetValor(int valor);
+    void SetValor(int);
     int GetValor() const;
 };
 
@@ -50,9 +50,9 @@ class Nome
 {
 private:
     string nome;
-    bool Validar(string nome);
+    void Validar(string nome);
 public:
-    bool SetNome(string nome);
+    void SetNome(string nome);
     string GetNome() const;
 };
 
@@ -66,13 +66,13 @@ public:
     int GetValor() const;
 };
 
-class Codigo
+class Codigo/**/
 {
 private:
     string codigo;
-    bool Validar(string&);
+    void Validar(string&);
 public:
-    bool SetCodigo(string);
+    void SetCodigo(string);
     string GetCodigo() const;
 };
 
@@ -80,13 +80,13 @@ class Data
 {
 private:
     string data;
-    bool Validar(const string& data) const;
+    void Validar(const string& data) const;
     bool bissexto(int ano) const
     {
         return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
     }
 public:
-    bool SetData(const string& data);
+    void SetData(const string& data);
     string GetData() const;
 };
 
