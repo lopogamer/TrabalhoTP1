@@ -72,8 +72,8 @@ class TUcodigo{
 
 class TUDinheiro{
     private:
-        inline const static string VALOR_VALIDO = "193.231,21";
-        inline const static string VALOR_INVALIDO = "200.000,01";
+        const string VALOR_VALIDO = "193.231,21";
+        const string VALOR_INVALIDO = "200.000,01";
         Dinheiro *dinheiro;
         int estado;
         void setUp();
@@ -89,8 +89,8 @@ class TUDinheiro{
 
 class TUDuracao{
     private:
-        inline const static int VALOR_VALIDO = 21;
-        inline const static int VALOR_INVALIDO = 765;
+        const static int VALOR_VALIDO = 21;
+        const static int VALOR_INVALIDO = 765;
         Duracao *duracao;
         int estado;
         void setUp();
