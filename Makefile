@@ -14,6 +14,10 @@ INCLUDE_DIR = include
 SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
+# Comando do astyle
+ASTYLE = astyle --style=kr --pad-oper --max-code-length=120 --remove-brackets \
+	--align-pointer=type --align-reference=type --break-after-logical --keep-one-line-blocks
+
 # Regra principal: compilar o executável
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
@@ -26,12 +30,18 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-# Limpeza de arquivos objeto e executável
+# Limpeza de arquivos objeto e executável no Linux
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
 
-# Regra para compilar e executar o programa
+# Limpeza de arquivos objeto e executável no Windows
+clean-win:
+	if exist $(OBJ_DIR) rmdir /s /q $(OBJ_DIR)
+	if exist $(TARGET).exe del /q $(TARGET).exe
+
+# Regra para compilar, formatar e executar o programa
 run: $(TARGET)
+	$(ASTYLE) $(SRC_DIR)/*.cpp $(INCLUDE_DIR)/*.h
 	./$(TARGET)
 
-.PHONY: clean run
+.PHONY: clean clean-win run

@@ -4,177 +4,168 @@ using namespace std;
 
 void TUNome::setUp()
 {
-	nome = new Nome();
-	estado = SUCESSO;
+    nome = new Nome();
+    estado = SUCESSO;
 }
 
 void TUNome::tearDown()
 {
-	delete nome;
+    delete nome;
 }
 
 void TUNome::TestarCasoValido()
 {
-	try {
-		nome->SetNome(VALOR_VALIDO);
-		if (nome->GetNome() != VALOR_VALIDO) {
-			estado = FALHA;
-		}
-	}
-	catch (invalid_argument& e) {
-		estado = FALHA;
-	}
+    try {
+        nome->SetNome(VALOR_VALIDO);
+        if (nome->GetNome() != VALOR_VALIDO)
+            estado = FALHA;
+    } catch (invalid_argument& e) {
+        estado = FALHA;
+    }
 }
 
 void TUNome::TestarCasoInvalido()
 {
-	try {
-		nome->SetNome(VALOR_INVALIDO);
-		cout << nome->GetNome() << endl;
-		estado = FALHA;
-	}
-	catch (invalid_argument& e) {
-		if (nome->GetNome() == VALOR_INVALIDO) {
-			estado = FALHA;
-		}
-	}
+    try {
+        nome->SetNome(VALOR_INVALIDO);
+        cout << nome->GetNome() << endl;
+        estado = FALHA;
+    } catch (invalid_argument& e) {
+        if (nome->GetNome() == VALOR_INVALIDO)
+            estado = FALHA;
+    }
 }
 
 int TUNome::run()
 {
-	setUp();
-	TestarCasoValido();
-	TestarCasoInvalido();
-	tearDown();
-	return estado;
+    setUp();
+    TestarCasoValido();
+    TestarCasoInvalido();
+    tearDown();
+    return estado;
 }
 
 void TUData::setUp()
 {
-	data = new Data();
-	estado = SUCESSO;
+    data = new Data();
+    estado = SUCESSO;
 }
 
 void TUData::tearDown()
 {
-	delete data;
+    delete data;
 }
 
 void TUData::TestarCasoValido()
 {
-	try {
-		data->SetData(VALOR_VALIDO);
-		if (data->GetData() != VALOR_VALIDO) {
-			estado = FALHA;
-		}
-	}
-	catch (invalid_argument& e) {
-		estado = FALHA;
-	}
+    try {
+        data->SetData(VALOR_VALIDO);
+        if (data->GetData() != VALOR_VALIDO)
+            estado = FALHA;
+    } catch (invalid_argument& e) {
+        estado = FALHA;
+    }
 }
 
 void TUData::TestarCasoInvalido()
 {
-	try {
-		data->SetData(VALOR_INVALIDO);
-		cout << data->GetData() << endl;
-		estado = FALHA;
-	}
-	catch (invalid_argument& e) {
-		if (data->GetData() == VALOR_INVALIDO) {
-			estado = FALHA;
-		}
-	}
+    try {
+        data->SetData(VALOR_INVALIDO);
+        cout << data->GetData() << endl;
+        estado = FALHA;
+    } catch (invalid_argument& e) {
+        if (data->GetData() == VALOR_INVALIDO)
+            estado = FALHA;
+    }
 }
 
 int TUData::run()
 {
-	setUp();
-	TestarCasoValido();
-	TestarCasoInvalido();
-	tearDown();
-	return estado;
+    setUp();
+    TestarCasoValido();
+    TestarCasoInvalido();
+    tearDown();
+    return estado;
 }
 
 
 void TUavaliacao::setUp()
 {
-	avaliacao = new Avaliacao();
-	estado = SUCESSO;
+    avaliacao = new Avaliacao();
+    estado = SUCESSO;
 }
 
 void TUavaliacao::tearDown()
 {
-	delete avaliacao;
+    delete avaliacao;
 }
 
 void TUavaliacao::TestarCasoValido()
 {
-	try {
-		avaliacao->SetValor(VALOR_VALIDO);
-		if (avaliacao->GetValor() != VALOR_VALIDO) {
-			estado = FALHA;
-		}
-	}
-	catch (invalid_argument& e) {
-		estado = FALHA;
-	}
+    try {
+        avaliacao->SetValor(VALOR_VALIDO);
+        if (avaliacao->GetValor() != VALOR_VALIDO)
+            estado = FALHA;
+    } catch (invalid_argument& e) {
+        estado = FALHA;
+    }
 }
 
 void TUavaliacao::TestarCasoInvalido()
 {
-	try {
-		avaliacao->SetValor(VALOR_INVALIDO);
-		cout << avaliacao->GetValor() << endl;
-		estado = FALHA;
-	}
-	catch (invalid_argument& e) {
-		if (avaliacao->GetValor() == VALOR_INVALIDO) {
-			estado = FALHA;
-		}
-	}
+    try {
+        avaliacao->SetValor(VALOR_INVALIDO);
+        cout << avaliacao->GetValor() << endl;
+        estado = FALHA;
+    } catch (invalid_argument& e) {
+        if (avaliacao->GetValor() == VALOR_INVALIDO)
+            estado = FALHA;
+    }
 }
 
 int TUavaliacao::run()
 {
-	setUp();
-	TestarCasoValido();
-	TestarCasoInvalido();
-	tearDown();
-	return estado;
+    setUp();
+    TestarCasoValido();
+    TestarCasoInvalido();
+    tearDown();
+    return estado;
 }
 
 
 //Codigo
-void TUcodigo::setUp(){
+void TUcodigo::setUp()
+{
     codigo = new Codigo();
     estado = SUCESSO;
 }
-void TUcodigo::tearDown(){
+void TUcodigo::tearDown()
+{
     delete codigo;
 }
-void TUcodigo::TestarCasoValido(){
-    try{
+void TUcodigo::TestarCasoValido()
+{
+    try {
         codigo->SetCodigo(VALOR_VALIDO);
-        if(codigo->GetCodigo() != VALOR_VALIDO){
+        if(codigo->GetCodigo() != VALOR_VALIDO)
             estado = FALHA;
-        }
-    }catch(invalid_argument &e){
+    } catch(invalid_argument& e) {
         estado = FALHA;
     }
 }
-void TUcodigo::TestarCasoInvalido(){
-    try{
+void TUcodigo::TestarCasoInvalido()
+{
+    try {
         codigo->SetCodigo(VALOR_INVALIDO);
         estado = FALHA;
-    }catch(invalid_argument &e){
-        if(codigo->GetCodigo() == VALOR_INVALIDO){
+    } catch(invalid_argument& e) {
+        if(codigo->GetCodigo() == VALOR_INVALIDO)
             estado = FALHA;
-        }
     }
 }
 
-int TUcodigo::run(){
+int TUcodigo::run()
+{
     setUp();
     TestarCasoValido();
     TestarCasoInvalido();
@@ -197,30 +188,22 @@ void TUDinheiro::tearDown()
 
 void TUDinheiro::TestarCasoValido()
 {
-    try{
+    try {
         dinheiro->SetDinheiro(VALOR_VALIDO);
         if(dinheiro->GetDinheiro() != VALOR_VALIDO)
-        {
             estado = FALHA;
-        }
-    }
-    catch(invalid_argument  &e)
-    {
+    } catch(invalid_argument&  e) {
         estado = FALHA;
     }
 }
 void TUDinheiro::TestarCasoInvalido()
 {
-    try{
+    try {
         dinheiro->SetDinheiro(VALOR_INVALIDO);
         estado = FALHA;
-    }
-    catch(invalid_argument  &e)
-    {
+    } catch(invalid_argument&  e) {
         if(dinheiro->GetDinheiro() == VALOR_INVALIDO)
-        {
             estado = FALHA;
-        }
     }
 }
 
@@ -233,7 +216,8 @@ int TUDinheiro::run()
     return estado;
 }
 
-int TUDuracao::run(){
+int TUDuracao::run()
+{
     setUp();
     TestarCasoValido();
     TestarCasoInvalido();
@@ -253,30 +237,22 @@ void TUDuracao::tearDown()
 
 void TUDuracao::TestarCasoValido()
 {
-    try{
+    try {
         duracao->SetValor(VALOR_VALIDO);
-        if(duracao->GetValor()!= VALOR_VALIDO)
-        {
+        if(duracao->GetValor() != VALOR_VALIDO)
             estado = FALHA;
-        }
-    }
-    catch(invalid_argument  &e)
-    {
+    } catch(invalid_argument&  e) {
         estado = FALHA;
     }
 }
 void TUDuracao::TestarCasoInvalido()
 {
-    try{
+    try {
         duracao->SetValor(VALOR_INVALIDO);
         estado = FALHA;
-    }
-    catch(invalid_argument  &e)
-    {
+    } catch(invalid_argument&  e) {
         if(duracao->GetValor() == VALOR_INVALIDO)
-        {
             estado = FALHA;
-        }
     }
 }
 
@@ -293,31 +269,23 @@ void TUSenha::tearDown()
 
 void TUSenha::TestarCasoValido()
 {
-    try{
+    try {
         senha->SetSenha(VALOR_VALIDO);
         if(senha->GetSenha() != VALOR_VALIDO)
-        {
             estado = FALHA;
-        }
-    }
-    catch(invalid_argument  &e)
-    {
+    } catch(invalid_argument&  e) {
         estado = FALHA;
     }
 }
 void TUSenha::TestarCasoInvalido()
 {
-    try{
+    try {
         senha->SetSenha(VALOR_INVALIDO);
         cout << senha->GetSenha() << endl;
         estado = FALHA;
-    }
-    catch(invalid_argument  &e)
-    {
+    } catch(invalid_argument&  e) {
         if(senha->GetSenha() == VALOR_INVALIDO)
-        {
             estado = FALHA;
-        }
     }
 }
 
@@ -343,32 +311,24 @@ void TUHorario::tearDown()
 
 void TUHorario::TestarCasoValido()
 {
-    try{
+    try {
         horario->SetHora(VALOR_VALIDO);
         if(horario->GetHora() != VALOR_VALIDO)
-        {
             estado = FALHA;
-        }
-    }
-    catch(invalid_argument  &e)
-    {
-        
+    } catch(invalid_argument&  e) {
+
         estado = FALHA;
     }
 }
 void TUHorario::TestarCasoInvalido()
 {
-    try{
+    try {
         horario->SetHora(VALOR_INVALIDO);
         cout << horario->GetHora() << endl;
         estado = FALHA;
-    }
-    catch(invalid_argument  &e)
-    {
+    } catch(invalid_argument&  e) {
         if(horario->GetHora() == VALOR_INVALIDO)
-        {
             estado = FALHA;
-        }
     }
 }
 

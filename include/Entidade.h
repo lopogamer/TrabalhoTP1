@@ -1,9 +1,12 @@
+
 #ifndef ENTIDADE_H_INCLUDED
 #define ENTIDADE_H_INCLUDED
 #include "Dominios.h"
 #include <string>
 using namespace std;
-
+/// @file Entidade.h
+/// @brief Declaraçoes das classes-Entidade
+/// Este arquivo contem as declaraçoes das classes Entidade com a declaraçao dos metodos Set, Get
 class Atividade
 {
 private:
@@ -52,15 +55,32 @@ public:
     Data GetData_Termino() const;
 };
 
+
+/// @author Ribeiro, Luan - 232036958
+/// @brief Classe para representar a conta de um usuário.
+/// 
+/// A conta e composta por um objeto do tipo Codigo e um objeto do tipo Senha.
 class Conta
 {
 private:
     Codigo codigo;
     Senha senha;
+
 public:
+    /// @brief Seta um valor do objeto codigo da classe conta, passando um objeto do tipo Codigo validado.
+    /// @param codigo Objeto do tipo Codigo para ser atribuido ao atributo codigo.
     void SetCodigo(const Codigo& codigo);
+
+    /// @brief Retorna Objeto do tipo Codigo que contem o valor do atributo codigo.
+    /// @return Objeto Codigo.
     Codigo GetCodigo() const;
+
+    /// @brief Seta um valor do objeto senha da classe conta, passando um objeto do tipo Senha validado.
+    /// @param senha Objeto do tipo Senha para ser atribuido ao atributo senha.
     void SetSenha(const Senha& senha);
+
+    /// @brief Retorna Objeto do tipo Senha que contem o valor do atributo senha.
+    /// @return Objeto Senha.
     Senha GetSenha() const;
 };
 
