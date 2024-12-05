@@ -16,8 +16,8 @@ void TUNome::tearDown()
 void TUNome::TestarCasoValido()
 {
 	try {
-		nome->SetNome(NOME_VALIDO);
-		if (nome->GetNome() != NOME_VALIDO) {
+		nome->SetNome(VALOR_VALIDO);
+		if (nome->GetNome() != VALOR_VALIDO) {
 			estado = FALHA;
 		}
 	}
@@ -29,12 +29,12 @@ void TUNome::TestarCasoValido()
 void TUNome::TestarCasoInvalido()
 {
 	try {
-		nome->SetNome(NOME_INVALIDO);
+		nome->SetNome(VALOR_INVALIDO);
 		cout << nome->GetNome() << endl;
 		estado = FALHA;
 	}
 	catch (invalid_argument& e) {
-		if (nome->GetNome() == NOME_INVALIDO) {
+		if (nome->GetNome() == VALOR_INVALIDO) {
 			estado = FALHA;
 		}
 	}
@@ -63,8 +63,8 @@ void TUData::tearDown()
 void TUData::TestarCasoValido()
 {
 	try {
-		data->SetData(DATA_VALIDA);
-		if (data->GetData() != DATA_VALIDA) {
+		data->SetData(VALOR_VALIDO);
+		if (data->GetData() != VALOR_VALIDO) {
 			estado = FALHA;
 		}
 	}
@@ -76,12 +76,12 @@ void TUData::TestarCasoValido()
 void TUData::TestarCasoInvalido()
 {
 	try {
-		data->SetData(DATA_INVALIDA);
+		data->SetData(VALOR_INVALIDO);
 		cout << data->GetData() << endl;
 		estado = FALHA;
 	}
 	catch (invalid_argument& e) {
-		if (data->GetData() == DATA_INVALIDA) {
+		if (data->GetData() == VALOR_INVALIDO) {
 			estado = FALHA;
 		}
 	}
@@ -111,8 +111,8 @@ void TUavaliacao::tearDown()
 void TUavaliacao::TestarCasoValido()
 {
 	try {
-		avaliacao->SetValor(VALOR_VALIDO);
-		if (avaliacao->GetValor() != VALOR_VALIDO) {
+		avaliacao->SetAvaliacao(VALOR_VALIDO);
+		if (avaliacao->GetAvaliacao() != VALOR_VALIDO) {
 			estado = FALHA;
 		}
 	}
@@ -124,12 +124,12 @@ void TUavaliacao::TestarCasoValido()
 void TUavaliacao::TestarCasoInvalido()
 {
 	try {
-		avaliacao->SetValor(VALOR_INVALIDO);
-		cout << avaliacao->GetValor() << endl;
+		avaliacao->SetAvaliacao(VALOR_INVALIDO);
+		cout << avaliacao->GetAvaliacao() << endl;
 		estado = FALHA;
 	}
 	catch (invalid_argument& e) {
-		if (avaliacao->GetValor() == VALOR_INVALIDO) {
+		if (avaliacao->GetAvaliacao() == VALOR_INVALIDO) {
 			estado = FALHA;
 		}
 	}

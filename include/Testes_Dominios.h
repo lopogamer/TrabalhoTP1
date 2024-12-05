@@ -8,8 +8,8 @@ using namespace std;
 
 class TUNome {
 private:
-	const string NOME_VALIDO = "Nome";
-    const string NOME_INVALIDO = "";
+	const string VALOR_VALIDO = "Nome";
+    const string VALOR_INVALIDO = "";
     Nome* nome;
     int estado;
     void setUp();
@@ -24,8 +24,8 @@ public:
 
 class TUData {
 private:
-	const string DATA_VALIDA = "29-02-20";
-	const string DATA_INVALIDA = "00-00-00";
+	const string VALOR_VALIDO = "29-02-20";
+	const string VALOR_INVALIDO = "00-00-00";
 	Data* data;
 	int estado;
 	void setUp();
@@ -72,8 +72,8 @@ class TUcodigo{
 
 class TUDinheiro{
     private:
-        inline const static string VALOR_VALIDO = "193.231,21";
-        inline const static string VALOR_INVALIDO = "200.000,01";
+        const string VALOR_VALIDO = "193.231,21";
+        const string VALOR_INVALIDO = "200.000,01";
         Dinheiro *dinheiro;
         int estado;
         void setUp();
@@ -89,8 +89,8 @@ class TUDinheiro{
 
 class TUDuracao{
     private:
-        inline const static int VALOR_VALIDO = 21;
-        inline const static int VALOR_INVALIDO = 765;
+        const int VALOR_VALIDO = 21;
+        const int VALOR_INVALIDO = 765;
         Duracao *duracao;
         int estado;
         void setUp();

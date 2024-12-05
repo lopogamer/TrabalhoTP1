@@ -99,13 +99,13 @@ void Avaliacao::Validar(int valor)
     }
 }
 
-void Avaliacao::SetValor(int valor)
+void Avaliacao::SetAvaliacao(int valor)
 {
     Validar(valor);
     this -> valor = valor;
 }
 
-int Avaliacao::GetValor() const
+int Avaliacao::GetAvaliacao() const
 {
     return valor;
 }
