@@ -42,8 +42,8 @@ private:
     int valor;
     void Validar(int);
 public:
-    void SetValor(int);
-    int GetValor() const;
+    void SetAvaliacao(int);
+    int GetAvaliacao() const;
 };
 
 class Nome
