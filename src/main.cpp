@@ -8,18 +8,21 @@ int main()
 {
     setlocale(LC_ALL, "portuguese");
 
-    TUViagem teste;
+    cout << endl;
+    cout << "TESTE DE ENTIDADES" << endl;
 
-    switch(teste.run()){
+    TUViagem testeViagem;
+
+    switch(testeViagem.run()){
         case TUViagem::SUCESSO: cout << "SUCESSO - VIAGEM" << endl;
                                 break;
         case TUViagem::FALHA  : cout << "FALHA   - VIAGEM" << endl;
                                 break;
     }
 
-    TUConta teste2;
+    TUConta testeConta;
 
-    switch(teste2.run()){
+    switch(testeConta.run()){
         case TUConta::SUCESSO: cout << "SUCESSO - CONTA" << endl;
                                 break;
         case TUConta::FALHA  : cout << "FALHA   - CONTA" << endl;
@@ -35,8 +38,7 @@ int main()
             break;    
     }
 
-    cout << endl;
-    cout << "TESTE DE ENTIDADES" << endl;
+    
     TUAtividade testeAtividade;
     switch (testeAtividade.run()){
         case TUAtividade::SUCESSO: cout << "ATIVIDADE - SUCESSO" << endl;
@@ -44,8 +46,7 @@ int main()
         case TUAtividade::FALHA: cout << "ATIVIDADE - FALHA" << endl;
             break;
     }
-    cout << endl;
-    cout << "TESTE DE ENTIDADES" << endl;
+
     TUHospedagem testeHospedagem;
     switch(testeHospedagem.run()){
         case TUHospedagem::SUCESSO: cout << "HOSPEDAGEM - SUCESSO" << endl;
