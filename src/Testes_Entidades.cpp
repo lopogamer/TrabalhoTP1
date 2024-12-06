@@ -22,7 +22,7 @@ void TUDestino :: testarCenario(){
     estado = FALHA;
     Data data_termino;
     data_termino.SetData(DATA_TERMINO_VALIDO);
-    destino->SetData_Inicio(data_termino);
+    destino->SetData_Termino(data_termino);
     if(destino->GetData_Termino().GetData() != DATA_TERMINO_VALIDO)
     estado = FALHA;
     Avaliacao avaliacao;
