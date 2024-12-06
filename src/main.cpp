@@ -14,9 +14,9 @@ int main()
     TUViagem testeViagem;
 
     switch(testeViagem.run()){
-        case TUViagem::SUCESSO: cout << "SUCESSO - VIAGEM" << endl;
+        case TUViagem::SUCESSO: cout << "VIAGEM - SUCESSO" << endl;
                                 break;
-        case TUViagem::FALHA  : cout << "FALHA   - VIAGEM" << endl;
+        case TUViagem::FALHA  : cout << "VIAGEM  - FALHA" << endl;
                                 break;
     }
 
