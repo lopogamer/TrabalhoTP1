@@ -85,8 +85,8 @@ private:
     int valor;
     void Validar(int);
 public:
-    void SetValor(int);
-    int GetValor() const;
+    void SetDuracao(int);
+    int GetDuracao() const;
 };
 
 class Codigo/**/

@@ -29,17 +29,17 @@ void TUAtividade::testarCenario(){
     atividade->SetHorario(horario);
     if(atividade->GetHorario().GetHora()!= VALOR_VALIDO_HORARIO){estado = FALHA;}
     Duracao duracao;
-    duracao.SetValor(VALOR_VALIDO_DURACAO);
+    duracao.SetDuracao(VALOR_VALIDO_DURACAO);
     atividade->SetDuracao(duracao);
-    if(atividade->GetDuracao().GetValor()!= VALOR_VALIDO_DURACAO){estado = FALHA;}
+    if(atividade->GetDuracao().GetDuracao()!= VALOR_VALIDO_DURACAO){estado = FALHA;}
     Dinheiro preco;
     preco.SetDinheiro(VALOR_VALIDO_PRECO);
     atividade->SetPreco(preco);
     if(atividade->GetPreco().GetDinheiro()!= VALOR_VALIDO_PRECO){estado = FALHA;}
     Avaliacao avaliacao;
-    avaliacao.SetValor(VALOR_VALIDO_AVALIACAO);
+    avaliacao.SetAvaliacao(VALOR_VALIDO_AVALIACAO);
     atividade->SetAvaliacao(avaliacao);
-    if(atividade->GetAvaliacao().GetValor()!= VALOR_VALIDO_AVALIACAO){estado = FALHA;}
+    if(atividade->GetAvaliacao().GetAvaliacao()!= VALOR_VALIDO_AVALIACAO){estado = FALHA;}
 }
 int TUAtividade::run()
 {
@@ -118,9 +118,9 @@ void TUHospedagem::testarCenario()
     estado = FALHA;
 
     Avaliacao avaliacao;
-    avaliacao.SetValor(VALOR_VALIDO_AVALIACAO);
+    avaliacao.SetAvaliacao(VALOR_VALIDO_AVALIACAO);
     hospedagem->SetAvaliacao(avaliacao);
-    if(hospedagem->GetAvaliacao().GetValor() != VALOR_VALIDO_AVALIACAO)
+    if(hospedagem->GetAvaliacao().GetAvaliacao() != VALOR_VALIDO_AVALIACAO)
     estado = FALHA;
 
 }

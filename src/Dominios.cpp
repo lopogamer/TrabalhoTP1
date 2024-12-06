@@ -133,13 +133,13 @@ void Duracao::Validar(int valor)
         throw invalid_argument("Valor de duracao invalido");
 }
 
-void Duracao::SetValor(int valor)
+void Duracao::SetDuracao(int valor)
 {
     Validar(valor);
     this->valor = valor;
 }
 
-int Duracao::GetValor() const
+int Duracao::GetDuracao() const
 {
     return valor;
 }

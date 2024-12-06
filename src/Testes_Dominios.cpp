@@ -254,8 +254,8 @@ void TUDuracao::tearDown()
 void TUDuracao::TestarCasoValido()
 {
     try{
-        duracao->SetValor(VALOR_VALIDO);
-        if(duracao->GetValor()!= VALOR_VALIDO)
+        duracao->SetDuracao(VALOR_VALIDO);
+        if(duracao->GetDuracao()!= VALOR_VALIDO)
         {
             estado = FALHA;
         }
@@ -268,12 +268,12 @@ void TUDuracao::TestarCasoValido()
 void TUDuracao::TestarCasoInvalido()
 {
     try{
-        duracao->SetValor(VALOR_INVALIDO);
+        duracao->SetDuracao(VALOR_INVALIDO);
         estado = FALHA;
     }
     catch(invalid_argument  &e)
     {
-        if(duracao->GetValor() == VALOR_INVALIDO)
+        if(duracao->GetDuracao() == VALOR_INVALIDO)
         {
             estado = FALHA;
         }
