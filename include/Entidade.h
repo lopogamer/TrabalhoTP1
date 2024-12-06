@@ -64,6 +64,11 @@ public:
     Senha GetSenha() const;
 };
 
+
+/// @author João Gabriel - 232003607
+/// @brief Classe que representa uma viagem.
+///
+/// Esta classe representa uma viagem, que é composta pelos Domínios Codigo, Nome e Avaliacao.
 class Viagem
 {
 private:
@@ -71,11 +76,29 @@ private:
     Nome nome;
     Avaliacao avaliacao;
 public:
+
+    /// @brief Método que atribui o código da viagem, passando um objeto do tipo Codigo como parâmetro.
+    /// @param codigo Objeto do tipo Codigo que será atribuído ao código da viagem.
     void SetCodigo(const Codigo& codigo);
+
+    /// @brief Método que retorna o código da viagem.
+    /// @return Codigo da viagem.
     Codigo GetCodigo() const;
+
+    /// @brief Método que atribui o nome da viagem, passando um objeto do tipo Nome como parâmetro.
+    /// @param nome Objeto do tipo Nome que será atribuído ao nome da viagem.
     void SetNome(const Nome& nome);
+
+    /// @brief Método que retorna o nome da viagem.
+    /// @return Nome da viagem.
     Nome GetNome() const;
+
+    /// @brief Método que atribui a avaliação da viagem, passando um objeto do tipo Avaliacao como parâmetro.
+    /// @param avaliacao Objeto do tipo Avaliacao que será atribuído à avaliação da viagem.
     void SetAvaliacao(const Avaliacao& avaliacao);
+
+    /// @brief Método que retorna a avaliação da viagem.
+    /// @return Avaliacao da viagem.
     Avaliacao GetAvaliacao() const;
 };
 
