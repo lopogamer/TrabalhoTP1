@@ -84,5 +84,14 @@ int main()
         case TUAtividade::FALHA: cout << "ATIVIDADE - FALHA" << endl;
             break;
     }
+    cout << endl;
+    cout << "TESTE DE ENTIDADES" << endl;
+    TUHospedagem testeHospedagem;
+    switch(testeHospedagem.run()){
+        case TUHospedagem::SUCESSO: cout << "HOSPEDAGEM - SUCESSO" << endl;
+            break;
+        case TUHospedagem::FALHA : cout << "HOSPEDAGEM - FALHA" << endl;
+            break;
+    }
     return 0;    
 }
