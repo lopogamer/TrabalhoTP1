@@ -34,7 +34,7 @@ public:
 
     ///@brief Método para obter o valor da avaliação.
     /// Este método retorna o valor armazenado no objeto.
-    /// @return inteiro valor armazenado.
+    /// @return inteiro O valor armazenado.
 
     int GetAvaliacao() const; // Método para obter o valor da avaliação.
 };
@@ -82,7 +82,7 @@ public:
 
     /// @brief Método para obter a data.
     /// Este método retorna a data armazenada no objeto.
-    /// @return string data armazenada.
+    /// @return string A data armazenada.
 
     string GetData() const; // Método para obter a data.
 };
