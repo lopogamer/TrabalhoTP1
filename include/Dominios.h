@@ -38,14 +38,30 @@ public:
 
     int GetAvaliacao() const; // Método para obter o valor da avaliação.
 };
-
+/// @author Luan - 232036958
+/// @class Codigo
+/// @brief Classe que representa um código. 
+///
+/// O Código é **válido** se atender aos seguintes critérios:
+/// - Ser uma string de 6 caracteres.
+/// - Cada caracter pode ser letra (A - Z ou a - z)
+/// - Cada caracter pode ser dígito (0 - 9)
 class Codigo
 {
 private:
-    string codigo;
-    void Validar(string&);
+    string codigo; ///< Atributo que representa o código.
+    void Validar(string&); ///< Método que valida o código.
 public:
+    /// @brief Método para atribuir um código.
+    /// @param string que será atribuída.
+    /// Este método atribui um código para o objeto, desde que ele atenda aos critérios estabelecidos.
+    /// Ele chama o método "Validar" para verificar se o código é válido.
+    /// @trows invalid_argument Se o código não atender aos critérios estabelecidos.
     void SetCodigo(string);
+
+    /// @brief Método para obter o código.
+    /// Este método retorna o código armazenado no objeto.
+    /// @return string O código armazenado.
     string GetCodigo() const;
 };
 
@@ -159,13 +175,27 @@ public:
 };
 
 
+/// @author Luan - 232036958
+/// @class Nome
+/// @brief Classe para representar um nome.
+/// O Nome é **válido** se atender as seguintes regras:
+/// - Entre 1 e 30 caracteres.
 class Nome
 {
 private:
-    string nome;
-    void Validar(string nome);
+    string nome; ///< Atributo que representa o nome.
+    void Validar(string nome);///< Método que valida o nome.
 public:
+    /// @brief Método para atribuir um nome.
+    /// @param string que será atribuída.
+    /// Este método atribui um nome para o objeto, desde que ele atenda aos critérios estabelecidos.
+    /// Ele chama o método "Validar" para verificar se o nome é válido.
+    /// @trows invalid_argument Se o nome não atender aos critérios estabelecidos.
     void SetNome(string nome);
+
+    /// @brief Método para obter o nome.
+    /// Este método retorna o nome armazenado no objeto.
+    /// @return string O nome armazenado.
     string GetNome() const;
 };
 

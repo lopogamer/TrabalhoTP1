@@ -152,6 +152,11 @@ public:
     Avaliacao GetAvaliacao() const;
 };
 
+/// @author Luan - 232036958
+/// @class Hospedagem
+/// @brief Classe que representa uma hospedagem.
+/// Esta classe representa uma hospedagem, que é composta pelos Domínios Nome, Dinheiro e Avaliacao.
+
 class Hospedagem
 {
 private:
@@ -159,11 +164,28 @@ private:
     Dinheiro diaria_hospedagem;
     Avaliacao avaliacao_hospedagem;
 public:
+    /// @brief Método que atribui o nome da hospedagem, passando um objeto do tipo Nome ja validado como parâmetro.
+    /// @param Nome objeto do tipo Nome que será atribuído ao nome da hospedagem.
     void SetNome(const Nome&);
+    
+    /// @brief Método que retorna o nome da hospedagem.
+    /// @return Objeto do tipo Nome.
     Nome GetNome() const;
+
+    /// @brief Método que atribui a diária da hospedagem, passando um objeto do tipo Dinheiro ja validado como parâmetro.
+    /// @param Dinheiro objeto do tipo Dinheiro que será atribuído à diária da hospedagem.
     void SetDiaria(const Dinheiro&);
+
+    /// @brief Método que retorna a diária da hospedagem.
+    /// @return Objeto do tipo Dinheiro.
     Dinheiro GetDiaria() const;
+
+    /// @brief Método que atribui a avaliação da hospedagem, passando um objeto do tipo Avaliacao ja validado como parâmetro.
+    /// @param Avaliacao objeto do tipo Avaliacao que será atribuí
     void SetAvaliacao(const Avaliacao&);
+
+    /// @brief Método que retorna a avaliação da hospedagem.
+    /// @return Objeto do tipo Avaliacao.
     Avaliacao GetAvaliacao() const;
 };
 
