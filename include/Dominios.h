@@ -50,9 +50,10 @@ public:
 };
 
 /// @class Data
+/// @author Luan - 232036958
 /// @brief Classe que representa uma data.
 ///
-/// A Data é válida se atender aos seguintes critérios:
+/// A Data é **válida** se atender aos seguintes critérios:
 ///
 /// - Ser uma string no formato DD-MM-AA.
 /// - O dia deve estar no intervalo de 1 a 31.
@@ -86,24 +87,65 @@ public:
     string GetData() const; // Método para obter a data.
 };
 
+/// @class Dinheiro
+/// @author Alan - 232007830
+/// @brief Classe para representar dinheiro.
+///
+/// O Dinheiro é **válido** se atender as seguintes regras:
+///
+/// - O valor informado tem que ser entre 0,00 a 200.000,00
+/// - Use vírgulas como separadores decimais e pontos para milhares.
 class Dinheiro
 {
 private:
-    string quantidade;
-    void Validar(const string&);
+    string quantidade; // Atributo que representa a quantia de dinheiro.
+    void Validar(const string&); // Método para validar dinheiro.
 public:
+    /// @brief Método para atribuir o dinheiro.
+    /// Este método tem o objetivo de atribuir o valor fornecido ao objeto. Antes disso,
+    /// ele chama o método "Validar" para garantir que o quantia atenda os devidos requisitos de formatação.
+    /// Em caso de quantia inválido, o método "Validar" lançará uma excessão do tipo "invalid_argument"
+    /// @param string valor a ser setado
+    /// @throws invalid_argument se o valor não atender as regras de formatação.
+
+
     void SetDinheiro(string);
-    string GetDinheiro() const;
+
+    /// @brief Método para obter o dinheiro.
+    /// Este método retorna o dinheiro armazenado no objeto.
+    /// @return string dinheiro armazenada no objeto.
+
+    string GetDinheiro() const; //Método para obter o Dinheiro.
 };
 
+/// @class Duração
+/// @author Alan - 232007830
+/// @brief Classe para representar a duração.
+///
+/// A Duração é **válida** se atender a seguinte regra:
+/// - A duração informada ser um número inteiro de 0 a 360.
+///
 class Duracao
 {
 private:
-    int valor;
-    void Validar(int);
+    int valor; // Atributo que representa a duração.
+    void Validar(int); // Método para validar a duração
 public:
-    void SetDuracao(int);
-    int GetDuracao() const;
+
+    /// @brief Método para atribuir a duração.
+    /// Este método seta o valor da duração fornecida ao objeto. Entretanto, antes disso,
+    /// é feito a chamada do método "Validar" para verificar se a duração informada possui os requisitos.
+    /// Em caso de duração inválida, o método "Validar" jogará uma excessão do tipo "invalid_argument"
+    /// @param string duração a ser atribuída
+    /// @throws invalid_argument se a duração não atender os requisitos de formato.
+
+    void SetDuracao(int); 
+
+    /// @brief Método para obter a duração.
+    /// Este método retorna a duração armazenada no objeto.
+    /// @return inteiro "duração" armazenado no objeto.
+
+    int GetDuracao() const; //Método para obter a duração.
 };
 
 class Horario
