@@ -46,10 +46,10 @@ public:
     Nome GetNome() const;
     void SetAvaliacao(const Avaliacao& avaliacao);
     Avaliacao GetAvaliacao() const;
-    void SetData_Inicio(const Data& data_de_inicio);
-    Data GetData_Inicio() const;
-    void SetData_Termino(const Data& data_de_termino);
-    Data GetData_Termino() const;
+    void SetDataInicio(const Data& data_de_inicio);
+    Data GetDataInicio() const;
+    void SetDataTermino(const Data& data_de_termino);
+    Data GetDataTermino() const;
 };
 
 class Conta
@@ -67,7 +67,7 @@ public:
 
 /// @author João Gabriel - 232003607
 /// @brief Classe que representa uma viagem.
-///
+/// @class Viagem
 /// Esta classe representa uma viagem, que é composta pelos Domínios Codigo, Nome e Avaliacao.
 class Viagem
 {

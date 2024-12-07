@@ -59,13 +59,13 @@ public:
     /// Se o valor for inválido, uma exceção do tipo "invalid_argument" é lançada.
     /// @param valor Valor a ser atribuído à avaliação.
     /// @throws invalid_argument Se o valor não atender aos critérios estabelecidos.
-    
+
     void SetAvaliacao(int); // Método para atribuir um valor à avaliação.
 
     ///@brief Método para obter o valor da avaliação.
     /// Este método retorna o valor armazenado.
     /// @return valor da avaliação.
-    
+
     int GetAvaliacao() const; // Método para obter o valor da avaliação.
 };
 
@@ -89,7 +89,7 @@ public:
     int GetDuracao() const;
 };
 
-class Codigo/**/
+class Codigo
 {
 private:
     string codigo;
@@ -128,13 +128,13 @@ public:
     /// Se a data for inválida, uma exceção do tipo "invalid_argument" é lançada.
     /// @param data Data a ser atribuída.
     /// @throws invalid_argument Se a data não atender aos critérios estabelecidos.
-    
+
     void SetData(const string& data); // Método para atribuir uma data.
 
     /// @brief Método para obter a data.
     /// Este método retorna a data armazenada.
     /// @return data em formato de string.
-    
+
     string GetData() const; // Método para obter a data.
 };
 

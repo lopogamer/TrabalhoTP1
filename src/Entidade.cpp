@@ -103,22 +103,22 @@ Avaliacao Destino::GetAvaliacao() const
     return avaliacao;
 }
 
-void Destino :: SetData_Inicio(const Data& data_de_inicio)
+void Destino :: SetDataInicio(const Data& data_de_inicio)
 {
     this ->data_de_inicio = data_de_inicio;
 }
 
-Data Destino::GetData_Inicio() const
+Data Destino::GetDataInicio() const
 {
     return data_de_inicio;
 }
 
-void Destino :: SetData_Termino(const Data& data_de_termino)
+void Destino :: SetDataTermino(const Data& data_de_termino)
 {
     this ->data_de_termino = data_de_termino;
 }
 
-Data Destino::GetData_Termino() const
+Data Destino::GetDataTermino() const
 {
     return data_de_termino;
 }
