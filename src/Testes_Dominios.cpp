@@ -89,18 +89,18 @@ int TUData::run()
 }
 
 
-void TUavaliacao::setUp()
+void TUAvaliacao::setUp()
 {
     avaliacao = new Avaliacao();
     estado = SUCESSO;
 }
 
-void TUavaliacao::tearDown()
+void TUAvaliacao::tearDown()
 {
     delete avaliacao;
 }
 
-void TUavaliacao::TestarCasoValido()
+void TUAvaliacao::TestarCasoValido()
 {
     try {
         avaliacao->SetAvaliacao(VALOR_VALIDO);
@@ -111,7 +111,7 @@ void TUavaliacao::TestarCasoValido()
     }
 }
 
-void TUavaliacao::TestarCasoInvalido()
+void TUAvaliacao::TestarCasoInvalido()
 {
     try {
         avaliacao->SetAvaliacao(VALOR_INVALIDO);
@@ -123,7 +123,7 @@ void TUavaliacao::TestarCasoInvalido()
     }
 }
 
-int TUavaliacao::run()
+int TUAvaliacao::run()
 {
     setUp();
     TestarCasoValido();
@@ -134,16 +134,16 @@ int TUavaliacao::run()
 
 
 //Codigo
-void TUcodigo::setUp()
+void TUCodigo::setUp()
 {
     codigo = new Codigo();
     estado = SUCESSO;
 }
-void TUcodigo::tearDown()
+void TUCodigo::tearDown()
 {
     delete codigo;
 }
-void TUcodigo::TestarCasoValido()
+void TUCodigo::TestarCasoValido()
 {
     try {
         codigo->SetCodigo(VALOR_VALIDO);
@@ -153,7 +153,7 @@ void TUcodigo::TestarCasoValido()
         estado = FALHA;
     }
 }
-void TUcodigo::TestarCasoInvalido()
+void TUCodigo::TestarCasoInvalido()
 {
     try {
         codigo->SetCodigo(VALOR_INVALIDO);
@@ -164,7 +164,7 @@ void TUcodigo::TestarCasoInvalido()
     }
 }
 
-int TUcodigo::run()
+int TUCodigo::run()
 {
     setUp();
     TestarCasoValido();

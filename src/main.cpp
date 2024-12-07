@@ -9,21 +9,21 @@ int main()
     setlocale(LC_ALL, "portuguese");
 
     cout << "TESTE DE DOMINIOS" << endl;
-    TUavaliacao testeAvaliacao;
+    TUAvaliacao testeAvaliacao;
     switch(testeAvaliacao.run()) {
-    case TUavaliacao::SUCESSO:
+    case TUAvaliacao::SUCESSO:
         cout << "AVALIACAO - SUCESSO" << endl;
         break;
-    case TUavaliacao::FALHA:
+    case TUAvaliacao::FALHA:
         cout << "AVALIACAO - FALHA" << endl;
         break;
     }
-    TUcodigo testeCodigo;
+    TUCodigo testeCodigo;
     switch(testeCodigo.run()) {
-    case TUcodigo::SUCESSO:
+    case TUCodigo::SUCESSO:
         cout << "CODIGO - SUCESSO " << endl;
         break;
-    case TUcodigo::FALHA:
+    case TUCodigo::FALHA:
         cout << " CODIGO - FALHA" << endl;
         break;
     }

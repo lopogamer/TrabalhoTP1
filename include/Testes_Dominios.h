@@ -40,7 +40,7 @@ public:
     int run();
 };
 
-class TUavaliacao
+class TUAvaliacao
 {
 private:
     const static int VALOR_VALIDO = 5;
@@ -57,7 +57,7 @@ public:
     int run();
 };
 
-class TUcodigo
+class TUCodigo
 {
 private:
     const string VALOR_VALIDO = "aZ42tK";
