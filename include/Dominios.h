@@ -178,6 +178,7 @@ public:
 /// @author Luan - 232036958
 /// @class Nome
 /// @brief Classe para representar um nome.
+///
 /// O Nome é **válido** se atender as seguintes regras:
 /// - Entre 1 e 30 caracteres.
 class Nome
