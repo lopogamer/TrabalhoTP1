@@ -6,36 +6,6 @@
 #include <sstream>
 using namespace std;
 
-class Senha
-{
-private:
-    string senha;
-    void Validar(string);
-public:
-    void SetSenha(string);
-    string GetSenha() const;
-};
-
-class Horario
-{
-private:
-    string hora;
-    void Validar(string);
-public:
-    void SetHora(string);
-    string GetHora() const;
-};
-
-class Dinheiro
-{
-private:
-    string quantidade;
-    void Validar(const string&);
-public:
-    void SetDinheiro(string);
-    string GetDinheiro() const;
-};
-
 ///@class Avaliacao
 ///@author João Gabriel - 232003607
 ///@brief Classe que representa uma avaliação.
@@ -69,26 +39,6 @@ public:
     int GetAvaliacao() const; // Método para obter o valor da avaliação.
 };
 
-class Nome
-{
-private:
-    string nome;
-    void Validar(string nome);
-public:
-    void SetNome(string nome);
-    string GetNome() const;
-};
-
-class Duracao
-{
-private:
-    int valor;
-    void Validar(int);
-public:
-    void SetDuracao(int);
-    int GetDuracao() const;
-};
-
 class Codigo
 {
 private:
@@ -99,9 +49,7 @@ public:
     string GetCodigo() const;
 };
 
-
 /// @class Data
-/// @author João Gabriel - 232003607
 /// @brief Classe que representa uma data.
 ///
 /// A Data é válida se atender aos seguintes critérios:
@@ -138,4 +86,55 @@ public:
     string GetData() const; // Método para obter a data.
 };
 
+class Dinheiro
+{
+private:
+    string quantidade;
+    void Validar(const string&);
+public:
+    void SetDinheiro(string);
+    string GetDinheiro() const;
+};
+
+class Duracao
+{
+private:
+    int valor;
+    void Validar(int);
+public:
+    void SetDuracao(int);
+    int GetDuracao() const;
+};
+
+class Horario
+{
+private:
+    string hora;
+    void Validar(string);
+public:
+    void SetHora(string);
+    string GetHora() const;
+};
+
+class Nome
+{
+private:
+    string nome;
+    void Validar(string nome);
+public:
+    void SetNome(string nome);
+    string GetNome() const;
+};
+
+class Senha
+{
+private:
+    string senha;
+    void Validar(string);
+public:
+    void SetSenha(string);
+    string GetSenha() const;
+};
+
 #endif // DOMINIOS_H_INCLUDED
+
