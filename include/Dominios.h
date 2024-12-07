@@ -40,7 +40,7 @@ public:
 };
 /// @author Luan - 232036958
 /// @class Codigo
-/// @brief Classe que representa um código. 
+/// @brief Classe que representa um código.
 ///
 /// O Código é **válido** se atender aos seguintes critérios:
 /// - Ser uma string de 6 caracteres.
@@ -155,7 +155,7 @@ public:
     /// @param string duração a ser atribuída
     /// @throws invalid_argument se a duração não atender os requisitos de formato.
 
-    void SetDuracao(int); 
+    void SetDuracao(int);
 
     /// @brief Método para obter a duração.
     /// Este método retorna a duração armazenada no objeto.

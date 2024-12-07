@@ -167,7 +167,7 @@ public:
     /// @brief Método que atribui o nome da hospedagem, passando um objeto do tipo Nome ja validado como parâmetro.
     /// @param Nome objeto do tipo Nome que será atribuído ao nome da hospedagem.
     void SetNome(const Nome&);
-    
+
     /// @brief Método que retorna o nome da hospedagem.
     /// @return Objeto do tipo Nome.
     Nome GetNome() const;
