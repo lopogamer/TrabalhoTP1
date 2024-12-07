@@ -10,7 +10,7 @@ using namespace std;
 ///@author João Gabriel - 232003607
 ///@brief Classe que representa uma avaliação.
 ///
-/// A Avaliação é válida se atender aos seguintes critérios:
+/// A Avaliação é **válida** se atender aos seguintes critérios:
 ///
 /// - Ser um inteiro no intervalo de 0 a 5.
 /// - Não pode ser um valor negativo.
@@ -23,18 +23,18 @@ private:
 public:
 
     ///@brief Método que atribui um valor à avaliação.
-    /// Este método atribui um valor à avaliação,
+    /// Este método atribui um valor ao objeto,
     /// desde que este valor esteja no intervalo de 0 a 5.
-    /// Ele chama o método Validar para verificar se o valor é válido.
+    /// Ele chama o método "Validar" para verificar se o valor é válido.
     /// Se o valor for inválido, uma exceção do tipo "invalid_argument" é lançada.
-    /// @param valor Valor a ser atribuído à avaliação.
+    /// @param inteiro que será atribuído.
     /// @throws invalid_argument Se o valor não atender aos critérios estabelecidos.
 
     void SetAvaliacao(int); // Método para atribuir um valor à avaliação.
 
     ///@brief Método para obter o valor da avaliação.
-    /// Este método retorna o valor armazenado.
-    /// @return valor da avaliação.
+    /// Este método retorna o valor armazenado no objeto.
+    /// @return inteiro valor armazenado.
 
     int GetAvaliacao() const; // Método para obter o valor da avaliação.
 };
@@ -50,9 +50,10 @@ public:
 };
 
 /// @class Data
+/// @author João Gabriel - 232003607
 /// @brief Classe que representa uma data.
 ///
-/// A Data é válida se atender aos seguintes critérios:
+/// A Data é **válida** se atender aos seguintes critérios:
 ///
 /// - Ser uma string no formato DD-MM-AA.
 /// - O dia deve estar no intervalo de 1 a 31.
@@ -71,17 +72,17 @@ private:
     }
 public:
     /// @brief Método para atribuir uma data.
-    /// Este método atribui uma data, desde que ela atenda aos critérios estabelecidos.
-    /// Ele chama o método Validar para verificar se a data é válida.
+    /// Este método atribui uma data para o objeto, desde que ela atenda aos critérios estabelecidos.
+    /// Ele chama o método "Validar" para verificar se a data é válida.
     /// Se a data for inválida, uma exceção do tipo "invalid_argument" é lançada.
-    /// @param data Data a ser atribuída.
+    /// @param string que será atribuída.
     /// @throws invalid_argument Se a data não atender aos critérios estabelecidos.
 
     void SetData(const string& data); // Método para atribuir uma data.
 
     /// @brief Método para obter a data.
-    /// Este método retorna a data armazenada.
-    /// @return data em formato de string.
+    /// Este método retorna a data armazenada no objeto.
+    /// @return string data armazenada.
 
     string GetData() const; // Método para obter a data.
 };
@@ -115,6 +116,7 @@ public:
     void SetHora(string);
     string GetHora() const;
 };
+
 
 class Nome
 {
