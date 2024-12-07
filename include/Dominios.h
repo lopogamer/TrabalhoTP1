@@ -134,7 +134,7 @@ public:
     string GetDinheiro() const; //Método para obter o Dinheiro.
 };
 
-/// @class Duração
+/// @class Duracao
 /// @author Alan - 232007830
 /// @brief Classe para representar a duração.
 ///
