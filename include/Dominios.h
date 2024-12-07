@@ -50,7 +50,7 @@ public:
 };
 
 /// @class Data
-/// @author Luan - 232036958
+/// @author João Gabriel - 232003607
 /// @brief Classe que representa uma data.
 ///
 /// A Data é **válida** se atender aos seguintes critérios:
