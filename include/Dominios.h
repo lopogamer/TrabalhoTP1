@@ -103,8 +103,8 @@ public:
     string GetData() const; // Método para obter a data.
 };
 
-/// @class Dinheiro
 /// @author Alan - 232007830
+/// @class Dinheiro
 /// @brief Classe para representar dinheiro.
 ///
 /// O Dinheiro é **válido** se atender as seguintes regras:
@@ -134,13 +134,12 @@ public:
     string GetDinheiro() const; //Método para obter o Dinheiro.
 };
 
-/// @class Duracao
 /// @author Alan - 232007830
+/// @class Duração
 /// @brief Classe para representar a duração.
 ///
 /// A Duração é **válida** se atender a seguinte regra:
 /// - A duração informada ser um número inteiro de 0 a 360.
-///
 class Duracao
 {
 private:
@@ -164,13 +163,32 @@ public:
     int GetDuracao() const; //Método para obter a duração.
 };
 
+/// @author Alan - 232007830
+/// @class Horario
+/// @brief Classe para representar o Horario.
+///
+/// O Horário é **válido** se atender as seguintes regras:
+/// - Possuir o formato HH:MM
+/// - HH tem que ser de 00 a 23
+/// - MM tem que ser de 00 a 59
 class Horario
 {
 private:
-    string hora;
-    void Validar(string);
+    string hora; // Atributo que representa a hora.
+    void Validar(string); // Método para validar a hora.
 public:
+
+    /// @brief Método para atribuir a hora.
+    /// Este método definará a hora fornecida ao objeto Horario, mas antes disso é feito a chamada do
+    /// método "Validar" para verificar se a hora digitada está na forma correta.
+    /// Em caso horário inválido, o método "Validar" jogará uma excessão do tipo "invalid_argument"
+    /// @param string hora a ser atribuída
+    /// @throws invalid_argument se a hora não tiver as regras de formatação cumpridas.
     void SetHora(string);
+
+    /// @brief Método para obter a hora.
+    /// Este método retorna a hora armazenada no objeto horario.
+    /// @return string "hora" armazenada no objeto.
     string GetHora() const;
 };
 
