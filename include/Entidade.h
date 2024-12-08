@@ -10,6 +10,7 @@ using namespace std;
 /// @author João Gabriel - 232003607
 /// @brief Classe que representa uma atividade.
 /// @class Atividade
+/// 
 /// Esta classe representa uma atividade, que é composta pelos Domínios Codigo, Nome, Data, Horario, Duracao, Dinheiro e Avaliacao.
 class Atividade
 {
@@ -83,6 +84,7 @@ public:
 /// @author Guilherme - 232026399
 /// @brief Classe que representa um Destino.
 /// @class Destino
+/// 
 /// Esta classe representa um destino, que é composta, que e composta pelos Dominios codigo, nome, avaliacao e data.
 class Destino
 {
@@ -138,6 +140,7 @@ public:
 /// @author Guilherme - 232026399
 /// @class Conta
 /// @brief Classe que representa uma conta.
+/// 
 /// Esta classe representa uma conta, que é composta pelos Domínios Codigo e Senha.
 class Conta
 {
@@ -203,6 +206,7 @@ public:
 /// @author Luan - 232036958
 /// @class Hospedagem
 /// @brief Classe que representa uma hospedagem.
+///
 /// Esta classe representa uma hospedagem, que é composta pelos Domínios Nome, Dinheiro e Avaliacao.
 
 class Hospedagem
