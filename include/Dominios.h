@@ -56,7 +56,7 @@ public:
     /// @param string que será atribuída.
     /// Este método atribui um código para o objeto, desde que ele atenda aos critérios estabelecidos.
     /// Ele chama o método "Validar" para verificar se o código é válido.
-    /// @trows invalid_argument Se o código não atender aos critérios estabelecidos.
+    /// @throws invalid_argument Se o código não atender aos critérios estabelecidos.
     void SetCodigo(string);
 
     /// @brief Método para obter o código.
@@ -200,13 +200,34 @@ public:
     string GetNome() const;
 };
 
+/// @class Senha
+/// @author Barbosa, Guilherme
+/// @brief Classe que representa uma Senha.
+///
+/// A senha e **válida** se atender aos seguintes critérios
+/// - Ser uma string de 5 digitos
+/// - Todos os digitos devem ser numeros de 0 a 9
+/// - Não possuir digitos duplicados 
+/// - não podem estar em ordem crescente
+/// - Não podem estar em ordem decrescente
+
 class Senha
 {
 private:
     string senha;
     void Validar(string);
 public:
+    /// @brief Método para atribuir uma data.
+    /// Este método atribui uma senha para o objeto, desde que ela atenda aos critérios estabelecidos.
+    /// Ele chama o método "Validar" para verificar se a senha é válida.
+    /// Se a senha for inválida, uma exceção do tipo "invalid_argument" é lançada.
+    /// @param string que será atribuída.
+    /// @throws invalid_argument Se a senha não atender aos critérios estabelecidos.
     void SetSenha(string);
+
+    /// @brief Método para obter a senha.
+    /// Este método retorna a senha armazenada no objeto.
+    /// @return string a senha armazenada.
     string GetSenha() const;
 };
 

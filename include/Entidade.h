@@ -77,6 +77,10 @@ public:
     Avaliacao GetAvaliacao() const;
 };
 
+/// @author Barbosa, Guilherme - 232026399
+/// @brief classe que representa codigo.
+/// @class Destino
+/// Esta classe representa um destino, que e composta pelos Dominios codigo, nome, avaliacao e data.
 class Destino
 {
 private:
@@ -86,29 +90,73 @@ private:
     Data data_de_inicio;
     Data data_de_termino;
 public:
+    /// @brief Metodo que atribui o codigo do destino, passando um objeto do tipo codigo como parametro.
+    /// @param codigo objeto do tipo codigo que será atribuido.
     void SetCodigo(const Codigo& codigo);
+
+    /// @brief método que retorna o código do destino
+    /// @return Objeto do tipo codigo.
     Codigo GetCodigo() const;
+
+    /// @brief Metodo que atribui o nome do destino, passando um objeto do tipo nome como parametro.
+    /// @param nome objeto do tipo nome que será atribuido ao nome da destino.
     void SetNome(const Nome& nome);
+
+    /// @brief Método que retorna o nome da destino.
+    /// @return Objeto do tipo nome.
     Nome GetNome() const;
+
+    /// @brief Metodo que atribui a avaliacao do destino, passando um objeto do tipo avaliacao como parametro.
+    /// @param avaliacao objeto do tipo nome que será atribuido ao nome da destino.
     void SetAvaliacao(const Avaliacao& avaliacao);
+
+    /// @brief Método que retorna a avaliacao da destino.
+    /// @return Objeto do tipo avaliacao.
     Avaliacao GetAvaliacao() const;
+
+    /// @brief Metodo que atribui a data de inicio do destino, passando um objeto do tipo data como parametro.
+    /// @param data objeto do tipo data que será atribuido a data de destino.
     void SetDataInicio(const Data& data_de_inicio);
+
+    /// @brief Método que retorna a data de inicio do destino.
+    /// @return Objeto do tipo data.
     Data GetDataInicio() const;
+
+    /// @brief Metodo que atribui a data de termino do destino, passando um objeto do tipo data como parametro.
+    /// @param data objeto do tipo data que será atribuido a data de destino.
     void SetDataTermino(const Data& data_de_termino);
+
+    /// @brief Método que retorna a data de termino do destino.
+    /// @return Objeto do tipo data.
     Data GetDataTermino() const;
 };
 
 
-
+/// @author Barbosa, Guilherme - 232026399
+/// @brief classe que representa codigo.
+/// @class Destino
+/// Esta classe representa um destino, que e composta pelos Dominios codigo, nome, avaliacao e data.
 class Conta
 {
 private:
     Codigo codigo;
     Senha senha;
 public:
+
+    /// @brief Método que atribui o codigo da Conta, passando um objeto do tipo codigo como parametro.
+    /// @param codigo objeto do tipo codigo que será atribuido.
     void SetCodigo(const Codigo& codigo);
+
+    /// @brief Método que retorna o código da conta.
+    /// @return Objeto do tipo codigo.
     Codigo GetCodigo() const;
+
+    /// @brief Método que atribui a senha da conta, passando um objeto do tipo senha.
+    /// @param senha objeto do tipo senha que sera atribuido.
     void SetSenha(const Senha& senha);
+
+    /// @brief Método que retorna a senha da conta.
+    /// return objeto do tipo senha.
     Senha GetSenha() const;
 };
 
