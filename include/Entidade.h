@@ -98,7 +98,7 @@ public:
     void SetCodigo(const Codigo& codigo);
 
     /// @brief método que retorna o código do destino
-    /// @return Objeto do tipo codigo.
+    /// @return Objeto do tipo Codigo.
     Codigo GetCodigo() const;
 
     /// @brief Método que atribui o nome do destino, passando um objeto do tipo nome como parâmetro.
@@ -106,7 +106,7 @@ public:
     void SetNome(const Nome& nome);
 
     /// @brief Método que retorna o nome da destino.
-    /// @return Objeto do tipo nome.
+    /// @return Objeto do tipo Nome.
     Nome GetNome() const;
 
     /// @brief Método que atribui a avaliacao do destino, passando um objeto do tipo avaliacao como parâmetro.
@@ -114,7 +114,7 @@ public:
     void SetAvaliacao(const Avaliacao& avaliacao);
 
     /// @brief Método que retorna a avaliacao da destino.
-    /// @return Objeto do tipo avaliacao.
+    /// @return Objeto do tipo Avaliacao.
     Avaliacao GetAvaliacao() const;
 
     /// @brief Método que atribui a data de início do destino, passando um objeto do tipo data como parâmetro.
@@ -122,7 +122,7 @@ public:
     void SetDataInicio(const Data& data_de_inicio);
 
     /// @brief Método que retorna a data de inicio do destino.
-    /// @return Objeto do tipo data.
+    /// @return Objeto do tipo Data.
     Data GetDataInicio() const;
 
     /// @brief Método que atribui a data de término do destino, passando um objeto do tipo data como parâmetro.
@@ -130,7 +130,7 @@ public:
     void SetDataTermino(const Data& data_de_termino);
 
     /// @brief Método que retorna a data de término do destino.
-    /// @return Objeto do tipo data.
+    /// @return Objeto do tipo Data.
     Data GetDataTermino() const;
 };
 
@@ -151,7 +151,7 @@ public:
     void SetCodigo(const Codigo& codigo);
 
     /// @brief Método que retorna o código da conta.
-    /// @return Objeto do tipo codigo.
+    /// @return Objeto do tipo Codigo.
     Codigo GetCodigo() const;
 
     /// @brief Método que atribui a senha da conta, passando um objeto do tipo senha.
@@ -159,7 +159,7 @@ public:
     void SetSenha(const Senha& senha);
 
     /// @brief Método que retorna a senha da conta.
-    /// @return objeto do tipo senha.
+    /// @return objeto do tipo Senha.
     Senha GetSenha() const;
 };
 
@@ -180,7 +180,7 @@ public:
     void SetCodigo(const Codigo& codigo);
 
     /// @brief Método que retorna o código da viagem.
-    /// @return Codigo da viagem.
+    /// @return Objeto do tipo Codigo.
     Codigo GetCodigo() const;
 
     /// @brief Método que atribui o nome da viagem, passando um objeto do tipo Nome como parâmetro.
@@ -188,7 +188,7 @@ public:
     void SetNome(const Nome& nome);
 
     /// @brief Método que retorna o nome da viagem.
-    /// @return Nome da viagem.
+    /// @return Objeto do tipo Nome.
     Nome GetNome() const;
 
     /// @brief Método que atribui a avaliação da viagem, passando um objeto do tipo Avaliacao como parâmetro.
@@ -196,7 +196,7 @@ public:
     void SetAvaliacao(const Avaliacao& avaliacao);
 
     /// @brief Método que retorna a avaliação da viagem.
-    /// @return Avaliacao da viagem.
+    /// @return Objeto do tipo Avaliacao.
     Avaliacao GetAvaliacao() const;
 };
 
