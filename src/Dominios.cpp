@@ -1,9 +1,4 @@
 #include "Dominios.h"
-#include <string>
-#include <vector>
-#include <stdexcept>
-#include <iostream>
-#include <regex>
 using namespace std;
 
 void Senha::Validar(string senha)

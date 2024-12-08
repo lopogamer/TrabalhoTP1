@@ -1,8 +1,11 @@
 #ifndef ENTIDADE_H_INCLUDED
 #define ENTIDADE_H_INCLUDED
 #include "Dominios.h"
-#include <string>
 using namespace std;
+
+///@file Entidade.h
+/// @brief Arquivo que contém as classes de entidade.
+/// Este arquivo contém as classes de entidade.
 
 /// @author João Gabriel - 232003607
 /// @brief Classe que representa uma atividade.
@@ -77,10 +80,10 @@ public:
     Avaliacao GetAvaliacao() const;
 };
 
-/// @author Barbosa, Guilherme - 232026399
-/// @brief classe que representa codigo.
+/// @author Guilherme - 232026399
+/// @brief Classe que representa um Destino.
 /// @class Destino
-/// Esta classe representa um destino, que e composta pelos Dominios codigo, nome, avaliacao e data.
+/// Esta classe representa um destino, que é composta, que e composta pelos Dominios codigo, nome, avaliacao e data.
 class Destino
 {
 private:
@@ -90,52 +93,52 @@ private:
     Data data_de_inicio;
     Data data_de_termino;
 public:
-    /// @brief Metodo que atribui o codigo do destino, passando um objeto do tipo codigo como parametro.
-    /// @param codigo objeto do tipo codigo que será atribuido.
+    /// @brief Método que atribui o codigo do destino, passando um objeto do tipo codigo como parâmetro.
+    /// @param codigo objeto do tipo codigo que será atribuído.
     void SetCodigo(const Codigo& codigo);
 
     /// @brief método que retorna o código do destino
     /// @return Objeto do tipo codigo.
     Codigo GetCodigo() const;
 
-    /// @brief Metodo que atribui o nome do destino, passando um objeto do tipo nome como parametro.
-    /// @param nome objeto do tipo nome que será atribuido ao nome da destino.
+    /// @brief Método que atribui o nome do destino, passando um objeto do tipo nome como parâmetro.
+    /// @param nome objeto do tipo nome que será atribuído ao nome da destino.
     void SetNome(const Nome& nome);
 
     /// @brief Método que retorna o nome da destino.
     /// @return Objeto do tipo nome.
     Nome GetNome() const;
 
-    /// @brief Metodo que atribui a avaliacao do destino, passando um objeto do tipo avaliacao como parametro.
-    /// @param avaliacao objeto do tipo nome que será atribuido ao nome da destino.
+    /// @brief Método que atribui a avaliacao do destino, passando um objeto do tipo avaliacao como parâmetro.
+    /// @param avaliacao objeto do tipo nome que será atribuído ao nome da destino.
     void SetAvaliacao(const Avaliacao& avaliacao);
 
     /// @brief Método que retorna a avaliacao da destino.
     /// @return Objeto do tipo avaliacao.
     Avaliacao GetAvaliacao() const;
 
-    /// @brief Metodo que atribui a data de inicio do destino, passando um objeto do tipo data como parametro.
-    /// @param data objeto do tipo data que será atribuido a data de destino.
+    /// @brief Método que atribui a data de início do destino, passando um objeto do tipo data como parâmetro.
+    /// @param data objeto do tipo data que será atribuído a data de destino.
     void SetDataInicio(const Data& data_de_inicio);
 
     /// @brief Método que retorna a data de inicio do destino.
     /// @return Objeto do tipo data.
     Data GetDataInicio() const;
 
-    /// @brief Metodo que atribui a data de termino do destino, passando um objeto do tipo data como parametro.
-    /// @param data objeto do tipo data que será atribuido a data de destino.
+    /// @brief Método que atribui a data de término do destino, passando um objeto do tipo data como parâmetro.
+    /// @param data objeto do tipo data que será atribuído a data de destino.
     void SetDataTermino(const Data& data_de_termino);
 
-    /// @brief Método que retorna a data de termino do destino.
+    /// @brief Método que retorna a data de término do destino.
     /// @return Objeto do tipo data.
     Data GetDataTermino() const;
 };
 
 
-/// @author Barbosa, Guilherme - 232026399
-/// @brief classe que representa codigo.
-/// @class Destino
-/// Esta classe representa um destino, que e composta pelos Dominios codigo, nome, avaliacao e data.
+/// @author Guilherme - 232026399
+/// @class Conta
+/// @brief Classe que representa uma conta.
+/// Esta classe representa uma conta, que é composta pelos Domínios Codigo e Senha.
 class Conta
 {
 private:
@@ -143,8 +146,8 @@ private:
     Senha senha;
 public:
 
-    /// @brief Método que atribui o codigo da Conta, passando um objeto do tipo codigo como parametro.
-    /// @param codigo objeto do tipo codigo que será atribuido.
+    /// @brief Método que atribui o codigo da Conta, passando um objeto do tipo codigo como parâmetro.
+    /// @param codigo objeto do tipo codigo que será atribuído.
     void SetCodigo(const Codigo& codigo);
 
     /// @brief Método que retorna o código da conta.
@@ -152,16 +155,13 @@ public:
     Codigo GetCodigo() const;
 
     /// @brief Método que atribui a senha da conta, passando um objeto do tipo senha.
-    /// @param senha objeto do tipo senha que sera atribuido.
+    /// @param senha objeto do tipo senha que sera atribuído.
     void SetSenha(const Senha& senha);
 
     /// @brief Método que retorna a senha da conta.
-    /// return objeto do tipo senha.
+    /// @return objeto do tipo senha.
     Senha GetSenha() const;
 };
-
-
-
 
 /// @author João Gabriel - 232003607
 /// @brief Classe que representa uma viagem.
@@ -229,7 +229,7 @@ public:
     Dinheiro GetDiaria() const;
 
     /// @brief Método que atribui a avaliação da hospedagem, passando um objeto do tipo Avaliacao ja validado como parâmetro.
-    /// @param Avaliacao objeto do tipo Avaliacao que será atribuí
+    /// @param Avaliacao objeto do tipo Avaliacao que será atribuído
     void SetAvaliacao(const Avaliacao&);
 
     /// @brief Método que retorna a avaliação da hospedagem.

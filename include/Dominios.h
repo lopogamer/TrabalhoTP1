@@ -1,10 +1,16 @@
 #ifndef DOMINIOS_H_INCLUDED
 #define DOMINIOS_H_INCLUDED
-
 #include <string>
 #include <iomanip>
 #include <sstream>
+#include <vector>
+#include <stdexcept>
+#include <regex>
 using namespace std;
+/// @file Dominios.h
+/// @brief Arquivo que contém as classes de domínio.
+/// Este arquivo contém as classes de domínio que representam os atributos das entidades.
+
 
 ///@class Avaliacao
 ///@author João Gabriel - 232003607
@@ -44,8 +50,8 @@ public:
 ///
 /// O Código é **válido** se atender aos seguintes critérios:
 /// - Ser uma string de 6 caracteres.
-/// - Cada caracter pode ser letra (A - Z ou a - z)
-/// - Cada caracter pode ser dígito (0 - 9)
+/// - Cada caractere pode ser letra (A - Z ou a - z)
+/// - Cada caractere pode ser dígito (0 - 9)
 class Codigo
 {
 private:
@@ -119,8 +125,8 @@ private:
 public:
     /// @brief Método para atribuir o dinheiro.
     /// Este método tem o objetivo de atribuir o valor fornecido ao objeto. Antes disso,
-    /// ele chama o método "Validar" para garantir que o quantia atenda os devidos requisitos de formatação.
-    /// Em caso de quantia inválido, o método "Validar" lançará uma excessão do tipo "invalid_argument"
+    /// ele chama o método 'Validar' para garantir que a quantia atenda os devidos requisitos de formatação.
+    /// Em caso de quantia inválida, o método "Validar" lançará uma exceção do tipo "invalid_argument"
     /// @param string valor a ser setado
     /// @throws invalid_argument se o valor não atender as regras de formatação.
 
@@ -150,7 +156,7 @@ public:
     /// @brief Método para atribuir a duração.
     /// Este método seta o valor da duração fornecida ao objeto. Entretanto, antes disso,
     /// é feito a chamada do método "Validar" para verificar se a duração informada possui os requisitos.
-    /// Em caso de duração inválida, o método "Validar" jogará uma excessão do tipo "invalid_argument"
+    /// Em caso de duração inválida, o método "Validar" jogará uma exceção do tipo "invalid_argument"
     /// @param string duração a ser atribuída
     /// @throws invalid_argument se a duração não atender os requisitos de formato.
 
@@ -179,9 +185,9 @@ private:
 public:
 
     /// @brief Método para atribuir a hora.
-    /// Este método definará a hora fornecida ao objeto Horario, mas antes disso é feito a chamada do
+    /// Este método definirá a hora fornecida ao objeto Horario, mas antes disso é feito a chamada do
     /// método "Validar" para verificar se a hora digitada está na forma correta.
-    /// Em caso horário inválido, o método "Validar" jogará uma excessão do tipo "invalid_argument"
+    /// Em caso horário inválido, o método "Validar" jogará uma exceção do tipo "invalid_argument"
     /// @param string hora a ser atribuída
     /// @throws invalid_argument se a hora não tiver as regras de formatação cumpridas.
     void SetHora(string);
@@ -209,7 +215,7 @@ public:
     /// @param string que será atribuída.
     /// Este método atribui um nome para o objeto, desde que ele atenda aos critérios estabelecidos.
     /// Ele chama o método "Validar" para verificar se o nome é válido.
-    /// @trows invalid_argument Se o nome não atender aos critérios estabelecidos.
+    /// @throws invalid_argument Se o nome não atender aos critérios estabelecidos.
     void SetNome(string nome);
 
     /// @brief Método para obter o nome.
@@ -219,15 +225,15 @@ public:
 };
 
 /// @class Senha
-/// @author Barbosa, Guilherme - 232026399
+/// @author Guilherme - 232026399
 /// @brief Classe que representa uma Senha.
 ///
-/// A senha e **válida** se atender aos seguintes critérios
+/// A senha é válida se atender aos seguintes critérios:
 /// - Ser uma string de 5 digitos
 /// - Todos os digitos devem ser numeros de 0 a 9
-/// - Não possuir digitos duplicados 
-/// - não podem estar em ordem crescente
-/// - Não podem estar em ordem decrescente
+/// - Não possuir digitos duplicados
+/// - Não podem estar em ordem crescente ou decrescente
+
 
 class Senha
 {
@@ -238,7 +244,7 @@ public:
     /// @brief Método para atribuir uma data.
     /// Este método atribui uma senha para o objeto, desde que ela atenda aos critérios estabelecidos.
     /// Ele chama o método "Validar" para verificar se a senha é válida.
-    /// Se a senha for inválida, uma exceção do tipo "invalid_argument" é lançada.
+    /// Se a senha for inválida, lançará uma exceção do tipo "invalid_argument".
     /// @param string que será atribuída.
     /// @throws invalid_argument Se a senha não atender aos critérios estabelecidos.
     void SetSenha(string);
@@ -250,4 +256,3 @@ public:
 };
 
 #endif // DOMINIOS_H_INCLUDED
-
