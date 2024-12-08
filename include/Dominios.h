@@ -67,7 +67,7 @@ public:
 
     /// @brief Método para obter o código.
     /// Este método retorna o código armazenado no objeto.
-    /// @return string O código armazenado.
+    /// @return string O codigo armazenado.
     string GetCodigo() const;
 };
 
@@ -127,7 +127,7 @@ public:
     /// Este método tem o objetivo de atribuir o valor fornecido ao objeto. Antes disso,
     /// ele chama o método 'Validar' para garantir que a quantia atenda os devidos requisitos de formatação.
     /// Em caso de quantia inválida, o método "Validar" lançará uma exceção do tipo "invalid_argument"
-    /// @param string valor a ser setado
+    /// @param string a ser atribuída.
     /// @throws invalid_argument se o valor não atender as regras de formatação.
 
 
@@ -135,7 +135,7 @@ public:
 
     /// @brief Método para obter o dinheiro.
     /// Este método retorna o dinheiro armazenado no objeto.
-    /// @return string dinheiro armazenada no objeto.
+    /// @return string O dinheiro armazenado no objeto.
 
     string GetDinheiro() const; //Método para obter o Dinheiro.
 };
@@ -150,14 +150,14 @@ class Duracao
 {
 private:
     int valor; // Atributo que representa a duração.
-    void Validar(int); // Método para validar a duração
+    void Validar(int); // Método para validar a duração.
 public:
 
     /// @brief Método para atribuir a duração.
     /// Este método seta o valor da duração fornecida ao objeto. Entretanto, antes disso,
     /// é feito a chamada do método "Validar" para verificar se a duração informada possui os requisitos.
     /// Em caso de duração inválida, o método "Validar" jogará uma exceção do tipo "invalid_argument"
-    /// @param string duração a ser atribuída
+    /// @param inteiro a ser atribuído.
     /// @throws invalid_argument se a duração não atender os requisitos de formato.
 
     void SetDuracao(int);
@@ -188,13 +188,13 @@ public:
     /// Este método definirá a hora fornecida ao objeto Horario, mas antes disso é feito a chamada do
     /// método "Validar" para verificar se a hora digitada está na forma correta.
     /// Em caso horário inválido, o método "Validar" jogará uma exceção do tipo "invalid_argument"
-    /// @param string hora a ser atribuída
+    /// @param string hora a ser atribuída.
     /// @throws invalid_argument se a hora não tiver as regras de formatação cumpridas.
     void SetHora(string);
 
     /// @brief Método para obter a hora.
-    /// Este método retorna a hora armazenada no objeto horario.
-    /// @return string "hora" armazenada no objeto.
+    /// Este método retorna a hora armazenada no objeto.
+    /// @return string A hora armazenada.
     string GetHora() const;
 };
 
@@ -251,7 +251,7 @@ public:
 
     /// @brief Método para obter a senha.
     /// Este método retorna a senha armazenada no objeto.
-    /// @return string a senha armazenada.
+    /// @return string A senha armazenada.
     string GetSenha() const;
 };
 
