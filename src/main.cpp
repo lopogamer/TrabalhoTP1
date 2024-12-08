@@ -6,11 +6,24 @@ using namespace std;
 
 int main()
 {
+    /// @mainpage Documentação do TrabalhoTP1
+    ///
+    /// Bem-vindo à documentação do TrabalhoTP1!
+    /// 
+    /// Este projeto contém as seguintes funcionalidades:
+    /// 
+    /// - Implementação de classes de domínio.
+    /// - Implementação de classes de entidades que utilizam as classes de domínio como atributos.
+    /// - Implementação de testes de unidade para as classes de domínio utilizando a biblioteca stdexcept para testar as exceções.
+    /// - Implementação de testes de unidade para as classes de entidades para testar os métodos de atribuição e obtenção de valores.
+
+    
     setlocale(LC_ALL, "portuguese");
 
     cout << "TESTE DE DOMINIOS" << endl;
     TUAvaliacao testeAvaliacao;
-    switch(testeAvaliacao.run()) {
+    switch(testeAvaliacao.run())
+    {
     case TUAvaliacao::SUCESSO:
         cout << "AVALIACAO - SUCESSO" << endl;
         break;
@@ -19,7 +32,8 @@ int main()
         break;
     }
     TUCodigo testeCodigo;
-    switch(testeCodigo.run()) {
+    switch(testeCodigo.run())
+    {
     case TUCodigo::SUCESSO:
         cout << "CODIGO - SUCESSO " << endl;
         break;
@@ -28,7 +42,8 @@ int main()
         break;
     }
     TUData testeData;
-    switch (testeData.run()) {
+    switch (testeData.run())
+    {
     case TUData::SUCESSO:
         cout << "DATA - SUCESSO" << endl;
         break;
@@ -37,7 +52,8 @@ int main()
         break;
     }
     TUDinheiro testeDinheiro;
-    switch (testeDinheiro.run()) {
+    switch (testeDinheiro.run())
+    {
     case TUDinheiro::SUCESSO:
         cout << "DINHEIRO - SUCESSO" << endl;
         break;
@@ -46,7 +62,8 @@ int main()
         break;
     }
     TUDuracao testeDuracao;
-    switch (testeDuracao.run()) {
+    switch (testeDuracao.run())
+    {
     case TUDuracao::SUCESSO:
         cout << "DURACAO - SUCESSO" << endl;
         break;
@@ -55,7 +72,8 @@ int main()
         break;
     }
     TUHorario testeHorario;
-    switch (testeHorario.run()) {
+    switch (testeHorario.run())
+    {
     case TUHorario::SUCESSO:
         cout << "HORARIO - SUCESSO" << endl;
         break;
@@ -66,7 +84,8 @@ int main()
 
 
     TUNome testeNome;
-    switch (testeNome.run()) {
+    switch (testeNome.run())
+    {
     case TUNome::SUCESSO:
         cout << "NOME - SUCESSO" << endl;
         break;
@@ -75,7 +94,8 @@ int main()
         break;
     }
     TUSenha testeSenha;
-    switch (testeSenha.run()) {
+    switch (testeSenha.run())
+    {
     case TUSenha::SUCESSO:
         cout << "SENHA - SUCESSO" << endl;
         break;
@@ -89,7 +109,8 @@ int main()
 
     TUViagem testeViagem;
 
-    switch(testeViagem.run()) {
+    switch(testeViagem.run())
+    {
     case TUViagem::SUCESSO:
         cout << "VIAGEM - SUCESSO" << endl;
         break;
@@ -100,7 +121,8 @@ int main()
 
     TUConta testeConta;
 
-    switch(testeConta.run()) {
+    switch(testeConta.run())
+    {
     case TUConta::SUCESSO:
         cout << "CONTA - SUCESSO" << endl;
         break;
@@ -111,7 +133,8 @@ int main()
 
 
     TUDestino testeDestino;
-    switch (testeDestino.run()) {
+    switch (testeDestino.run())
+    {
     case TUDestino::SUCESSO:
         cout << "DESTINO - SUCESSO" << endl;
         break;
@@ -122,7 +145,8 @@ int main()
 
 
     TUAtividade testeAtividade;
-    switch (testeAtividade.run()) {
+    switch (testeAtividade.run())
+    {
     case TUAtividade::SUCESSO:
         cout << "ATIVIDADE - SUCESSO" << endl;
         break;
@@ -132,7 +156,8 @@ int main()
     }
 
     TUHospedagem testeHospedagem;
-    switch(testeHospedagem.run()) {
+    switch(testeHospedagem.run())
+    {
     case TUHospedagem::SUCESSO:
         cout << "HOSPEDAGEM - SUCESSO" << endl;
         break;
