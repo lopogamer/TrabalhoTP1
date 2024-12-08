@@ -219,7 +219,7 @@ public:
 };
 
 /// @class Senha
-/// @author Barbosa, Guilherme
+/// @author Barbosa, Guilherme - 232026399
 /// @brief Classe que representa uma Senha.
 ///
 /// A senha e **válida** se atender aos seguintes critérios
