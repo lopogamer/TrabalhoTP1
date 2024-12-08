@@ -53,7 +53,7 @@ private:
     void TestarCasoInvalido();
 public:
     const static int SUCESSO = 0;
-    const static int FALHA = 1;
+    const static int FALHA = -1;
     int run();
 };
 
@@ -70,7 +70,7 @@ private:
     void TestarCasoInvalido();
 public:
     const static int SUCESSO = 0;
-    const static int FALHA = 1;
+    const static int FALHA = -1;
     int run();
 };
 

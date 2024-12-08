@@ -70,8 +70,8 @@ private:
     void tearDown();
     void testarCenario();
 public:
-    const static int SUCESSO = 1;
-    const static int FALHA = 0;
+    const static int SUCESSO = 0;
+    const static int FALHA = -1;
     int run();
 
 };
