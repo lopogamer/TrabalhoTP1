@@ -16,7 +16,7 @@ using namespace std;
 ///@author João Gabriel - 232003607
 ///@brief Classe que representa uma avaliação.
 ///
-/// A Avaliação é **válida** se atender aos seguintes critérios:
+///  A Avaliação é **válida** se atender aos seguintes critérios:
 ///
 /// - Ser um inteiro no intervalo de 0 a 5.
 /// - Não pode ser um valor negativo.
