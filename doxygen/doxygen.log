@@ -1,0 +1,41 @@
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Testes_Dominios.h:8: warning: the name 'Teste_Dominios.h' supplied as the argument in the \file statement is not an input file
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Testes_Entidades.h:7: warning: the name 'Teste_Entidades.h' supplied as the argument in the \file statement is not an input file
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:36: warning: argument 'inteiro' of command @param is not found in the argument list of Avaliacao::SetAvaliacao(int valor)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:36: warning: The following parameter of Avaliacao::SetAvaliacao(int valor) is not documented:
+  parameter 'valor'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:62: warning: argument 'string' of command @param is not found in the argument list of Codigo::SetCodigo(string codigo)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:62: warning: The following parameter of Codigo::SetCodigo(string codigo) is not documented:
+  parameter 'codigo'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:100: warning: argument 'string' of command @param is not found in the argument list of Data::SetData(const string &data)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:100: warning: The following parameter of Data::SetData(const string &data) is not documented:
+  parameter 'data'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:123: warning: argument 'data' of command @param is not found in the argument list of Destino::SetDataInicio(const Data &data_de_inicio)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:123: warning: The following parameter of Destino::SetDataInicio(const Data &data_de_inicio) is not documented:
+  parameter 'data_de_inicio'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:131: warning: argument 'data' of command @param is not found in the argument list of Destino::SetDataTermino(const Data &data_de_termino)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:131: warning: The following parameter of Destino::SetDataTermino(const Data &data_de_termino) is not documented:
+  parameter 'data_de_termino'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:130: warning: argument 'string' of command @param is not found in the argument list of Dinheiro::SetDinheiro(string quantidade)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:130: warning: The following parameter of Dinheiro::SetDinheiro(string quantidade) is not documented:
+  parameter 'quantidade'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:160: warning: argument 'inteiro' of command @param is not found in the argument list of Duracao::SetDuracao(int valor)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:160: warning: The following parameter of Duracao::SetDuracao(int valor) is not documented:
+  parameter 'valor'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:191: warning: argument 'string' of command @param is not found in the argument list of Horario::SetHora(string hora)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:191: warning: The following parameter of Horario::SetHora(string hora) is not documented:
+  parameter 'hora'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:237: warning: argument 'Avaliacao' of command @param is not found in the argument list of Hospedagem::SetAvaliacao(const Avaliacao &avaliacao_hospedagem)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:237: warning: The following parameter of Hospedagem::SetAvaliacao(const Avaliacao &avaliacao_hospedagem) is not documented:
+  parameter 'avaliacao_hospedagem'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:229: warning: argument 'Dinheiro' of command @param is not found in the argument list of Hospedagem::SetDiaria(const Dinheiro &diaria_hospedagem)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:229: warning: The following parameter of Hospedagem::SetDiaria(const Dinheiro &diaria_hospedagem) is not documented:
+  parameter 'diaria_hospedagem'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:221: warning: argument 'Nome' of command @param is not found in the argument list of Hospedagem::SetNome(const Nome &nome_hospedagem)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Entidade.h:221: warning: The following parameter of Hospedagem::SetNome(const Nome &nome_hospedagem) is not documented:
+  parameter 'nome_hospedagem'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:215: warning: argument 'string' of command @param is not found in the argument list of Nome::SetNome(string nome)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:215: warning: The following parameter of Nome::SetNome(string nome) is not documented:
+  parameter 'nome'
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:248: warning: argument 'string' of command @param is not found in the argument list of Senha::SetSenha(string senha)
+C:/Users/luanr/Estudo/TP1/Trabalho/TrabalhoTP1/include/Dominios.h:248: warning: The following parameter of Senha::SetSenha(string senha) is not documented:
+  parameter 'senha'
