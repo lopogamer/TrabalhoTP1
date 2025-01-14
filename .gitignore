@@ -1,7 +1,4 @@
-*html/
-*temp/
-*.swp
-.vs/
-*.vscode/
-*obj/
-*build/
+.vscode
+doxygen/
+obj/
+Trabalho
