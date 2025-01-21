@@ -14,11 +14,10 @@ INCLUDE_DIR = include
 SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
-# Comando do astyle
-ASTYLE = astyle --style=kr --pad-oper --max-code-length=120 --remove-brackets \
-	--align-pointer=type --align-reference=type --break-after-logical --keep-one-line-blocks
+# Regra principal para compilar o executável
+all: $(TARGET)
 
-# Regra principal: compilar o executável
+# Regra para compilar o executável
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
@@ -39,9 +38,8 @@ clean-win:
 	if exist $(OBJ_DIR) rmdir /s /q $(OBJ_DIR)
 	if exist $(TARGET).exe del /q $(TARGET).exe
 
-# Regra para compilar, formatar e executar o programa
+# Regra para compilar e executar o programa
 run: $(TARGET)
-	$(ASTYLE) $(SRC_DIR)/*.cpp $(INCLUDE_DIR)/*.h
 	./$(TARGET)
 
-.PHONY: clean clean-win run
+.PHONY: all clean clean-win run
