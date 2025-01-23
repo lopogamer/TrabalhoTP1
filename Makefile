@@ -4,8 +4,6 @@ TARGET = Trabalho
 # Compilador e flags
 CXX = g++
 CXXFLAGS = -Wall -I$(INCLUDE_DIR) -Ilib  # Adiciona busca por headers na pasta lib
-LDFLAGS = -Llib                          # Diretório das bibliotecas
-LDLIBS = -lsqlite3                       # Nome da biblioteca SQLite3
 
 # Diretórios
 SRC_DIR = src
@@ -18,10 +16,8 @@ OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
 # Regra principal
 all: $(TARGET)
-
-# Linkagem do executável (inclui sqlite3.o explicitamente)
-$(TARGET): $(OBJECTS) lib/sqlite3.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+$(TARGET): $(OBJECTS)
+	$(CXX) $(CXXFLAGS)
 
 # Compilação de objetos
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)

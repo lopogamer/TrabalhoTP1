@@ -90,10 +90,4 @@ class CntrIVS : public IViagemServico
     
 };
 
-class CntrIAS : public IAutenticacaoServico
-{
-    ContainerConta containerConta;
-    public:
-    bool autenticarConta(const Conta);
-};
 #endif //CONTROLADORAS_H_INCLUDED
