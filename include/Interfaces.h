@@ -7,61 +7,61 @@
 using namespace std;
 
 // CAMADA DE APRESENTAÇÃO
-class ICA;
-class IAA;
-class IVA;
-class ICS;
-class IAS;
-class IVS;
+class IContaApresentacao;
+class IAutenticacaoApresentacao;
+class IViagemApresetacao;
+class IContaServico;
+class IAutenticacaoServico;
+class IViagemServico;
 
 
 
-class ICA{
+class IContaApresentacao{
 public:
     virtual void criarConta() = 0;
     virtual void executar(Codigo*) = 0;
-    virtual void setCntrServicoConta(ICS*) = 0;
-    virtual ~ICA(){}; // Destrutor virtual
+    virtual void setCntrServicoConta(IContaServico*) = 0;
+    virtual ~IContaApresentacao(){};
 };
 
 
-class IAA{
+class IAutenticacaoApresentacao{
 public:
     virtual bool autenticar(Codigo*) = 0;
-    virtual void setCntrServicoAutenticacao(IAS*) = 0;
-    virtual ~IAA(){}; 
+    virtual void setCntrServicoAutenticacao(IAutenticacaoServico*) = 0;
+    virtual ~IAutenticacaoApresentacao(){};
 };
 
-class IVA{
+class IViagemApresetacao{
 public:
     virtual void executar(const Codigo) = 0;
-    virtual void setCntrServicoViagem(IVS*) = 0;
-    virtual ~IVA(){}; 
+    virtual void setCntrServicoViagem(IViagemServico*) = 0;
+    virtual ~IViagemApresetacao(){};
 };
 
 
 
 // CAMADA DE SERVIÇO
 
-class ICS{
+class IContaServico{
 public:
     virtual bool criarConta(const Conta) = 0;
     virtual bool excluirConta(const Codigo) = 0;
     virtual bool lerConta(Conta*) = 0;
     virtual bool atualizarConta(const Conta) = 0;
 
-    virtual ~ICS(){};
+    virtual ~IContaServico(){};
 
 };
 
-class IAS{
+class IAutenticacaoServico{
 public:
     virtual bool autenticarConta(const Conta) = 0;
-    virtual ~IAS(){};
+    virtual ~IAutenticacaoServico(){};
 
 };
 
-class IVS{
+class IViagemServico{
 public:
     virtual bool criarViagem(const Viagem) = 0;
     virtual bool excluirViagem(const Codigo) = 0;
@@ -83,7 +83,7 @@ public:
     virtual bool lerAtividade(Atividade*) = 0;
     virtual bool atualizarAtividade(const Atividade) = 0;
 
-    virtual ~IVS(){};
+    virtual ~IViagemServico(){};
 };
 
 #endif //INTERFACES_H_INCLUDED

@@ -3,11 +3,10 @@
 #include "Entidade.h"
 using namespace std;
 
+void CntrControleAcesso::iniciarControle()
+{
+}
 bool CntrIAA::autenticar(Codigo *codigo) {
-    if (codigo == nullptr) {
-        throw std::invalid_argument("Ponteiro para Codigo é nulo.");
-    }
-
     Senha senha;
     string entrada;
     while (true) {
@@ -29,10 +28,100 @@ bool CntrIAA::autenticar(Codigo *codigo) {
     Conta conta;
     conta.SetCodigo(*codigo);
     conta.SetSenha(senha);
-
-    if (cntrServicoAutenticacao == nullptr) {
-        throw std::runtime_error("Serviço de autenticação não inicializado.");
-    }
-
     return cntrServicoAutenticacao->autenticarConta(conta);
 }
+void CntrICA::criarConta()
+{
+}
+
+void CntrICA::executar(Codigo)
+{
+}
+
+void CntrIVA::executar(Codigo)
+{
+}
+
+bool CntrICS::criarConta(const Conta)
+{
+}
+
+bool CntrICS::excluirConta(const Codigo)
+{
+}
+
+bool CntrICS::lerConta(Conta*)
+{
+}
+
+bool CntrICS::atualizarConta(const Conta)
+{
+}
+
+bool CntrIVS::criarViagem(const Viagem)
+{
+}
+
+bool CntrIVS::excluirViagem(const Codigo)
+{
+}
+
+bool CntrIVS::lerViagem(Viagem*)
+{
+}
+
+bool CntrIVS::atualizarViagem(const Viagem)
+{
+}
+
+bool CntrIVS::criarHospedagem(const Hospedagem)
+{
+}
+
+bool CntrIVS::excluirHospedagem(const Codigo)
+{
+}
+
+bool CntrIVS::lerHospedagem(Hospedagem*)
+{
+}
+
+bool CntrIVS::atualizarHospedagem(const Hospedagem)
+{
+}
+
+bool CntrIVS::criarDestino(const Destino)
+{
+}
+
+bool CntrIVS::excluirDestino(const Codigo)
+{
+}
+
+bool CntrIVS::lerDestino(Destino*)
+{
+}
+
+bool CntrIVS::atualizarDestino(const Destino)
+{
+}
+
+bool CntrIVS::criarAtividade(const Atividade)
+{
+}
+
+bool CntrIVS::excluirAtividade(const Codigo)
+{
+}
+
+bool CntrIVS::lerAtividade(Atividade*)
+{
+}
+
+bool CntrIVS::atualizarAtividade(const Atividade)
+{
+}
+
+
+
+

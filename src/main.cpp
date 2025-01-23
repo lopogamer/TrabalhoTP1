@@ -1,6 +1,5 @@
 #include "Controladoras.h"
 #include "Interfaces.h"
-#include "stub.h"
 #include "Entidade.h"
 #include "Dominios.h"
 #include <iostream>
@@ -21,18 +20,7 @@ int main()
     /// - Implementação de testes de unidade para as classes de entidades para testar os métodos de atribuição e obtenção de valores.
     setlocale(LC_ALL, "portuguese");
 
+    CntrControleAcesso controle;
+    controle.iniciarControle();
 
-    IAA *cntrIAA = new CntrIAA;
-    IAS *stubIAS = new StubIAS;
-    Codigo codigo;
-
-    cntrIAA->setCntrServicoAutenticacao(stubIAS);
-
-    if(cntrIAA->autenticar(&codigo)){
-        cout << endl << "Autenticado com sucesso" << endl;
-    }else{
-        cout << endl << "Falha na autenticação" << endl;
-    }
-    delete stubIAS;
-    delete cntrIAA;
 }
