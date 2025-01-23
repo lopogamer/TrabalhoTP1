@@ -122,6 +122,8 @@ bool CntrIVS::atualizarAtividade(const Atividade)
 {
 }
 
-
+bool CntrIAS::autenticarConta(const Conta)
+{
+}
 
 

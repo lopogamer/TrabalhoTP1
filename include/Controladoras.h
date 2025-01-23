@@ -87,5 +87,10 @@ class CntrIVS : public IViagemServico
     bool lerAtividade(Atividade*);
     bool atualizarAtividade(const Atividade);
 };
-
+class CntrIAS : public IAutenticacaoServico
+{
+    ContainerConta containerConta;
+    public:
+    bool autenticarConta(const Conta);
+};
 #endif //CONTROLADORAS_H_INCLUDED
