@@ -11,7 +11,10 @@ class CntrControleAcesso
     void iniciarControle();
 };
 
-
+class CntrIAS:public IAutenticacaoServico{
+    public:
+    bool autenticarConta(const Conta);
+};
 class CntrIAA:public IAutenticacaoApresentacao{
 private:
     IAutenticacaoServico *cntrServicoAutenticacao;
@@ -90,10 +93,4 @@ class CntrIVS : public IViagemServico
     
 };
 
-class CntrIAS : public IAutenticacaoServico
-{
-    ContainerConta containerConta;
-    public:
-    bool autenticarConta(const Conta);
-};
 #endif //CONTROLADORAS_H_INCLUDED
