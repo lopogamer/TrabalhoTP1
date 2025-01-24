@@ -55,7 +55,6 @@ inline void CntrIVA::setCntrServicoViagem(IViagemServico *cntrServicoViagem){
 //Controladoras De Serviço
 class CntrICS : public IContaServico
 {
-    ContainerConta containerConta;
 public:
     bool criarConta(const Conta);
     bool excluirConta(const Codigo);
@@ -66,10 +65,6 @@ public:
 class CntrIVS : public IViagemServico
 
 {
-    private:
-    ContainerViagem containerViagem;
-    ContainerDestino containerDestino;
-    ContainerAtividade containerAtividade;
     public:
     bool criarViagem(const Viagem);
     bool excluirViagem(const Codigo);
