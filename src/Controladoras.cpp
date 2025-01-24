@@ -5,8 +5,13 @@ using namespace std;
 
 void CntrControleAcesso::iniciarControle() // Alan
 {
-
+    return;
 }
+
+bool CntrIAS::autenticarConta(const Conta conta)
+{
+}
+
 bool CntrIAA::autenticar(Codigo *codigo) {
     Senha senha;
     string entrada;
@@ -25,7 +30,6 @@ bool CntrIAA::autenticar(Codigo *codigo) {
             cerr << "Erro: " << e.what() << '\n';
         }
     }
-
     Conta conta;
     conta.SetCodigo(*codigo);
     conta.SetSenha(senha);
@@ -33,11 +37,11 @@ bool CntrIAA::autenticar(Codigo *codigo) {
 }
 void CntrICA::criarConta() // J
 {
-    
+    return;
 }
 void CntrICA::executar(Codigo codigo) // L
 {
-    
+    return;
 }
 void CntrIVA::executar(Codigo codigo) // A
 {
@@ -45,19 +49,15 @@ void CntrIVA::executar(Codigo codigo) // A
 }
 bool CntrICS::criarConta(const Conta conta) //J
 {
-    return containerConta.create(conta);
 }
 bool CntrICS::excluirConta(const Codigo codigo) // L
 {
-    return containerConta.remove(codigo);
 }
 bool CntrICS::lerConta(Conta* conta)//A
 {
-    return containerConta.read(conta);
 }
 bool CntrICS::atualizarConta(const Conta conta) // J
 {
-    return containerConta.update(conta);
 }
 bool CntrIVS::criarViagem(const Viagem) // L
 {
@@ -107,10 +107,3 @@ bool CntrIVS::lerAtividade(Atividade*) // A
 bool CntrIVS::atualizarAtividade(const Atividade) // J
 {
 }
-bool CntrIAS::autenticarConta(const Conta) //L
-{
-}
-
-
-
-

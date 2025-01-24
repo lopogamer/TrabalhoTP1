@@ -11,7 +11,10 @@ class CntrControleAcesso
     void iniciarControle();
 };
 
-
+class CntrIAS:public IAutenticacaoServico{
+    public:
+    bool autenticarConta(const Conta);
+};
 class CntrIAA:public IAutenticacaoApresentacao{
 private:
     IAutenticacaoServico *cntrServicoAutenticacao;
