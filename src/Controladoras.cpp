@@ -3,8 +3,9 @@
 #include "Entidade.h"
 using namespace std;
 
-void CntrControleAcesso::iniciarControle()
+void CntrControleAcesso::iniciarControle() // Alan
 {
+
 }
 bool CntrIAA::autenticar(Codigo *codigo) {
     Senha senha;
@@ -30,99 +31,83 @@ bool CntrIAA::autenticar(Codigo *codigo) {
     conta.SetSenha(senha);
     return cntrServicoAutenticacao->autenticarConta(conta);
 }
-void CntrICA::criarConta()
+void CntrICA::criarConta() // J
+{
+    
+}
+void CntrICA::executar(Codigo codigo) // L
+{
+    
+}
+void CntrIVA::executar(Codigo codigo) // A
+{
+
+}
+bool CntrICS::criarConta(const Conta conta) //J
+{
+    return containerConta.create(conta);
+}
+bool CntrICS::excluirConta(const Codigo codigo) // L
+{
+    return containerConta.remove(codigo);
+}
+bool CntrICS::lerConta(Conta* conta)//A
+{
+    return containerConta.read(conta);
+}
+bool CntrICS::atualizarConta(const Conta conta) // J
+{
+    return containerConta.update(conta);
+}
+bool CntrIVS::criarViagem(const Viagem) // L
 {
 }
-
-void CntrICA::executar(Codigo)
+bool CntrIVS::excluirViagem(const Codigo) // A
 {
 }
-
-void CntrIVA::executar(Codigo)
+bool CntrIVS::lerViagem(Viagem*) // J
 {
 }
-
-bool CntrICS::criarConta(const Conta)
+bool CntrIVS::atualizarViagem(const Viagem) // L
 {
 }
-
-bool CntrICS::excluirConta(const Codigo)
+bool CntrIVS::criarHospedagem(const Hospedagem) // A
 {
 }
-
-bool CntrICS::lerConta(Conta*)
+bool CntrIVS::excluirHospedagem(const Codigo) // J
 {
 }
-
-bool CntrICS::atualizarConta(const Conta)
+bool CntrIVS::lerHospedagem(Hospedagem*) // L
 {
 }
-
-bool CntrIVS::criarViagem(const Viagem)
+bool CntrIVS::atualizarHospedagem(const Hospedagem) // L
 {
 }
-
-bool CntrIVS::excluirViagem(const Codigo)
+bool CntrIVS::criarDestino(const Destino) // A
 {
 }
-
-bool CntrIVS::lerViagem(Viagem*)
+bool CntrIVS::excluirDestino(const Codigo) // J
 {
 }
-
-bool CntrIVS::atualizarViagem(const Viagem)
+bool CntrIVS::lerDestino(Destino*) // L
 {
 }
-
-bool CntrIVS::criarHospedagem(const Hospedagem)
+bool CntrIVS::atualizarDestino(const Destino) // A
 {
 }
-
-bool CntrIVS::excluirHospedagem(const Codigo)
+bool CntrIVS::criarAtividade(const Atividade) // J
 {
 }
-
-bool CntrIVS::lerHospedagem(Hospedagem*)
+bool CntrIVS::excluirAtividade(const Codigo) // L
 {
 }
-
-bool CntrIVS::atualizarHospedagem(const Hospedagem)
+bool CntrIVS::lerAtividade(Atividade*) // A
 {
 }
-
-bool CntrIVS::criarDestino(const Destino)
+bool CntrIVS::atualizarAtividade(const Atividade) // J
 {
 }
-
-bool CntrIVS::excluirDestino(const Codigo)
-{
-}
-
-bool CntrIVS::lerDestino(Destino*)
-{
-}
-
-bool CntrIVS::atualizarDestino(const Destino)
-{
-}
-
-bool CntrIVS::criarAtividade(const Atividade)
-{
-}
-
-bool CntrIVS::excluirAtividade(const Codigo)
-{
-}
-
-bool CntrIVS::lerAtividade(Atividade*)
-{
-}
-
-bool CntrIVS::atualizarAtividade(const Atividade)
-{
-}
-
-bool CntrIAS::autenticarConta(const Conta)
+bool CntrIAS::autenticarConta(const Conta) //L
 {
 }
 

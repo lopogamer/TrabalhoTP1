@@ -8,23 +8,9 @@
 class CntrControleAcesso
 {
     public:
-        void iniciarControle();
+    void iniciarControle();
 };
 
-
-class CntrICA:public IContaApresentacao{
-private:
-    IContaServico *cntrServicoConta;
-public:
-    void criarConta();
-    void executar(Codigo);
-    void setCntrServicoConta(IContaServico*);
-
-};
-
-inline void CntrICA::setCntrServicoConta(IContaServico *cntrServicoConta){
-    this->cntrServicoConta = cntrServicoConta;
-};
 
 class CntrIAA:public IAutenticacaoApresentacao{
 private:
@@ -38,6 +24,19 @@ inline void CntrIAA::setCntrServicoAutenticacao(IAutenticacaoServico *cntrServic
     this->cntrServicoAutenticacao = cntrServicoAutenticacao;
 };
 
+
+class CntrICA:public IContaApresentacao{
+private:
+    IContaServico *cntrServicoConta;
+public:
+    void criarConta();
+    void executar(Codigo);
+    void setCntrServicoConta(IContaServico*);
+
+};
+inline void CntrICA::setCntrServicoConta(IContaServico *cntrServicoConta){
+    this->cntrServicoConta = cntrServicoConta;
+};
 class CntrIVA:public IViagemApresetacao{
 private:
     IViagemServico *cntrServicoViagem;
@@ -62,7 +61,9 @@ public:
 };
 
 class CntrIVS : public IViagemServico
+
 {
+    private:
     ContainerViagem containerViagem;
     ContainerDestino containerDestino;
     ContainerAtividade containerAtividade;
@@ -86,7 +87,9 @@ class CntrIVS : public IViagemServico
     bool excluirAtividade(const Codigo);
     bool lerAtividade(Atividade*);
     bool atualizarAtividade(const Atividade);
+    
 };
+
 class CntrIAS : public IAutenticacaoServico
 {
     ContainerConta containerConta;

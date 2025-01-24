@@ -160,7 +160,6 @@ void Viagem::SetNome(const Nome& nome)
     this->nome = nome;
 }
 
-
 Nome Viagem::GetNome() const
 {
     return nome;
@@ -175,6 +174,15 @@ Avaliacao Viagem::GetAvaliacao() const
 {
     return avaliacao;
 }
+Conta Viagem::GetConta() const
+{
+    return conta;
+}
+void Viagem::SetConta(const Conta& conta)
+{
+    this->conta = conta;
+}
+
 void Hospedagem::SetNome(const Nome& nome_hospedagem)
 {
     this->nome_hospedagem = nome_hospedagem;

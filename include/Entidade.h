@@ -173,6 +173,7 @@ public:
 class Viagem
 {
 private:
+    Conta conta;
     Codigo codigo;
     Nome nome;
     Avaliacao avaliacao;
@@ -201,6 +202,15 @@ public:
     /// @brief Método que retorna a avaliação da viagem.
     /// @return Objeto do tipo Avaliacao.
     Avaliacao GetAvaliacao() const;
+
+    /// @brief Método que atribui a conta da viagem, passando um objeto do tipo Conta como parâmetro.
+    /// @param conta Objeto do tipo Conta que será atribuído à conta da viagem.
+    void SetConta(const Conta& conta);
+
+    /// @brief Método que retorna a conta da viagem.
+    /// @return Objeto do tipo Conta.
+    Conta GetConta() const;
+
 };
 
 /// @author Luan - 232036958

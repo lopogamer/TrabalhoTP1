@@ -1,44 +1,46 @@
 # Nome do executável
 TARGET = Trabalho
 
-# Compilador e flags de compilação
+# Compilador e flags
 CXX = g++
-CXXFLAGS = -Wall -Iinclude
+CXXFLAGS = -Wall -I$(INCLUDE_DIR) -Ilib  # Adiciona busca por headers na pasta lib
+LDFLAGS = -Llib                          # Diretório das bibliotecas
+LDLIBS = -lsqlite3                       # Nome da biblioteca SQLite3
 
 # Diretórios
 SRC_DIR = src
 OBJ_DIR = obj
 INCLUDE_DIR = include
 
-# Lista de arquivos-fonte e objetos
+# Arquivos-fonte e objetos
 SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
-# Regra principal para compilar o executável
+# Regra principal
 all: $(TARGET)
 
-# Regra para compilar o executável
-$(TARGET): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+# Linkagem do executável (inclui sqlite3.o explicitamente)
+$(TARGET): $(OBJECTS) lib/sqlite3.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
-# Regra para compilar cada arquivo objeto
+# Compilação de objetos
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Criação do diretório de objetos, se não existir
+# Criação do diretório obj
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-# Limpeza de arquivos objeto e executável no Linux
+# Limpeza (Linux)
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
 
-# Limpeza de arquivos objeto e executável no Windows
+# Limpeza (Windows)
 clean-win:
 	if exist $(OBJ_DIR) rmdir /s /q $(OBJ_DIR)
 	if exist $(TARGET).exe del /q $(TARGET).exe
 
-# Regra para compilar e executar o programa
+# Executar
 run: $(TARGET)
 	./$(TARGET)
 

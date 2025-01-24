@@ -1,7 +1,5 @@
 #include "Controladoras.h"
-#include "Interfaces.h"
-#include "Entidade.h"
-#include "Dominios.h"
+#include "sqlite3.h"
 #include <iostream>
 #include <locale>
 using namespace std;
@@ -19,8 +17,17 @@ int main()
     /// - Implementação de testes de unidade para as classes de domínio utilizando a biblioteca stdexcept para testar as exceções.
     /// - Implementação de testes de unidade para as classes de entidades para testar os métodos de atribuição e obtenção de valores.
     setlocale(LC_ALL, "portuguese");
-
-    CntrControleAcesso controle;
-    controle.iniciarControle();
+    
+    sqlite3 *db;
+    int rc = sqlite3_open("TrabalhoTP1.db", &db);
+    if (rc)
+    {
+        cout << "Erro ao abrir o banco de dados: " << sqlite3_errmsg(db) << endl;
+        return 0;
+    }
+    else
+    {
+        cout << "Banco de dados aberto com sucesso!" << endl;
+    }
 
 }
