@@ -37,7 +37,36 @@ bool CntrIAA::autenticar(Codigo *codigo) {
 }
 void CntrICA::criarConta() // J
 {
-    return;
+    string entrada;
+    Conta novaConta;
+
+    while (true) {
+        try {
+            cout << "Digite o código da nova conta: ";
+            cin >> entrada;
+            Codigo codigo;
+            codigo.SetCodigo(entrada); 
+            novaConta.SetCodigo(codigo);
+
+            cout << "Digite a senha da nova conta: ";
+            cin >> entrada;
+            Senha senha;
+            senha.SetSenha(entrada); 
+            novaConta.SetSenha(senha);
+
+            if (cntrServicoConta->criarConta(novaConta)) {
+                cout << "Conta criada com sucesso!" << endl;
+                break;
+            } else {
+                cout << "Falha ao criar conta. Código já existente. Tente novamente." << endl;
+            }
+        } catch (const invalid_argument &e) {
+            cout << "Erro ao criar conta: " << e.what() << endl;
+        } catch (const exception &e) {
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
+    
 }
 void CntrICA::executar(Codigo codigo) // L
 {
@@ -49,6 +78,21 @@ void CntrIVA::executar(Codigo codigo) // A
 }
 bool CntrICS::criarConta(const Conta conta) //J
 {
+    try{
+        if(conta.GetCodigo().GetCodigo().empty() || conta.GetSenha().GetSenha().empty()){
+            throw invalid_argument("Código e senha não podem ser vazios.");
+        }
+
+        if (containerConta.create(conta)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    catch(const invalid_argument &e){
+        return false;
+    }   
 }
 bool CntrICS::excluirConta(const Codigo codigo) // L
 {
@@ -58,6 +102,23 @@ bool CntrICS::lerConta(Conta* conta)//A
 }
 bool CntrICS::atualizarConta(const Conta conta) // J
 {
+    try{
+        if(conta.GetCodigo().GetCodigo().empty() || conta.GetSenha().GetSenha().empty()){
+            throw invalid_argument("Código e senha não podem ser vazios.");
+        }
+
+        if (containerConta.update(conta)){
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+    catch(const invalid_argument &e){
+        cout << "Erro ao atualizar conta: " << e.what() << endl;
+        return false;
+    }
 }
 bool CntrIVS::criarViagem(const Viagem) // L
 {
