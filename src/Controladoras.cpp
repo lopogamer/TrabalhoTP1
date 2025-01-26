@@ -1,7 +1,10 @@
 #include "Controladoras.h"
 #include "Dominios.h"
 #include "Entidade.h"
+#include "Containers.h"
 using namespace std;
+
+
 
 void CntrControleAcesso::iniciarControle() // Alan
 {
@@ -78,21 +81,13 @@ void CntrIVA::executar(Codigo codigo) // A
 }
 bool CntrICS::criarConta(const Conta conta) //J
 {
-    try{
-        if(conta.GetCodigo().GetCodigo().empty() || conta.GetSenha().GetSenha().empty()){
-            throw invalid_argument("Código e senha não podem ser vazios.");
-        }
-
-        if (containerConta.create(conta)){
-            return true;
-        }
-        else{
-            return false;
-        }
+    if(containerConta.create(conta)){
+        return true;
     }
-    catch(const invalid_argument &e){
+    else{
         return false;
-    }   
+    }
+ 
 }
 bool CntrICS::excluirConta(const Codigo codigo) // L
 {
@@ -102,23 +97,12 @@ bool CntrICS::lerConta(Conta* conta)//A
 }
 bool CntrICS::atualizarConta(const Conta conta) // J
 {
-    try{
-        if(conta.GetCodigo().GetCodigo().empty() || conta.GetSenha().GetSenha().empty()){
-            throw invalid_argument("Código e senha não podem ser vazios.");
-        }
-
-        if (containerConta.update(conta)){
-            return true;
-        }
-
-        else{
-            return false;
-        }
+    if(containerConta.update(conta)){
+        return true;
     }
-    catch(const invalid_argument &e){
-        cout << "Erro ao atualizar conta: " << e.what() << endl;
+    else{
         return false;
-    }
+    } 
 }
 bool CntrIVS::criarViagem(const Viagem) // L
 {
@@ -135,14 +119,26 @@ bool CntrIVS::atualizarViagem(const Viagem) // L
 bool CntrIVS::criarHospedagem(const Hospedagem) // A
 {
 }
-bool CntrIVS::excluirHospedagem(const Codigo) // J
+bool CntrIVS::excluirHospedagem(const Codigo codigo) // J
 {
+    if(containerHospedagem.remove(codigo)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 bool CntrIVS::lerHospedagem(Hospedagem*) // L
 {
 }
-bool CntrIVS::atualizarHospedagem(const Hospedagem) // L
+bool CntrIVS::atualizarHospedagem(const Hospedagem hospedagem) // L
 {
+    if(containerHospedagem.update(hospedagem)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 bool CntrIVS::criarDestino(const Destino) // A
 {
@@ -156,8 +152,14 @@ bool CntrIVS::lerDestino(Destino*) // L
 bool CntrIVS::atualizarDestino(const Destino) // A
 {
 }
-bool CntrIVS::criarAtividade(const Atividade) // J
+bool CntrIVS::criarAtividade(const Atividade atividade) // J
 {
+    if(containerAtividade.create(atividade)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 bool CntrIVS::excluirAtividade(const Codigo) // L
 {
@@ -165,6 +167,12 @@ bool CntrIVS::excluirAtividade(const Codigo) // L
 bool CntrIVS::lerAtividade(Atividade*) // A
 {
 }
-bool CntrIVS::atualizarAtividade(const Atividade) // J
+bool CntrIVS::atualizarAtividade(const Atividade atividade) // J
 {
+    if(containerAtividade.update(atividade)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
