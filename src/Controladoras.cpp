@@ -2,8 +2,14 @@
 #include "Dominios.h"
 #include "Entidade.h"
 #include "Containers.h"
+#include "sqlite3.h"
 using namespace std;
 
+class ContainerConta containerConta;
+class ContainerViagem containerViagem;
+class ContainerDestino containerDestino;
+class ContainerHospedagem containerHospedagem;
+class ContainerAtividade containerAtividade;
 
 
 void CntrControleAcesso::iniciarControle() // Alan
@@ -71,6 +77,8 @@ void CntrICA::criarConta() // J
     }
     
 }
+
+
 void CntrICA::executar(Codigo codigo) // L
 {
     return;
@@ -92,9 +100,11 @@ bool CntrICS::criarConta(const Conta conta) //J
 bool CntrICS::excluirConta(const Codigo codigo) // L
 {
 }
+
 bool CntrICS::lerConta(Conta* conta)//A
 {
 }
+
 bool CntrICS::atualizarConta(const Conta conta) // J
 {
     if(containerConta.update(conta)){
