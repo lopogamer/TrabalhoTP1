@@ -6,11 +6,10 @@
 class DatabaseManager {
 private:
     static DatabaseManager* instance;
-    sqlite3* db;                      
+    sqlite3* db{};
 
     DatabaseManager() {
-        int rc = sqlite3_open("database.db", &db);
-        if (rc != SQLITE_OK) {
+        if (int rc = sqlite3_open("database.db", &db); rc != SQLITE_OK) {
             throw std::runtime_error("Falha ao conectar ao banco: " + std::string(sqlite3_errmsg(db)));
         }
         const std::string sqlScript = R"(

@@ -1,8 +1,6 @@
 #ifndef CONTROLADORAS_H_INCLUDED
 #define CONTROLADORAS_H_INCLUDED
-#include <iostream>
 #include "Interfaces.h"
-#include "Containers.h"
 
 
 class CntrControleAcesso
@@ -28,17 +26,14 @@ inline void CntrIAA::setCntrServicoAutenticacao(IAutenticacaoServico *cntrServic
 };
 
 
-class CntrICA:public IContaApresentacao{
+class CntrICA : public IContaApresentacao{
 private:
     IContaServico *cntrServicoConta;
 public:
-    void criarConta();
-    void executar(Codigo);
+    bool criarConta();
+    void executar(Codigo*);
     void setCntrServicoConta(IContaServico*);
-
 };
-
-
 inline void CntrICA::setCntrServicoConta(IContaServico *cntrServicoConta){
     this->cntrServicoConta = cntrServicoConta;
 };
@@ -68,12 +63,6 @@ public:
 class CntrIVS : public IViagemServico
 
 {
-    private:
-    ContainerViagem containerViagem;
-    ContainerDestino containerDestino;
-    ContainerAtividade containerAtividade;
-    ContainerHospedagem containerHospedagem;
-
     public:
     bool criarViagem(const Viagem);
     bool excluirViagem(const Codigo);

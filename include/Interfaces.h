@@ -18,7 +18,7 @@ class IViagemServico;
 
 class IContaApresentacao{
 public:
-    virtual void criarConta() = 0;
+    virtual bool criarConta() = 0;
     virtual void executar(Codigo*) = 0;
     virtual void setCntrServicoConta(IContaServico*) = 0;
     virtual ~IContaApresentacao(){};

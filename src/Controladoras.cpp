@@ -3,24 +3,31 @@
 #include "sqlite3.h"
 #include "Dominios.h"
 #include "Entidade.h"
+#include "Interfaces.h"
 #include "Containers.h"
 #include "sqlite3.h"
+#include <string>
+#include <iostream>
 using namespace std;
-
-class ContainerConta containerConta;
-class ContainerViagem containerViagem;
-class ContainerDestino containerDestino;
-class ContainerHospedagem containerHospedagem;
-class ContainerAtividade containerAtividade;
 
 
 void CntrControleAcesso::iniciarControle() // Alan
 {
     int opcao;
     Codigo codigoUsuario;
-    CntrIAA cntrIAA;
-    CntrICA cntrICA;
-    CntrIVA cntrIVA;
+
+    IAutenticacaoApresentacao *cntrIAA = new CntrIAA();
+    IAutenticacaoServico *cntrIAS = new CntrIAS();
+    cntrIAA->setCntrServicoAutenticacao(cntrIAS);
+
+
+    IContaApresentacao *cntrICA = new CntrICA();
+    IContaServico *cntrICS = new CntrICS();
+    cntrICA->setCntrServicoConta(cntrICS);
+
+    IViagemApresetacao *cntrIVA = new CntrIVA();
+    IViagemServico *cntrIVS = new CntrIVS();
+    cntrIVA->setCntrServicoViagem(cntrIVS);
 
     while (true) {
         try{
@@ -33,20 +40,26 @@ void CntrControleAcesso::iniciarControle() // Alan
 
         switch(opcao){
             case 1: {
-                if(cntrIAA.autenticar(&codigoUsuario))
-                    cntrIVA.executar(codigoUsuario); //Indo para a interface de viagem
+                    if (cntrIAA->autenticar(&codigoUsuario))
+                    {
+                        cntrIVA->executar(codigoUsuario);
+                    }else
+                    {
+                        cout << "Falha na Autenticaçao" << endl;
+                    }
                 break;
             }
             case 2: {
-                if(cntrICA.criarConta())
+                if(cntrICA->criarConta())
                     cout << "Conta criada com sucesso!" << endl;
-                break;
+                    cntrICA->executar(&codigoUsuario);
+                    break;
             }
             case 3: {
                 cout << "Saindo do controle de acesso..." << endl;
                 return;
             }
-        } 
+        }
     }catch(exception &exp){
         cerr << "Erro: " << exp.what() << endl;
     }
@@ -56,7 +69,7 @@ void CntrControleAcesso::iniciarControle() // Alan
 bool CntrIAS::autenticarConta(const Conta conta) {
     sqlite3* db = DatabaseManager::getInstance().getConnection(); // Conexão com o banco de dados.
     sqlite3_stmt* stmt = nullptr; // Declaração de uma instrução SQL.
-    bool autenticado = false; // Flag de autenticação.
+    bool autenticado = false; // ‘Flag’ de autenticação.
     const string sql = "SELECT 1 FROM Conta WHERE codigo = ? AND senha = ?;"; // Consulta SQL.
     int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr); // Prepara a consulta.
     if (rc != SQLITE_OK) { // Verifica se houve erro.
@@ -69,7 +82,7 @@ bool CntrIAS::autenticarConta(const Conta conta) {
         stmt,  // Declaração de instrução. usar stmt para referenciar.
         1,    // Número do parâmetro. 1 para o primeiro parâmetro. const string sql = "SELECT 1 FROM Conta WHERE codigo = **?** AND senha = ?;"
         codigo.c_str(),  // Valor do parâmetro. Código da conta.
-        codigo.size(),  // Tamanho do valor do parâmetro. -1 para calcular automaticamente.
+        codigo.size(),  // Tamanho do valor do parâmetro. — 1 para calcular automaticamente.
         SQLITE_TRANSIENT // Tipo do valor do parâmetro. SQLITE_TRANSIENT para copiar o valor. 
         );
 
@@ -80,7 +93,7 @@ bool CntrIAS::autenticarConta(const Conta conta) {
     if (rc == SQLITE_ROW) {  // Verifica se a consulta retornou alguma linha. Se sim, a conta foi autenticada.
         autenticado = true;
     } else if (rc != SQLITE_DONE) { // Verifica se apenas a consulta terminou. Se não, houve erro. 
-                                    //Se retonar SQLITE_DONE, significa que a consulta não retornou nenhuma linha.**
+                                    //Se retornar SQLITE_DONE, significa que a consulta não retornou nenhuma linha.**
         cerr << "Erro ao executar consulta: " << sqlite3_errmsg(db) << endl;
     }
     sqlite3_finalize(stmt); // Finaliza a instrução.
@@ -110,7 +123,8 @@ bool CntrIAA::autenticar(Codigo *codigo) {
     conta.SetSenha(senha);
     return cntrServicoAutenticacao->autenticarConta(conta);
 }
-void CntrICA::criarConta() // J
+
+bool CntrICA::criarConta() // J
 {
     string entrada;
     Conta novaConta;
@@ -141,14 +155,12 @@ void CntrICA::criarConta() // J
             cout << "Erro inesperado: " << e.what() << endl;
         }
     }
-    
+
 }
 
 
-void CntrICA::executar(Codigo codigo) // L
+void CntrICA::executar(Codigo *codigo) // L
 {
-<<<<<<< HEAD
-=======
     int opcao;
         while (true) {
             try {
@@ -162,7 +174,7 @@ void CntrICA::executar(Codigo codigo) // L
                 cout << "--------------------------------" << endl;
                 cout << "5 - Sair para a tela incial" << endl;
 
-                cout << "Digite a opção desejada: "
+                cout << "Digite a opção desejada: ";
                 cin >> opcao;
 
                 Conta NovaConta;
@@ -171,7 +183,7 @@ void CntrICA::executar(Codigo codigo) // L
 
                 switch (opcao) {
                     case 1: {
-                        if (setCntrServicoConta->criarConta(NovaConta))
+                        if (setCntrServicoConta->)
                             cout <<"Conta criada com sucesso!!!" << endl;
                         break;
                     }    
@@ -207,7 +219,6 @@ void CntrICA::executar(Codigo codigo) // L
             cerr << "Erro: " << exp.what() << endl;
             }
         }
->>>>>>> lima
 }
 
 void CntrIVA::executar(Codigo codigo) // A
@@ -365,102 +376,34 @@ void CntrIVA::executar(Codigo codigo) // A
 
 bool CntrICS::criarConta(const Conta conta) //J
 {
-    if(containerConta.create(conta)){
-        return true;
-    }
-    else{
-        return false;
-    }
- 
 }
 bool CntrICS::excluirConta(const Codigo codigo) // L
 {
-<<<<<<< HEAD
 }
-=======
-        if(containerConta.remove(codigo)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }  
-
->>>>>>> lima
 
 bool CntrICS::lerConta(Conta* conta)//A
 {
-    try{
-        if(containerConta.read(conta)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    catch(invalid_argument &exp){
-        cerr << "Erro ao ler conta: " << exp.what() << endl;
-        return false;
-    }
-   
+
 }
 
 
 bool CntrICS::atualizarConta(const Conta conta) // J
 {
-    if(containerConta.update(conta)){
-        return true;
-    }
-    else{
-        return false;
-    } 
+
 }
 bool CntrIVS::criarViagem(const Viagem viagem) // L
 {
-<<<<<<< HEAD
 }
 
 bool CntrIVS::excluirViagem(const Codigo codigo) // A
-=======
-    if(containerViagem.create(viagem)){
-        return true;
-    }
-    else{
-        return false;
-    }
-   } 
-
-bool CntrIVS::excluirViagem(const Codigo) // A
->>>>>>> lima
 {
-    try{
-        if(containerViagem.remove(codigo)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    catch(invalid_argument &exp){
-        cerr << "Erro ao excluir viagem: " << exp.what() << endl;
-        return false;
-    }
+
 }
-<<<<<<< HEAD
 
 bool CntrIVS::lerViagem(Viagem*) // J
-=======
-bool CntrIVS::lerViagem(Viagem* viagem) // L
->>>>>>> lima
 {
-    if (containerViagem.read(viagem)){
-        return true;
-    }
-    else{
-        return false;
-    }
+
 }
-<<<<<<< HEAD
 
 bool CntrIVS::atualizarViagem(const Viagem viagem) // L
 {
@@ -468,77 +411,25 @@ bool CntrIVS::atualizarViagem(const Viagem viagem) // L
 }
 
 bool CntrIVS::criarHospedagem(const Hospedagem hospedagem) // A
-=======
-bool CntrIVS::atualizarViagem(const Viagem viagem) // L
 {
-        if(containerViagem.update(viagem)){
-            return true;
-        }
-        else{
-            return false;
-        }
 
-    }
-
-bool CntrIVS::criarHospedagem(const Hospedagem) // A
->>>>>>> lima
-{
-    try{
-        if(containerHospedagem.create(hospedagem)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    catch(invalid_argument &exp){
-        cerr << "Erro ao criar hospedagem: " << exp.what() << endl;
-        return false;
-    }
 }
 bool CntrIVS::excluirHospedagem(const Codigo codigo) // J
 {
-    if(containerHospedagem.remove(codigo)){
-        return true;
-    }
-    else{
-        return false;
-    }
+
 }
 bool CntrIVS::lerHospedagem(Hospedagem* hospedagem) // L
 {
-    if(conteinerHospedagem.read(hospedagem)){
-        return true;
 
-    }
-    else{
-        return false;
-    }
 }
 bool CntrIVS::atualizarHospedagem(const Hospedagem hospedagem) // L
 {
-    if(containerHospedagem.update(hospedagem)){
-        return true;
-    }
-    else{
-        return false;
-    }
+
 }
 
 bool CntrIVS::criarDestino(const Destino destino) // A
 {
-    try{
-        if(containerDestino.create(destino)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    catch(invalid_argument &exp){
-        cerr << "Erro ao criar destino: " << exp.what() << endl;
-        return false;
-    }
+
 }
 
 bool CntrIVS::excluirDestino(const Codigo) // J
@@ -546,72 +437,29 @@ bool CntrIVS::excluirDestino(const Codigo) // J
 }
 bool CntrIVS::lerDestino(Destino* destino) // L
 {
- if(conteinerDestino,read(destino)){
-    return true;
 
- }
- else {
-    return false;
- }
 }
 
 bool CntrIVS::atualizarDestino(const Destino destino) // A
 {
-    try{
-        if(containerDestino.update(destino)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    catch(invalid_argument &exp){
-        cerr << "Erro ao atualizar destino: " << exp.what() << endl;
-        return false;
-    }
+
 }
 
 bool CntrIVS::criarAtividade(const Atividade) // J
 {
-    if(containerAtividade.create(atividade)){
-        return true;
-    }
-    else{
-        return false;
-    }
+
 }
 bool CntrIVS::excluirAtividade(const Codigo codigo) // L
 {
-    if (containerAtividade.remove(codigo)){
-        return true;
-    }
-    else {
-        return false;
-    }
+
 }
 
 bool CntrIVS::lerAtividade(Atividade* atividade) // A
 {
-    try{
-        if(containerAtividade.read(atividade)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    catch(invalid_argument &exp){
-        cerr << "Erro ao ler atividade: " << exp.what() << endl;
-        return false;
-    }
+
 }
 
 bool CntrIVS::atualizarAtividade(const Atividade) // J
 {
-    if(containerAtividade.update(atividade)){
-        return true;
-    }
-    else{
-        return false;
-    }
+
 }
