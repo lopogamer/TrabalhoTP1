@@ -109,7 +109,20 @@ bool CntrICS::criarConta(const Conta conta) //J
 }
 bool CntrICS::excluirConta(const Codigo codigo) // L
 {
+    try{
+        if(containerConta.remove(codigo)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    catch(invalid_argument &exp){
+        cerr << "Erro ao excluir conta: " << exp.what() << endl;
+        return false;
+    }
 }
+
 bool CntrICS::lerConta(Conta* conta)//A
 {
 }
