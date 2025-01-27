@@ -7,6 +7,7 @@ using namespace std;
 
 int main()
 {
+    
     /// @mainpage Documentação do TrabalhoTP1
     ///
     /// Bem-vindo à documentação do TrabalhoTP1!

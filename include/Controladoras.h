@@ -37,9 +37,12 @@ public:
     void setCntrServicoConta(IContaServico*);
 
 };
+
+
 inline void CntrICA::setCntrServicoConta(IContaServico *cntrServicoConta){
     this->cntrServicoConta = cntrServicoConta;
 };
+
 class CntrIVA:public IViagemApresetacao{
 private:
     IViagemServico *cntrServicoViagem;
@@ -65,6 +68,12 @@ public:
 class CntrIVS : public IViagemServico
 
 {
+    private:
+    ContainerViagem containerViagem;
+    ContainerDestino containerDestino;
+    ContainerAtividade containerAtividade;
+    ContainerHospedagem containerHospedagem;
+
     public:
     bool criarViagem(const Viagem);
     bool excluirViagem(const Codigo);
