@@ -1,15 +1,46 @@
 #include "Controladoras.h"
+#include "Containers.h"
+#include "sqlite3.h"
 #include "Dominios.h"
 #include "Entidade.h"
 using namespace std;
 
-void CntrControleAcesso::iniciarControle() // Alan
+void CntrControleAcesso::iniciarControle() 
 {
-    return;
 }
 
-bool CntrIAS::autenticarConta(const Conta conta)
-{
+bool CntrIAS::autenticarConta(const Conta conta) {
+    sqlite3* db = DatabaseManager::getInstance().getConnection(); // Conexão com o banco de dados.
+    sqlite3_stmt* stmt = nullptr; // Declaração de uma instrução SQL.
+    bool autenticado = false; // Flag de autenticação.
+    const string sql = "SELECT 1 FROM Conta WHERE codigo = ? AND senha = ?;"; // Consulta SQL.
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr); // Prepara a consulta.
+    if (rc != SQLITE_OK) { // Verifica se houve erro.
+        cerr << "Erro ao preparar SQL: " << sqlite3_errmsg(db) << endl;
+        return false;
+    }
+    string codigo = conta.GetCodigo().GetCodigo(); // Obtém o código da conta.
+    string senha = conta.GetSenha().GetSenha(); // Obtém a senha da conta.
+    sqlite3_bind_text(
+        stmt,  // Declaração de instrução. usar stmt para referenciar.
+        1,    // Número do parâmetro. 1 para o primeiro parâmetro. const string sql = "SELECT 1 FROM Conta WHERE codigo = **?** AND senha = ?;"
+        codigo.c_str(),  // Valor do parâmetro. Código da conta.
+        codigo.size(),  // Tamanho do valor do parâmetro. -1 para calcular automaticamente.
+        SQLITE_TRANSIENT // Tipo do valor do parâmetro. SQLITE_TRANSIENT para copiar o valor. 
+        );
+
+    sqlite3_bind_text(stmt, 2, senha.c_str(), senha.size(), SQLITE_TRANSIENT);
+
+
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {  // Verifica se a consulta retornou alguma linha. Se sim, a conta foi autenticada.
+        autenticado = true;
+    } else if (rc != SQLITE_DONE) { // Verifica se apenas a consulta terminou. Se não, houve erro. 
+                                    //Se retonar SQLITE_DONE, significa que a consulta não retornou nenhuma linha.**
+        cerr << "Erro ao executar consulta: " << sqlite3_errmsg(db) << endl;
+    }
+    sqlite3_finalize(stmt); // Finaliza a instrução.
+    return autenticado;
 }
 
 bool CntrIAA::autenticar(Codigo *codigo) {
@@ -20,11 +51,11 @@ bool CntrIAA::autenticar(Codigo *codigo) {
         try {
             cout << "Digite o código da conta: ";
             cin >> entrada;
-            codigo->SetCodigo(entrada); // Pode lançar exceção.
+            codigo->SetCodigo(entrada);
 
             cout << "Digite a senha: ";
             cin >> entrada;
-            senha.SetSenha(entrada); // Pode lançar exceção.
+            senha.SetSenha(entrada);
             break;
         } catch (const std::exception& e) {
             cerr << "Erro: " << e.what() << '\n';
@@ -37,15 +68,13 @@ bool CntrIAA::autenticar(Codigo *codigo) {
 }
 void CntrICA::criarConta() // J
 {
-    return;
+
 }
 void CntrICA::executar(Codigo codigo) // L
 {
-    return;
 }
 void CntrIVA::executar(Codigo codigo) // A
 {
-
 }
 bool CntrICS::criarConta(const Conta conta) //J
 {

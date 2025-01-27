@@ -174,14 +174,8 @@ Avaliacao Viagem::GetAvaliacao() const
 {
     return avaliacao;
 }
-Conta Viagem::GetConta() const
-{
-    return conta;
-}
-void Viagem::SetConta(const Conta& conta)
-{
-    this->conta = conta;
-}
+
+
 
 void Hospedagem::SetNome(const Nome& nome_hospedagem)
 {
