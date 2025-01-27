@@ -41,7 +41,64 @@ void CntrICA::criarConta() // J
 }
 void CntrICA::executar(Codigo codigo) // L
 {
-    return;
+    int opcao;
+        while (true) {
+            try {
+                cout << "--------------------------------" << endl;
+                cout << "----Interface de Conta----" << endl;
+                cout << "1 - Criar Conta" << endl;
+                cout << "2 - Excluir Conta" << endl;
+                cout << "3 - Ler Conta" << endl;
+                cout << "4 - Atualizar Conta" << endl;
+
+                cout << "--------------------------------" << endl;
+                cout << "5 - Sair para a tela incial" << endl;
+
+                cout << "Digite a opção desejada: "
+                cin >> opcao;
+
+                Conta NovaConta;
+                Codigo CodigoConta;
+                Conta conta;
+
+                switch (opcao) {
+                    case 1: {
+                        if (setCntrServicoConta->criarConta(NovaConta))
+                            cout <<"Conta criada com sucesso!!!" << endl;
+                        break;
+                    }    
+                    case 2: {
+                        if(setCntrServicoConta->excluirConta(CodigoConta))
+                            cout <<"Conta criada com sucesso!!!" << endl;
+                        break;
+                    }
+                    case 3: {
+                        if(setCntrServicoConta->lerConta(&conta))
+                            cout <<"Conta lida com sucesso!!!" << endl;
+                        break;
+                    }
+                    case 4: {
+                        if(setCntrServicoConta->atualizarConta(conta))
+                            cout <<"Conta atualizada com sucesso!!!" << endl;
+                        break;
+                    }
+                    case 5: {
+                        cout << "Saindo da interface de conta..." << endl;
+                        return;
+                    }
+
+                    default: {
+                        cout << "Opção inválida. Tente novamente." <<endl;
+                        break;
+                    }    
+                       
+                }          
+                    
+                
+            }catch (invalid_argument &exp) {
+            cerr << "Erro: " << exp.what() << endl;
+            }
+        }
 }
 void CntrIVA::executar(Codigo codigo) // A
 {
