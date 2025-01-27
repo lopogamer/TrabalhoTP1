@@ -147,6 +147,67 @@ void CntrICA::criarConta() // J
 
 void CntrICA::executar(Codigo codigo) // L
 {
+<<<<<<< HEAD
+=======
+    int opcao;
+        while (true) {
+            try {
+                cout << "--------------------------------" << endl;
+                cout << "----Interface de Conta----" << endl;
+                cout << "1 - Criar Conta" << endl;
+                cout << "2 - Excluir Conta" << endl;
+                cout << "3 - Ler Conta" << endl;
+                cout << "4 - Atualizar Conta" << endl;
+
+                cout << "--------------------------------" << endl;
+                cout << "5 - Sair para a tela incial" << endl;
+
+                cout << "Digite a opção desejada: "
+                cin >> opcao;
+
+                Conta NovaConta;
+                Codigo CodigoConta;
+                Conta conta;
+
+                switch (opcao) {
+                    case 1: {
+                        if (setCntrServicoConta->criarConta(NovaConta))
+                            cout <<"Conta criada com sucesso!!!" << endl;
+                        break;
+                    }    
+                    case 2: {
+                        if(setCntrServicoConta->excluirConta(CodigoConta))
+                            cout <<"Conta criada com sucesso!!!" << endl;
+                        break;
+                    }
+                    case 3: {
+                        if(setCntrServicoConta->lerConta(&conta))
+                            cout <<"Conta lida com sucesso!!!" << endl;
+                        break;
+                    }
+                    case 4: {
+                        if(setCntrServicoConta->atualizarConta(conta))
+                            cout <<"Conta atualizada com sucesso!!!" << endl;
+                        break;
+                    }
+                    case 5: {
+                        cout << "Saindo da interface de conta..." << endl;
+                        return;
+                    }
+
+                    default: {
+                        cout << "Opção inválida. Tente novamente." <<endl;
+                        break;
+                    }    
+                       
+                }          
+                    
+                
+            }catch (invalid_argument &exp) {
+            cerr << "Erro: " << exp.what() << endl;
+            }
+        }
+>>>>>>> lima
 }
 
 void CntrIVA::executar(Codigo codigo) // A
@@ -314,7 +375,18 @@ bool CntrICS::criarConta(const Conta conta) //J
 }
 bool CntrICS::excluirConta(const Codigo codigo) // L
 {
+<<<<<<< HEAD
 }
+=======
+        if(containerConta.remove(codigo)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }  
+
+>>>>>>> lima
 
 bool CntrICS::lerConta(Conta* conta)//A
 {
@@ -343,11 +415,23 @@ bool CntrICS::atualizarConta(const Conta conta) // J
         return false;
     } 
 }
-bool CntrIVS::criarViagem(const Viagem) // L
+bool CntrIVS::criarViagem(const Viagem viagem) // L
 {
+<<<<<<< HEAD
 }
 
 bool CntrIVS::excluirViagem(const Codigo codigo) // A
+=======
+    if(containerViagem.create(viagem)){
+        return true;
+    }
+    else{
+        return false;
+    }
+   } 
+
+bool CntrIVS::excluirViagem(const Codigo) // A
+>>>>>>> lima
 {
     try{
         if(containerViagem.remove(codigo)){
@@ -362,10 +446,21 @@ bool CntrIVS::excluirViagem(const Codigo codigo) // A
         return false;
     }
 }
+<<<<<<< HEAD
 
 bool CntrIVS::lerViagem(Viagem*) // J
+=======
+bool CntrIVS::lerViagem(Viagem* viagem) // L
+>>>>>>> lima
 {
+    if (containerViagem.read(viagem)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
+<<<<<<< HEAD
 
 bool CntrIVS::atualizarViagem(const Viagem viagem) // L
 {
@@ -373,6 +468,20 @@ bool CntrIVS::atualizarViagem(const Viagem viagem) // L
 }
 
 bool CntrIVS::criarHospedagem(const Hospedagem hospedagem) // A
+=======
+bool CntrIVS::atualizarViagem(const Viagem viagem) // L
+{
+        if(containerViagem.update(viagem)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+bool CntrIVS::criarHospedagem(const Hospedagem) // A
+>>>>>>> lima
 {
     try{
         if(containerHospedagem.create(hospedagem)){
@@ -396,8 +505,15 @@ bool CntrIVS::excluirHospedagem(const Codigo codigo) // J
         return false;
     }
 }
-bool CntrIVS::lerHospedagem(Hospedagem*) // L
+bool CntrIVS::lerHospedagem(Hospedagem* hospedagem) // L
 {
+    if(conteinerHospedagem.read(hospedagem)){
+        return true;
+
+    }
+    else{
+        return false;
+    }
 }
 bool CntrIVS::atualizarHospedagem(const Hospedagem hospedagem) // L
 {
@@ -428,8 +544,15 @@ bool CntrIVS::criarDestino(const Destino destino) // A
 bool CntrIVS::excluirDestino(const Codigo) // J
 {
 }
-bool CntrIVS::lerDestino(Destino*) // L
+bool CntrIVS::lerDestino(Destino* destino) // L
 {
+ if(conteinerDestino,read(destino)){
+    return true;
+
+ }
+ else {
+    return false;
+ }
 }
 
 bool CntrIVS::atualizarDestino(const Destino destino) // A
@@ -457,8 +580,14 @@ bool CntrIVS::criarAtividade(const Atividade) // J
         return false;
     }
 }
-bool CntrIVS::excluirAtividade(const Codigo) // L
+bool CntrIVS::excluirAtividade(const Codigo codigo) // L
 {
+    if (containerAtividade.remove(codigo)){
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 bool CntrIVS::lerAtividade(Atividade* atividade) // A
