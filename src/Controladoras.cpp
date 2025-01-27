@@ -109,19 +109,14 @@ bool CntrICS::criarConta(const Conta conta) //J
 }
 bool CntrICS::excluirConta(const Codigo codigo) // L
 {
-    try{
         if(containerConta.remove(codigo)){
             return true;
         }
         else{
             return false;
         }
-    }
-    catch(invalid_argument &exp){
-        cerr << "Erro ao excluir conta: " << exp.what() << endl;
-        return false;
-    }
-}
+    }  
+
 
 bool CntrICS::lerConta(Conta* conta)//A
 {
@@ -131,7 +126,6 @@ bool CntrICS::atualizarConta(const Conta conta) // J
 }
 bool CntrIVS::criarViagem(const Viagem viagem) // L
 {
-   try{
     if(containerViagem.create(viagem)){
         return true;
     }
@@ -139,29 +133,47 @@ bool CntrIVS::criarViagem(const Viagem viagem) // L
         return false;
     }
    } 
-   catch {
-     cerr << "Erro ao criar viagem: " << exp.what() << endl;
-   }
-}
+
 bool CntrIVS::excluirViagem(const Codigo) // A
 {
 }
-bool CntrIVS::lerViagem(Viagem*) // J
+bool CntrIVS::lerViagem(Viagem* viagem) // L
 {
+    if (containerViagem.read(viagem)){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
-bool CntrIVS::atualizarViagem(const Viagem) // L
+bool CntrIVS::atualizarViagem(const Viagem viagem) // L
 {
-}
+        if(containerViagem.update(viagem)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
 bool CntrIVS::criarHospedagem(const Hospedagem) // A
 {
 }
 bool CntrIVS::excluirHospedagem(const Codigo) // J
 {
 }
-bool CntrIVS::lerHospedagem(Hospedagem*) // L
+bool CntrIVS::lerHospedagem(Hospedagem* hospedagem) // L
 {
+    if(conteinerHospedagem.read(hospedagem)){
+        return true;
+
+    }
+    else{
+        return false;
+    }
 }
-bool CntrIVS::atualizarHospedagem(const Hospedagem) // L
+bool CntrIVS::atualizarHospedagem(const Hospedagem hospedagem) // L
 {
 }
 bool CntrIVS::criarDestino(const Destino) // A
@@ -170,8 +182,15 @@ bool CntrIVS::criarDestino(const Destino) // A
 bool CntrIVS::excluirDestino(const Codigo) // J
 {
 }
-bool CntrIVS::lerDestino(Destino*) // L
+bool CntrIVS::lerDestino(Destino* destino) // L
 {
+ if(conteinerDestino,read(destino)){
+    return true;
+
+ }
+ else {
+    return false;
+ }
 }
 bool CntrIVS::atualizarDestino(const Destino) // A
 {
@@ -179,8 +198,14 @@ bool CntrIVS::atualizarDestino(const Destino) // A
 bool CntrIVS::criarAtividade(const Atividade) // J
 {
 }
-bool CntrIVS::excluirAtividade(const Codigo) // L
+bool CntrIVS::excluirAtividade(const Codigo codigo) // L
 {
+    if (containerAtividade.remove(codigo)){
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 bool CntrIVS::lerAtividade(Atividade*) // A
 {
