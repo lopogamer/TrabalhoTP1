@@ -129,8 +129,19 @@ bool CntrICS::lerConta(Conta* conta)//A
 bool CntrICS::atualizarConta(const Conta conta) // J
 {
 }
-bool CntrIVS::criarViagem(const Viagem) // L
+bool CntrIVS::criarViagem(const Viagem viagem) // L
 {
+   try{
+    if(containerViagem.create(viagem)){
+        return true;
+    }
+    else{
+        return false;
+    }
+   } 
+   catch {
+     cerr << "Erro ao criar viagem: " << exp.what() << endl;
+   }
 }
 bool CntrIVS::excluirViagem(const Codigo) // A
 {
