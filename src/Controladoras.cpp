@@ -218,7 +218,9 @@ bool CntrICS::lerConta(Conta* conta)//A
 
 bool CntrICS::atualizarConta(const Conta conta) // J
 {
-
+    ContainerConta containerConta;
+    bool resultado = containerConta.updateConta(conta);
+    return resultado;
 }
 bool CntrIVS::criarViagem(const Viagem viagem) // L
 {
