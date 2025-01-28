@@ -113,4 +113,13 @@ class ContainerAtividade{
     bool readAtividade(Atividade*);
     bool updateAtividade(const Atividade);
 };
+
+class ContainerHospedagem{
+    public:
+    bool createHospedagem(const Hospedagem);
+    bool deleteHospedagem(const Codigo);
+    bool readHospedagem(Hospedagem*);
+    bool updateHospedagem(const Hospedagem);
+};
+
 #endif // CONTAINERS_H

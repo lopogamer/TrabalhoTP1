@@ -127,44 +127,7 @@ bool CntrICA::criarConta()
 
 void CntrICA::executar(Codigo *codigo) // L
 {
-    int opcao;
-        while (true) {
-            cout << "--------------------------------" << endl;
-            cout << "----Interface de Conta----" << endl;
-            cout << "1 - Criar Conta" << endl;
-            cout << "2 - Excluir Conta" << endl;
-            cout << "3 - Ler Conta" << endl;
-            cout << "4 - Atualizar Conta" << endl;
-            cout << "--------------------------------" << endl;
-            cout << "5 - Sair para a tela incial" << endl;
-            cout << "Digite a opção desejada: ";
-            cin >> opcao;
-            switch (opcao){
-                case 1:
-                    criarConta();
-                    break;
-                case 2:{
-                    while(true){
-                        try
-                        {
-                            
-                        }
-                        catch(const std::exception& e)
-                        {
-                            std::cerr << e.what() << '\n';
-                        }
-                        
-                    }
-                }
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    return;
-            }
-    }
+    
 }
 
 void CntrIVA::executar(Codigo codigo) // A
@@ -201,100 +164,331 @@ void CntrIVA::executar(Codigo codigo) // A
         }
 }
 
+void CntrIVA::menuViagem()
+{
+    int opcao;
+    string valor;
+    int valorInt;
+        while (true) {
+            cout << endl << "--------------------------------" << endl;
+            cout << "----Menu Viagem----" << endl;
+            cout << "1 - Criar Viagem" << endl;
+            cout << "2 - Excluir Viagem" << endl;
+            cout << "3 - Ler Viagem" << endl;
+            cout << "4 - Atualizar Viagem" << endl;
+            cout << "5 - Sair para o menu principal" << endl;
+            cout << "Digite a opção desejada: ";
+            cin >> opcao;
+            switch (opcao){
+                case 1:
+                    menuCriarViagem();
+                case 2:
+                    menuExcluirViagem();
+                case 3:
+                    menuLerViagem();
+                case 4:
+                    menuAtualizarViagem();
+                case 5:
+                    return;
+            } 
+        }
+}
+
+void CntrIVA::menuCriarViagem(){ //A
+
+}
+
+void CntrIVA::menuExcluirViagem(){ //A
+
+}
+
+void CntrIVA::menuLerViagem(){ //A
+
+}
+
+void CntrIVA::menuAtualizarViagem(){ //A
+
+}
+
+
+void CntrIVA::menuHospedagem() //J
+{
+    int opcao;
+    string valor;
+    int valorInt;
+        while (true) {
+            cout << endl << "--------------------------------" << endl;
+            cout << "----Menu Hospedagem----" << endl;
+            cout << "1 - Criar Hospedagem" << endl;
+            cout << "2 - Excluir Hospedagem" << endl;
+            cout << "3 - Ler Hospedagem" << endl;
+            cout << "4 - Atualizar Hospedagem" << endl;
+            cout << "5 - Sair para o menu princpal" << endl;
+            cout << "Digite a opção desejada: ";
+            cin >> opcao;
+            switch (opcao){
+                case 1:
+                    menuCriarHospedagem();
+                case 2:
+                    menuExcluirHospedagem();
+                case 3:
+                    menuLerHospedagem();
+                case 4:
+                    menuAtualizarHospedagem();
+                case 5:
+                    return;
+            } 
+        }
+}
+
+void CntrIVA::menuCriarHospedagem(){ //J
+
+}
+
+void CntrIVA::menuExcluirHospedagem(){ //J
+
+}
+
+void CntrIVA::menuLerHospedagem(){ //J
+
+}
+
+void CntrIVA::menuAtualizarHospedagem(){ //J
+
+}
+
+//MENU DESTINO
+void CntrIVA::menuDestino() //A
+{
+    int opcao;
+    string valor;
+    int valorInt;
+        while (true) {
+            cout << endl << "--------------------------------" << endl;
+            cout << "----Menu Destino----" << endl;
+            cout << "1 - Criar Destino" << endl;
+            cout << "2 - Excluir Destino" << endl;
+            cout << "3 - Ler Destino" << endl;
+            cout << "4 - Atualizar Destino" << endl;
+            cout << "5 - Sair para o menu principal" << endl;
+            cout << "Digite a opção desejada: ";
+            cin >> opcao;
+            switch (opcao){
+                case 1:
+                    menuCriarDestino();
+                case 2:
+                    menuExcluirDestino();
+                case 3:
+                    menuLerDestino();
+                case 4:
+                    menuAtualizarDestino();
+                case 5:
+                    return;
+            } 
+        }
+}
+
+void CntrIVA::menuCriarDestino(){ //A
+
+}
+
+void CntrIVA::menuExcluirDestino(){ //A
+
+}
+
+void CntrIVA::menuLerDestino(){ //A
+
+}
+
+void CntrIVA::menuAtualizarDestino(){ //A
+
+}
+
+
+//MENU ATIVIDADE
+void CntrIVA::menuAtividade() //L
+{
+    int opcao;
+    string valor;
+    int valorInt;
+        while (true) {
+            cout << endl << "--------------------------------" << endl;
+            cout << "----Menu Atividade----" << endl;
+            cout << "1 - Criar Atividade" << endl;
+            cout << "2 - Excluir Atividade" << endl;
+            cout << "3 - Ler Atividade" << endl;
+            cout << "4 - Atualizar Atividade" << endl;
+            cout << "5 - Sair para o menu principal" << endl;
+            cout << "Digite a opção desejada: ";
+            cin >> opcao;
+            switch (opcao){
+                case 1:
+                    menuCriarAtividade();
+                case 2:
+                    menuExcluirAtividade();
+                case 3:
+                    menuLerAtividade();
+                case 4:
+                    menuAtualizarAtividade();
+                case 5:
+                    return;
+            } 
+        }
+}
+
+void CntrIVA::menuCriarAtividade(){ //L
+
+}
+
+void CntrIVA::menuExcluirAtividade(){ //L
+
+}
+
+void CntrIVA::menuLerAtividade(){ //L
+
+}
+
+void CntrIVA::menuAtualizarAtividade(){ //L
+
+}
 
 bool CntrICS::criarConta(const Conta conta)
 {
+    ContainerConta containerConta;
+    bool resultado = containerConta.createConta(conta);
+    return resultado;
 }
 
-bool CntrICS::excluirConta(const Codigo codigo) // L
+bool CntrICS::excluirConta(const Codigo codigo)
 {
+    ContainerConta containerConta;
+    bool resultado = containerConta.deleteConta(codigo);
+    return resultado;
 }
 
-bool CntrICS::lerConta(Conta* conta)//A
+bool CntrICS::lerConta(Conta* conta)
 {
-
+    ContainerConta containerConta;
+    bool resultado = containerConta.readConta(conta);
+    return resultado;
 }
 
-
-bool CntrICS::atualizarConta(const Conta conta) // J
+bool CntrICS::atualizarConta(const Conta conta)
 {
     ContainerConta containerConta;
     bool resultado = containerConta.updateConta(conta);
     return resultado;
 }
-bool CntrIVS::criarViagem(const Viagem viagem) // L
+bool CntrIVS::criarViagem(const Viagem viagem)
 {
     ContainerViagem containerviagem;
-
     bool resultado = containerviagem.createViagem(viagem);
     return resultado;
 }
 
-bool CntrIVS::excluirViagem(Codigo codigo) // A
+bool CntrIVS::excluirViagem(Codigo codigo)
 {
+    ContainerViagem containerviagem;
+    bool resultado = containerviagem.deleteViagem(codigo);
+    return resultado;
+}
+
+bool CntrIVS::lerViagem(Viagem* viagem)
+{
+    ContainerViagem containerviagem;
+    bool resultado = containerviagem.readViagem(viagem);
+    return resultado;
+}
+
+bool CntrIVS::atualizarViagem( Viagem viagem)
+{
+    ContainerViagem containerviagem;
+    bool resultado = containerviagem.updateViagem(viagem);
+    return resultado;
+}
+
+bool CntrIVS::criarHospedagem( Hospedagem hospedagem)
+{
+    ContainerHospedagem containerHospedagem;
+    bool resultado = containerHospedagem.createHospedagem(hospedagem);
+    return resultado;
+}
+
+bool CntrIVS::excluirHospedagem( Codigo codigo)
+{
+    ContainerHospedagem containerHospedagem;
+    bool resultado = containerHospedagem.deleteHospedagem(codigo);
+    return resultado;
+}
+
+bool CntrIVS::lerHospedagem(Hospedagem* hospedagem)
+{
+    ContainerHospedagem containerHospedagem;
+    bool resultado = containerHospedagem.readHospedagem(hospedagem);
+    return resultado;
+}
+
+bool CntrIVS::atualizarHospedagem( Hospedagem hospedagem)
+{
+    ContainerHospedagem containerHospedagem;
+    bool resultado = containerHospedagem.updateHospedagem(hospedagem);
+    return resultado;
+}
+
+bool CntrIVS::criarDestino( Destino destino)
+{
+    ContainerDestino containerDestino;
+    bool resultado = containerDestino.createDestino(destino);
+    return resultado;
+}
+
+bool CntrIVS::excluirDestino(Codigo codigo)
+{
+    ContainerDestino containerDestino;
+    bool resultado = containerDestino.deleteDestino(codigo);
+    return resultado;
+}
+bool CntrIVS::lerDestino(Destino* destino)
+{
+    ContainerDestino containerDestino;
+    bool resultado = containerDestino.readDestino(destino);
+    return resultado;
+}
+
+bool CntrIVS::atualizarDestino(Destino destino)
+{
+    ContainerDestino containerDestino;
+    bool resultado = containerDestino.updateDestino(destino);
+    return resultado;
+}
+
+bool CntrIVS::criarAtividade(Atividade atividade)
+{
+    ContainerAtividade containerAtividade;
+    bool resultado = containerAtividade.createAtividade(atividade);
+    return resultado;
 
 }
 
-bool CntrIVS::lerViagem(Viagem* viagem) // J
+bool CntrIVS::excluirAtividade(Codigo codigo)
 {
+    ContainerAtividade containerAtividade;
+    bool resultado = containerAtividade.deleteAtividade(codigo);
+    return resultado;
+}
+
+bool CntrIVS::lerAtividade(Atividade* atividade)
+{
+    ContainerAtividade containerAtividade;
+    bool resultado = containerAtividade.readAtividade(atividade);
+    return resultado;
 
 }
 
-bool CntrIVS::atualizarViagem( Viagem viagem) // L
+bool CntrIVS::atualizarAtividade(Atividade atividade)
 {
-
-}
-
-bool CntrIVS::criarHospedagem( Hospedagem hospedagem) // A
-{
-
-}
-bool CntrIVS::excluirHospedagem( Codigo codigo) // J
-{
-
-}
-bool CntrIVS::lerHospedagem(Hospedagem* hospedagem) // L
-{
-
-}
-bool CntrIVS::atualizarHospedagem( Hospedagem hospedagem) // L
-{
-
-}
-
-bool CntrIVS::criarDestino( Destino destino) // A
-{
-
-}
-
-bool CntrIVS::excluirDestino(Codigo codigo) // J
-{
-}
-bool CntrIVS::lerDestino(Destino* destino) // L
-{
-
-}
-
-bool CntrIVS::atualizarDestino( Destino destino) // A
-{
-
-}
-
-bool CntrIVS::criarAtividade( Atividade) // J
-{
-
-}
-bool CntrIVS::excluirAtividade( Codigo codigo) // L
-{
-
-}
-
-bool CntrIVS::lerAtividade(Atividade* atividade) // A
-{
-
-}
-
-bool CntrIVS::atualizarAtividade(Atividade atividade) // J
-{
+    ContainerAtividade containerAtividade;
+    bool resultado = containerAtividade.updateAtividade(atividade);
+    return resultado;
 
 }
