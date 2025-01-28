@@ -42,10 +42,37 @@ class CntrIVA:public IViagemApresetacao{
 private:
     IViagemServico *cntrServicoViagem;
     void executar(Codigo);
+    
+    //Menus
     void menuViagem();
     void menuHospedagem();
     void menuDestino();
     void menuAtividade();
+
+    //Menus de viagem
+    void menuCriarViagem();
+    void menuExcluirViagem();
+    void menuLerViagem();
+    void menuAtualizarViagem();
+
+    //Menus de hospedagem
+    void menuCriarHospedagem();
+    void menuExcluirHospedagem();
+    void menuLerHospedagem();
+    void menuAtualizarHospedagem();
+
+    //Menus de destino
+    void menuCriarDestino();
+    void menuExcluirDestino();
+    void menuLerDestino();
+    void menuAtualizarDestino();
+
+    //Menus de atividade
+    void menuCriarAtividade();
+    void menuExcluirAtividade();
+    void menuLerAtividade();
+    void menuAtualizarAtividade();
+
 public:
     void setCntrServicoViagem(IViagemServico*);
 };
