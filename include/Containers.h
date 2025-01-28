@@ -3,6 +3,9 @@
 #include <sqlite3.h>
 #include <stdexcept>
 #include <string>
+#include "Entidade.h"
+#include "Dominios.h"
+using namespace std;
 class DatabaseManager {
 private:
     static DatabaseManager* instance;
@@ -77,5 +80,37 @@ public:
     DatabaseManager& operator=(const DatabaseManager&) = delete;
     void execSQL(const std::string& sql);
     sqlite3* getConnection() { return db; }
+};
+
+class ContainerViagem{
+    public:
+    bool createViagem(const Viagem);
+    bool deleteViagem(const Codigo);
+    bool readViagem(Viagem*);
+    bool updateViagem(const Viagem);
+};
+
+class ContainerConta{
+    public:
+    bool createConta(const Conta);
+    bool deleteConta(const Codigo);
+    bool readConta(Conta*);
+    bool updateConta(const Conta);
+};
+
+class ContainerDestino{
+    public:
+    bool createDestino(const Destino);
+    bool deleteDestino(const Codigo);
+    bool readDestino(Destino*);
+    bool updateDestino(const Destino);
+};
+
+class ContainerAtividade{
+    public:
+    bool createAtividade(const Atividade);
+    bool deleteAtividade(const Codigo);
+    bool readAtividade(Atividade*);
+    bool updateAtividade(const Atividade);
 };
 #endif // CONTAINERS_H

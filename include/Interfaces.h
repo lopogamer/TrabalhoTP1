@@ -35,6 +35,10 @@ public:
 class IViagemApresetacao{
 public:
     virtual void executar(const Codigo) = 0;
+    virtual void menuViagem() = 0;
+    virtual void menuHospedagem() = 0;
+    virtual void menuDestino() = 0;
+    virtual void menuAtividade() = 0;
     virtual void setCntrServicoViagem(IViagemServico*) = 0;
     virtual ~IViagemApresetacao(){};
 };

@@ -29,8 +29,8 @@ inline void CntrIAA::setCntrServicoAutenticacao(IAutenticacaoServico *cntrServic
 class CntrICA : public IContaApresentacao{
 private:
     IContaServico *cntrServicoConta;
-public:
     bool criarConta();
+public:
     void executar(Codigo*);
     void setCntrServicoConta(IContaServico*);
 };
@@ -41,8 +41,12 @@ inline void CntrICA::setCntrServicoConta(IContaServico *cntrServicoConta){
 class CntrIVA:public IViagemApresetacao{
 private:
     IViagemServico *cntrServicoViagem;
-public:
     void executar(Codigo);
+    void menuViagem();
+    void menuHospedagem();
+    void menuDestino();
+    void menuAtividade();
+public:
     void setCntrServicoViagem(IViagemServico*);
 };
 

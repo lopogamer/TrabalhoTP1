@@ -13,3 +13,4 @@ void DatabaseManager::execSQL(const std::string& sql) {
         throw std::runtime_error(error);
     }
 }
+
