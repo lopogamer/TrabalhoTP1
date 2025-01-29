@@ -213,10 +213,20 @@ public:
 class Hospedagem
 {
 private:
+    Codigo codigo;
     Nome nome_hospedagem;
     Dinheiro diaria_hospedagem;
     Avaliacao avaliacao_hospedagem;
 public:
+
+    /// @brief Método que atribui o código da hospedagem, passando um objeto do tipo Codigo ja validado como parâmetro.
+    /// @param Codigo objeto do tipo Codigo que será atribuído ao código da hospedagem.
+    void SetCodigo(const Codigo& codigo);
+
+    /// @brief Método que retorna o código da hospedagem.
+    /// @return Objeto do tipo Codigo.
+    Codigo GetCodigo() const;
+
     /// @brief Método que atribui o nome da hospedagem, passando um objeto do tipo Nome ja validado como parâmetro.
     /// @param Nome objeto do tipo Nome que será atribuído ao nome da hospedagem.
     void SetNome(const Nome&);
