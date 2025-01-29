@@ -84,7 +84,7 @@ public:
 
 class ContainerViagem{
     public:
-    bool createViagem(const Viagem);
+    bool createViagem(const Viagem, Codigo);
     bool deleteViagem(const Codigo);
     bool readViagem(Viagem*);
     bool updateViagem(const Viagem);
@@ -100,7 +100,7 @@ class ContainerConta{
 
 class ContainerDestino{
     public:
-    bool createDestino(const Destino);
+    bool createDestino(const Destino, Codigo);
     bool deleteDestino(const Codigo);
     bool readDestino(Destino*);
     bool updateDestino(const Destino);
@@ -108,7 +108,7 @@ class ContainerDestino{
 
 class ContainerAtividade{
     public:
-    bool createAtividade(const Atividade);
+    bool createAtividade(const Atividade, Codigo);
     bool deleteAtividade(const Codigo);
     bool readAtividade(Atividade*);
     bool updateAtividade(const Atividade);
@@ -116,7 +116,7 @@ class ContainerAtividade{
 
 class ContainerHospedagem{
     public:
-    bool createHospedagem(const Hospedagem);
+    bool createHospedagem(const Hospedagem, Codigo);
     bool deleteHospedagem(const Codigo);
     bool readHospedagem(Hospedagem*);
     bool updateHospedagem(const Hospedagem);
