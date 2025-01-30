@@ -207,3 +207,12 @@ Avaliacao Hospedagem::GetAvaliacao() const
     return avaliacao_hospedagem;
 }
 
+void Hospedagem::SetCodigo(const Codigo& codigo)
+{
+    this->codigo = codigo;
+}
+
+Codigo Hospedagem::GetCodigo() const
+{
+    return codigo;
+}
