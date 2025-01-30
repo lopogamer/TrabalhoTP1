@@ -5,6 +5,7 @@
 #include <string>
 #include "Entidade.h"
 #include "Dominios.h"
+#include "SessionManager.h"
 using namespace std;
 class DatabaseManager {
 private:
@@ -13,9 +14,9 @@ private:
 
     DatabaseManager() {
         if (int rc = sqlite3_open("database.db", &db); rc != SQLITE_OK) {
-            throw std::runtime_error("Falha ao conectar ao banco: " + std::string(sqlite3_errmsg(db)));
+            throw runtime_error("Falha ao conectar ao banco: " + string(sqlite3_errmsg(db)));
         }
-        const std::string sqlScript = R"(
+        const string sqlScript = R"(
             PRAGMA foreign_keys = ON;
 
             CREATE TABLE IF NOT EXISTS Conta (
@@ -53,7 +54,8 @@ private:
                 FOREIGN KEY (destino_codigo) REFERENCES Destino(codigo)
             );
             CREATE TABLE IF NOT EXISTS Hospedagem (
-                nome TEXT PRIMARY KEY,
+                codigo TEXT PRIMARY KEY,
+                nome TEXT NOT NULL,
                 diaria TEXT,
                 avaliacao INTEGER,
                 destino_codigo TEXT,
@@ -78,8 +80,9 @@ public:
 
     DatabaseManager(const DatabaseManager&) = delete;
     DatabaseManager& operator=(const DatabaseManager&) = delete;
-    void execSQL(const std::string& sql);
+    void execSQL(const string& sql);
     sqlite3* getConnection() { return db; }
+    static void verifyEntityOwnership(const string& tableHierarchy, const string& whereColumn, const string& entityCode);
 };
 
 class ContainerViagem{
@@ -100,7 +103,7 @@ class ContainerConta{
 
 class ContainerDestino{
     public:
-    bool createDestino(const Destino);
+    bool createDestino(const Destino, Codigo);
     bool deleteDestino(const Codigo);
     bool readDestino(Destino*);
     bool updateDestino(const Destino);
@@ -108,7 +111,7 @@ class ContainerDestino{
 
 class ContainerAtividade{
     public:
-    bool createAtividade(const Atividade);
+    bool createAtividade(const Atividade, Codigo);
     bool deleteAtividade(const Codigo);
     bool readAtividade(Atividade*);
     bool updateAtividade(const Atividade);
@@ -116,7 +119,7 @@ class ContainerAtividade{
 
 class ContainerHospedagem{
     public:
-    bool createHospedagem(const Hospedagem);
+    bool createHospedagem(const Hospedagem, Codigo);
     bool deleteHospedagem(const Codigo);
     bool readHospedagem(Hospedagem*);
     bool updateHospedagem(const Hospedagem);
