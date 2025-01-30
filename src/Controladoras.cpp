@@ -507,6 +507,8 @@ void CntrIVA::menuLerDestino(){ //A
     }
 }
 
+}
+
 void CntrIVA::menuAtualizarDestino(){ //A
     string entrada;
     Destino destino;
