@@ -371,19 +371,153 @@ void CntrIVA::menuHospedagem() //J
         }
 }
 
-void CntrIVA::menuCriarHospedagem(){ //J
+void CntrIVA::menuCriarHospedagem(){
+    string entrada;
+    int valor;
+    Hospedagem novaHospedagem;
+
+    while (true) {
+        try {
+            cout << "Digite o código da nova hospedagem: ";
+            cin >> entrada;
+            Codigo codigo;
+            codigo.SetCodigo(entrada); 
+            novaHospedagem.SetCodigo(codigo);
+
+            cout << "Digite o nome da nova hospedagem: ";
+            cin >> entrada;
+            Nome nome;
+            nome.SetNome(entrada); 
+            novaHospedagem.SetNome(nome);
+
+            cout << "Digite a diária da nova hospedagem: ";
+            cin >> entrada;
+            Dinheiro diaria;
+            diaria.SetDinheiro(entrada); 
+            novaHospedagem.SetDiaria(diaria);
+
+            cout << "Digite a avaliação da nova hospedagem: ";
+            cin >> valor;
+            Avaliacao avaliacao;
+            avaliacao.SetAvaliacao(valor);
+            novaHospedagem.SetAvaliacao(avaliacao);
+
+
+            if (cntrServicoViagem->criarHospedagem(novaHospedagem)) {
+                cout << "Hospedagem criada com sucesso!" << endl;
+                break;
+            } else {
+                cout << "Falha ao criar hospedagem. Código já existente. Tente novamente." << endl;
+            }
+        } catch (const invalid_argument &e) {
+            cout << "Erro ao criar hospedagem: " << e.what() << endl;
+        } catch (const exception &e) {
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 
 }
 
-void CntrIVA::menuExcluirHospedagem(){ //J
+void CntrIVA::menuExcluirHospedagem(){
+    string entrada;
+    Codigo codigo;
+
+    while (true) {
+        try {
+            cout << "Digite o código da hospedagem: ";
+            cin >> entrada;
+            codigo.SetCodigo(entrada);
+
+            if (cntrServicoViagem->excluirHospedagem(codigo)) {
+                cout << "Hospedagem excluída com sucesso!" << endl;
+                break;
+            } else {
+                cout << "Falha ao excluir hospedagem. Código não encontrado. Tente novamente." << endl;
+            }
+        } catch (const invalid_argument &e) {
+            cout << "Erro ao excluir hospedagem: " << e.what() << endl;
+        } catch (const exception &e) {
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 
 }
 
-void CntrIVA::menuLerHospedagem(){ //J
+void CntrIVA::menuLerHospedagem(){
+    string entrada;
+    Codigo codigo;
+    Hospedagem hospedagem;
 
+    while (true) {
+        try {
+            cout << "Digite o código da hospedagem: ";
+            cin >> entrada;
+            codigo.SetCodigo(entrada); 
+            hospedagem.SetCodigo(codigo);
+
+            if (cntrServicoViagem->lerHospedagem(&hospedagem)) {
+                cout << "Hospedagem encontrada: " << endl;
+                cout << "Código: " << hospedagem.GetCodigo().GetCodigo() << endl;
+                cout << "Nome: " << hospedagem.GetNome().GetNome() << endl;
+                cout << "Diária: " << hospedagem.GetDiaria().GetDinheiro() << endl;
+                cout << "Avaliação: " << hospedagem.GetAvaliacao().GetAvaliacao() << endl;
+                break; 
+            } else {
+                cout << "Falha ao ler hospedagem. Código não encontrado. Tente novamente." << endl;
+            }
+        } catch (const invalid_argument &e) {
+            cout << "Erro ao ler hospedagem: " << e.what() << endl;
+        } catch (const exception &e) {
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
+    
 }
 
-void CntrIVA::menuAtualizarHospedagem(){ //J
+
+void CntrIVA::menuAtualizarHospedagem(){
+    string entrada;
+    int valor;
+    Hospedagem hospedagem;
+
+    while (true) {
+        try {
+            cout << "Digite o novo código da hospedagem: ";
+            cin >> entrada;
+            Codigo codigo;
+            codigo.SetCodigo(entrada); 
+            hospedagem.SetCodigo(codigo);
+
+            cout << "Digite o novo nome da hospedagem: ";
+            cin >> entrada;
+            Nome nome;
+            nome.SetNome(entrada); 
+            hospedagem.SetNome(nome);
+
+            cout << "Digite a nova diária da hospedagem: ";
+            cin >> entrada;
+            Dinheiro diaria;
+            diaria.SetDinheiro(entrada); 
+            hospedagem.SetDiaria(diaria);
+
+            cout << "Digite a nova avaliação da hospedagem: ";
+            cin >> valor;
+            Avaliacao avaliacao;
+            avaliacao.SetAvaliacao(valor);
+            hospedagem.SetAvaliacao(avaliacao);
+
+            if (cntrServicoViagem->atualizarHospedagem(hospedagem)) {
+                cout << "Hospedagem atualizada com sucesso!" << endl;
+                break;
+            } else {
+                cout << "Falha ao atualizar hospedagem. Código não encontrado. Tente novamente." << endl;
+            }
+        } catch (const invalid_argument &e) {
+            cout << "Erro ao atualizar hospedagem: " << e.what() << endl;
+        } catch (const exception &e) {
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 
 }
 

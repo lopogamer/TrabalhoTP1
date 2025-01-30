@@ -177,6 +177,18 @@ Avaliacao Viagem::GetAvaliacao() const
 
 
 
+
+void Hospedagem::SetCodigo(const Codigo& codigo)
+{
+    this->codigo = codigo;
+}
+
+Codigo Hospedagem::GetCodigo() const
+{
+    return codigo;
+}
+
+
 void Hospedagem::SetNome(const Nome& nome_hospedagem)
 {
     this->nome_hospedagem = nome_hospedagem;
