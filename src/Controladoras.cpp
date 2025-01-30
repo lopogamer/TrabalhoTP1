@@ -11,7 +11,7 @@
 using namespace std;
 
 
-void CntrControleAcesso::iniciarControle() // Alan
+void CntrControleAcesso::iniciarControle()
 {
     int opcao;
     Codigo codigoUsuario;
@@ -36,6 +36,7 @@ void CntrControleAcesso::iniciarControle() // Alan
             case 1: {
                     if (cntrIAA->autenticar(&codigoUsuario))
                     {
+                        SessionManager::getInstance()->setCodigo(codigoUsuario);
                         cntrIVA->executar(codigoUsuario);
                     }else
                     {
@@ -46,12 +47,10 @@ void CntrControleAcesso::iniciarControle() // Alan
             case 2: {
                 if(cntrICA->criarConta())
                     cout << "Conta criada com sucesso!" << endl;
-                    cntrICA->executar(&codigoUsuario);
-                    break;
             }
             case 3: {
                 cout << "Saindo do controle de acesso..." << endl;
-                return;
+                exit(0);
             }
         }
     }catch(exception &exp){
@@ -87,15 +86,20 @@ bool CntrIAA::autenticar(Codigo *codigo) {
             cout << "Digite a senha: ";
             cin >> entrada;
             senha.SetSenha(entrada);
+            Conta conta;
+            conta.SetCodigo(*codigo);
+            conta.SetSenha(senha);
+            if (cntrServicoAutenticacao->autenticarConta(conta)) {
+                cout << "Autenticação realizada com sucesso!" << endl;
+                return true;
+            } else {
+                cout << "Falha na autenticação. Código ou senha inválidos. Tente novamente." << endl;
+            }
             break;
         } catch (const std::exception& e) {
             cerr << "Erro: " << e.what() << '\n';
         }
     }
-    Conta conta;
-    conta.SetCodigo(*codigo);
-    conta.SetSenha(senha);
-    return cntrServicoAutenticacao->autenticarConta(conta);
 }
 
 bool CntrICA::criarConta()
@@ -378,6 +382,11 @@ void CntrIVA::menuCriarHospedagem(){
 
     while (true) {
         try {
+            cout << "Digite o codigo da Viagem ao qual a hospedagem pertence: ";
+            cin >> entrada;
+            Codigo codigoViagem;
+            codigoViagem.SetCodigo(entrada);
+
             cout << "Digite o código da nova hospedagem: ";
             cin >> entrada;
             Codigo codigo;
@@ -403,11 +412,11 @@ void CntrIVA::menuCriarHospedagem(){
             novaHospedagem.SetAvaliacao(avaliacao);
 
 
-            if (cntrServicoViagem->criarHospedagem(novaHospedagem)) {
+            if (cntrServicoViagem->criarHospedagem(novaHospedagem, codigoViagem)) {
                 cout << "Hospedagem criada com sucesso!" << endl;
                 break;
             } else {
-                cout << "Falha ao criar hospedagem. Código já existente. Tente novamente." << endl;
+                cout << "Falha ao criar hospedagem." << endl;
             }
         } catch (const invalid_argument &e) {
             cout << "Erro ao criar hospedagem: " << e.what() << endl;
@@ -521,7 +530,6 @@ void CntrIVA::menuAtualizarHospedagem(){
 
 }
 
-//MENU DESTINO
 void CntrIVA::menuDestino() //A
 {
     int opcao;
@@ -618,7 +626,6 @@ void CntrIVA::menuExcluirDestino(){ //A
         cout << "Digite o código do destino que deseja excluir: ";
         cin >> entrada;
         codigo.SetCodigo(entrada);
-
         if(cntrServicoViagem->excluirDestino(codigo)){
             cout << "Destino excluído com sucesso!" << endl;
             break;
@@ -711,7 +718,6 @@ void CntrIVA::menuAtualizarDestino(){ //A
 }
 
 
-//MENU ATIVIDADE
 void CntrIVA::menuAtividade() //L
 {
     int opcao;
@@ -814,10 +820,10 @@ bool CntrIVS::atualizarViagem( Viagem viagem)
     return resultado;
 }
 
-bool CntrIVS::criarHospedagem(Hospedagem hospedagem)
+bool CntrIVS::criarHospedagem(Hospedagem hospedagem, Codigo codigo)
 {
     ContainerHospedagem containerHospedagem;
-    bool resultado = containerHospedagem.createHospedagem(hospedagem);
+    bool resultado = containerHospedagem.createHospedagem(hospedagem, codigo);
     return resultado;
 }
 
@@ -870,10 +876,10 @@ bool CntrIVS::atualizarDestino(Destino destino)
     return resultado;
 }
 
-bool CntrIVS::criarAtividade(Atividade atividade)
+bool CntrIVS::criarAtividade(Atividade atividade, Codigo codigo)
 {
     ContainerAtividade containerAtividade;
-    bool resultado = containerAtividade.createAtividade(atividade);
+    bool resultado = containerAtividade.createAtividade(atividade, codigo);
     return resultado;
 
 }

@@ -250,14 +250,6 @@ public:
     /// @brief Método que retorna a avaliação da hospedagem.
     /// @return Objeto do tipo Avaliacao.
     Avaliacao GetAvaliacao() const;
-
-    /// @brief Método que atribui o código da hospedagem, passando um objeto do tipo Codigo ja validado como parâmetro.
-    /// @param Codigo objeto do tipo Codigo que será atribuído ao código da hospedagem.
-    void SetCodigo(const Codigo&);
-
-    /// @brief Método que retorna o código da hospedagem.
-    /// @return Objeto do tipo Codigo.
-    Codigo GetCodigo() const;
     
 };
 

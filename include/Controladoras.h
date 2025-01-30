@@ -100,7 +100,7 @@ class CntrIVS : public IViagemServico
     bool lerViagem(Viagem*);
     bool atualizarViagem(const Viagem);
 
-    bool criarHospedagem(const Hospedagem);
+    bool criarHospedagem(const Hospedagem, const Codigo);
     bool excluirHospedagem(const Codigo);
     bool lerHospedagem(Hospedagem*);
     bool atualizarHospedagem(const Hospedagem);
@@ -110,7 +110,7 @@ class CntrIVS : public IViagemServico
     bool lerDestino(Destino*);
     bool atualizarDestino(const Destino);
 
-    bool criarAtividade(const Atividade);
+    bool criarAtividade(const Atividade, const Codigo);
     bool excluirAtividade(const Codigo);
     bool lerAtividade(Atividade*);
     bool atualizarAtividade(const Atividade);

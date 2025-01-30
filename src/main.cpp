@@ -22,7 +22,6 @@ int main()
     
 
     try{
-        DatabaseManager& dbManager = DatabaseManager::getInstance();
         CntrControleAcesso cntrControleAcesso;
         cntrControleAcesso.iniciarControle();
     }catch(invalid_argument &e){
