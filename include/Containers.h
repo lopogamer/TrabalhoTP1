@@ -103,7 +103,7 @@ class ContainerConta{
 
 class ContainerDestino{
     public:
-    bool createDestino(const Destino, Codigo);
+    bool createDestino(const Destino, const Codigo);
     bool deleteDestino(const Codigo);
     bool readDestino(Destino*);
     bool updateDestino(const Destino);
