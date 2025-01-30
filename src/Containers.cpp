@@ -4,6 +4,34 @@ using namespace std;
 
 DatabaseManager* DatabaseManager::instance = nullptr;
 
+void DatabaseManager::verifyEntityOwnership(const string& tableHierarchy, const string& whereColumn, const string& entityCode) {
+    sqlite3* db = getInstance().getConnection();
+    sqlite3_stmt* stmt;
+    string sql = 
+        "SELECT V.conta_codigo FROM " + tableHierarchy + 
+        " WHERE " + whereColumn + " = ?;";
+    
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
+        throw runtime_error("Erro ao verificar entidade: " + string(sqlite3_errmsg(db)));
+    }
+    
+    sqlite3_bind_text(stmt, 1, entityCode.c_str(), -1, SQLITE_STATIC);
+    
+    int rc = sqlite3_step(stmt);
+    if (rc != SQLITE_ROW) {
+        sqlite3_finalize(stmt);
+        throw runtime_error("Entidade não encontrada.");
+    }
+    
+    string contaCodigo(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
+    sqlite3_finalize(stmt);
+    
+    Codigo contaLogada = SessionManager::getInstance()->getCodigo();
+    if (contaCodigo != contaLogada.GetCodigo()) {
+        throw runtime_error("Ação não permitida: entidade não pertence à conta logada.");
+    }
+}
+
 void DatabaseManager::execSQL(const string& sql) {
     char* errMsg = nullptr;
     int rc = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errMsg);
@@ -14,39 +42,45 @@ void DatabaseManager::execSQL(const string& sql) {
     }
 }
 
-
 bool ContainerConta::createConta(Conta conta) {
     sqlite3* db = DatabaseManager::getInstance().getConnection();
-    sqlite3_stmt* stmt;
+    sqlite3_stmt* stmt = nullptr;
 
     string sql = "INSERT INTO Conta (codigo, senha) VALUES (?, ?);";
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
-        throw runtime_error("Falha ao preparar o statement: " + string(sqlite3_errmsg(db)));
+        string error = sqlite3_errmsg(db);
+        sqlite3_finalize(stmt);
+        throw runtime_error("Falha ao preparar o statement: " + error);
     }
+
     string codigo = conta.GetCodigo().GetCodigo();
     string senha = conta.GetSenha().GetSenha();
     sqlite3_bind_text(stmt, 1, codigo.c_str(), -1, SQLITE_STATIC);
     sqlite3_bind_text(stmt, 2, senha.c_str(), -1, SQLITE_STATIC);
 
     int rc = sqlite3_step(stmt);
-    if (rc != SQLITE_DONE) {
-        throw runtime_error("Falha ao executar o statement: " + string(sqlite3_errmsg(db)));
+    if (rc == SQLITE_CONSTRAINT) {
+        sqlite3_finalize(stmt);
+        throw runtime_error("Código já existente.");
+    } else if (rc != SQLITE_DONE) {
+        string error = sqlite3_errmsg(db);
+        sqlite3_finalize(stmt);
+        throw runtime_error("Falha ao executar o statement: " + error);
     }
-    if(rc == SQLITE_CONSTRAINT) {
-        throw runtime_error("Código já existente");
-    }
+
     sqlite3_finalize(stmt);
     return true;
-
 }
 
-bool ContainerConta::updateConta(Conta conta){
-    sqlite3 *db = DatabaseManager::getInstance().getConnection();
-    sqlite3_stmt *stmt;
+bool ContainerConta::updateConta(Conta conta) {
+    sqlite3* db = DatabaseManager::getInstance().getConnection();
+    sqlite3_stmt* stmt = nullptr;
 
     string sql = "UPDATE Conta SET senha = ? WHERE codigo = ?;";
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
-        throw runtime_error("Falha ao preparar o statement: " + string(sqlite3_errmsg(db)));
+        string error = sqlite3_errmsg(db);
+        sqlite3_finalize(stmt);
+        throw runtime_error("Falha ao preparar o statement: " + error);
     }
 
     sqlite3_bind_text(stmt, 1, conta.GetSenha().GetSenha().c_str(), -1, SQLITE_STATIC);
@@ -54,8 +88,17 @@ bool ContainerConta::updateConta(Conta conta){
 
     int rc = sqlite3_step(stmt);
     if (rc != SQLITE_DONE) {
-        throw runtime_error("Falha ao executar o statement: " + string(sqlite3_errmsg(db)));
+        string error = sqlite3_errmsg(db);
+        sqlite3_finalize(stmt);
+        throw runtime_error("Falha ao executar o statement: " + error);
     }
+
+    int rowsAffected = sqlite3_changes(db);
+    if (rowsAffected == 0) {
+        sqlite3_finalize(stmt);
+        throw runtime_error("Conta não encontrada.");
+    }
+
     sqlite3_finalize(stmt);
     return true;
 }
@@ -126,23 +169,50 @@ bool ContainerConta::readConta(Conta *conta){
     return false;
 }
 
-bool ContainerViagem::createViagem(Viagem viagem, Codigo conta_codig){
-    sqlite3 *db = DatabaseManager::getInstance().getConnection();
-    sqlite3_stmt *stmt;
+bool ContainerViagem::createViagem(Viagem viagem) {
+    sqlite3* db = DatabaseManager::getInstance().getConnection();
+    sqlite3_stmt* stmt = nullptr;
+
+    Codigo conta_codig = SessionManager::getInstance()->getCodigo();
     string sql = "INSERT INTO Viagem (codigo, nome, avaliacao, conta_codigo) VALUES (?, ?, ?, ?);";
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
+        string error = sqlite3_errmsg(db);
+        sqlite3_finalize(stmt);
+        throw runtime_error("Falha ao preparar o statement: " + error);
+    }
+
+    sqlite3_bind_text(stmt, 1, viagem.GetCodigo().GetCodigo().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, viagem.GetNome().GetNome().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 3, viagem.GetAvaliacao().GetAvaliacao());
+    sqlite3_bind_text(stmt, 4, conta_codig.GetCodigo().c_str(), -1, SQLITE_STATIC);
+
+    int rc = sqlite3_step(stmt);
+    if (rc != SQLITE_DONE) {
+        string error = sqlite3_errmsg(db);
+        sqlite3_finalize(stmt);
+        throw runtime_error("Falha ao executar o statement: " + error);
+    }
+
+    sqlite3_finalize(stmt);
+    return true;
+}
+
+bool ContainerViagem::updateViagem(const Viagem viagem) {
+    DatabaseManager::verifyEntityOwnership(
+        "Viagem", 
+        "codigo", 
+        viagem.GetCodigo().GetCodigo()
+    );
+
+    sqlite3* db = DatabaseManager::getInstance().getConnection();
+    sqlite3_stmt* stmt;
+    string sql = "UPDATE Viagem SET nome = ?, avaliacao = ? WHERE codigo = ?;";
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
         throw runtime_error("Falha ao preparar o statement: " + string(sqlite3_errmsg(db)));
     }
-    string codigo = viagem.GetCodigo().GetCodigo();
-    string nome = viagem.GetNome().GetNome();
-    int avaliacao = viagem.GetAvaliacao().GetAvaliacao();
-    string conta_codigo = conta_codig.GetCodigo();  
-
-    sqlite3_bind_text(stmt, 1, codigo.c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 2, nome.c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_int(stmt, 3, avaliacao);
-    sqlite3_bind_text(stmt, 4, conta_codigo.c_str(), -1, SQLITE_STATIC);
-
+    sqlite3_bind_text(stmt, 1, viagem.GetNome().GetNome().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 2, viagem.GetAvaliacao().GetAvaliacao());
+    sqlite3_bind_text(stmt, 3, viagem.GetCodigo().GetCodigo().c_str(), -1, SQLITE_STATIC);
     int rc = sqlite3_step(stmt);
     if (rc != SQLITE_DONE) {
         throw runtime_error("Falha ao executar o statement: " + string(sqlite3_errmsg(db)));
@@ -151,9 +221,34 @@ bool ContainerViagem::createViagem(Viagem viagem, Codigo conta_codig){
     return true;
 }
 
-bool ContainerViagem::readViagem(Viagem *viagem){
-    sqlite3 *db = DatabaseManager::getInstance().getConnection();
-    sqlite3_stmt *stmt;
+bool ContainerViagem::readViagem(Viagem* viagem) {
+    DatabaseManager::verifyEntityOwnership(
+        "Viagem", 
+        "codigo", 
+        viagem->GetCodigo().GetCodigo()
+    );
+    sqlite3* db = DatabaseManager::getInstance().getConnection();
+    sqlite3_stmt* stmt;
+    Codigo contaLogada = SessionManager::getInstance()->getCodigo();
+    string checkSql = "SELECT conta_codigo FROM Viagem WHERE codigo = ?;";
+    sqlite3_stmt* checkStmt;
+    
+    if (sqlite3_prepare_v2(db, checkSql.c_str(), -1, &checkStmt, nullptr) != SQLITE_OK) {
+        throw runtime_error("Falha ao verificar viagem: " + string(sqlite3_errmsg(db)));
+    }
+    sqlite3_bind_text(checkStmt, 1, viagem->GetCodigo().GetCodigo().c_str(), -1, SQLITE_STATIC);
+    
+    if (sqlite3_step(checkStmt) != SQLITE_ROW) {
+        sqlite3_finalize(checkStmt);
+        throw runtime_error("Viagem não encontrada.");
+    }
+    
+    string contaCodigo(reinterpret_cast<const char*>(sqlite3_column_text(checkStmt, 0)));
+    sqlite3_finalize(checkStmt);
+
+    if (contaCodigo != contaLogada.GetCodigo()) {
+        throw runtime_error("Viagem não pertence à conta logada.");
+    }
 
     string sql = "SELECT * FROM Viagem WHERE codigo = ?;";
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
@@ -182,10 +277,15 @@ bool ContainerViagem::readViagem(Viagem *viagem){
     }
 }
 
-bool ContainerViagem::deleteViagem(Codigo codigo){
-    sqlite3 *db = DatabaseManager::getInstance().getConnection();
-    sqlite3_stmt *stmt;
-
+bool ContainerViagem::deleteViagem(Codigo codigo) {
+    DatabaseManager::verifyEntityOwnership(
+        "Viagem", 
+        "codigo", 
+        codigo.GetCodigo()
+    );
+    sqlite3* db = DatabaseManager::getInstance().getConnection();
+    sqlite3_stmt* stmt;
+    Codigo contaLogada = SessionManager::getInstance()->getCodigo();
     string check = "SELECT COUNT(*) FROM Destino WHERE viagem_codigo = ?;";
     if (sqlite3_prepare_v2(db, check.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
         throw runtime_error("Falha ao preparar a consulta: " + string(sqlite3_errmsg(db)));
@@ -219,10 +319,35 @@ bool ContainerViagem::deleteViagem(Codigo codigo){
     return true;
 }
 
-
 bool ContainerDestino::createDestino(Destino destino, Codigo viagem_codigo) {
+    DatabaseManager::verifyEntityOwnership(
+        "Viagem", 
+        "codigo", 
+        viagem_codigo.GetCodigo()
+    );
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
+
+    Codigo contaLogada = SessionManager::getInstance()->getCodigo();
+    sqlite3_stmt* checkStmt;
+    string checkSql = "SELECT conta_codigo FROM Viagem WHERE codigo = ?;";
+    
+    if (sqlite3_prepare_v2(db, checkSql.c_str(), -1, &checkStmt, nullptr) != SQLITE_OK) {
+        throw runtime_error("Falha ao verificar viagem: " + string(sqlite3_errmsg(db)));
+    }
+    sqlite3_bind_text(checkStmt, 1, viagem_codigo.GetCodigo().c_str(), -1, SQLITE_STATIC);
+    
+    if (sqlite3_step(checkStmt) != SQLITE_ROW) {
+        sqlite3_finalize(checkStmt);
+        throw runtime_error("Viagem não encontrada.");
+    }
+    
+    string contaCodigoViagem(reinterpret_cast<const char*>(sqlite3_column_text(checkStmt, 0)));
+    sqlite3_finalize(checkStmt);
+
+    if (contaCodigoViagem != contaLogada.GetCodigo()) {
+        throw runtime_error("Viagem não pertence à conta logada.");
+    }
 
     string sql = "INSERT INTO Destino (codigo, nome, data_inicio, data_termino, avaliacao, viagem_codigo) VALUES (?, ?, ?, ?, ?, ?);";
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
@@ -247,6 +372,12 @@ bool ContainerDestino::createDestino(Destino destino, Codigo viagem_codigo) {
 }
 
 bool ContainerDestino::readDestino(Destino* destino) {
+    DatabaseManager::verifyEntityOwnership(
+        "Destino D JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "D.codigo", 
+        destino->GetCodigo().GetCodigo()
+    );
+
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
 
@@ -280,10 +411,14 @@ bool ContainerDestino::readDestino(Destino* destino) {
 }
 
 bool ContainerDestino::deleteDestino(Codigo codigo) {
+    DatabaseManager::verifyEntityOwnership(
+        "Destino D JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "D.codigo", 
+        codigo.GetCodigo()
+    );
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
-
-    // Verificar atividades associadas
+    
     string checkAtividades = "SELECT COUNT(*) FROM Atividade WHERE destino_codigo = ?;";
     if (sqlite3_prepare_v2(db, checkAtividades.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
         throw runtime_error("Falha ao verificar atividades: " + string(sqlite3_errmsg(db)));
@@ -329,6 +464,11 @@ bool ContainerDestino::deleteDestino(Codigo codigo) {
 }
 
 bool ContainerDestino::updateDestino(const Destino destino) {
+    DatabaseManager::verifyEntityOwnership(
+        "Destino D JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "D.codigo", 
+        destino.GetCodigo().GetCodigo()
+    );
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
 
@@ -352,11 +492,14 @@ bool ContainerDestino::updateDestino(const Destino destino) {
     return true;
 }
 
-
 bool ContainerAtividade::createAtividade(Atividade atividade, Codigo destino_codigo) {
+    DatabaseManager::verifyEntityOwnership(
+        "Destino D JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "D.codigo", 
+        destino_codigo.GetCodigo()
+    );
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
-
     string sql = "INSERT INTO Atividade (codigo, nome, data, horario, duracao, preco, avaliacao, destino_codigo) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
         throw runtime_error("Falha ao preparar o statement (Atividade): " + string(sqlite3_errmsg(db)));
@@ -381,6 +524,12 @@ bool ContainerAtividade::createAtividade(Atividade atividade, Codigo destino_cod
 }
 
 bool ContainerAtividade::readAtividade(Atividade* atividade) {
+    DatabaseManager::verifyEntityOwnership(
+        "Atividade A JOIN Destino D ON A.destino_codigo = D.codigo JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "A.codigo", 
+        atividade->GetCodigo().GetCodigo()
+    );
+
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
 
@@ -420,6 +569,11 @@ bool ContainerAtividade::readAtividade(Atividade* atividade) {
 }
 
 bool ContainerAtividade::deleteAtividade(Codigo codigo) {
+    DatabaseManager::verifyEntityOwnership(
+        "Atividade A JOIN Destino D ON A.destino_codigo = D.codigo JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "A.codigo", 
+        codigo.GetCodigo()
+    );
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
 
@@ -440,6 +594,11 @@ bool ContainerAtividade::deleteAtividade(Codigo codigo) {
 }
 
 bool ContainerAtividade::updateAtividade(const Atividade atividade) {
+    DatabaseManager::verifyEntityOwnership(
+        "Atividade A JOIN Destino D ON A.destino_codigo = D.codigo JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "A.codigo", 
+        atividade.GetCodigo().GetCodigo()
+    );
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
 
@@ -465,20 +624,29 @@ bool ContainerAtividade::updateAtividade(const Atividade atividade) {
     return true;
 }
 
-
 bool ContainerHospedagem::createHospedagem(Hospedagem hospedagem, Codigo destino_codigo) {
+    DatabaseManager::verifyEntityOwnership(
+        "Destino D JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "D.codigo", 
+        destino_codigo.GetCodigo()
+    );
+
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
 
-    string sql = "INSERT INTO Hospedagem (nome, diaria, avaliacao, destino_codigo) VALUES (?, ?, ?, ?);";
+    string sql = 
+        "INSERT INTO Hospedagem (codigo, nome, diaria, avaliacao, destino_codigo) "
+        "VALUES (?, ?, ?, ?, ?);";
+
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
-        throw runtime_error("Falha ao preparar o statement (Hospedagem): " + string(sqlite3_errmsg(db)));
+        throw runtime_error("Falha ao preparar inserção (Hospedagem): " + string(sqlite3_errmsg(db)));
     }
 
-    sqlite3_bind_text(stmt, 1, hospedagem.GetNome().GetNome().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 2, hospedagem.GetDiaria().GetDinheiro().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_int(stmt, 3, hospedagem.GetAvaliacao().GetAvaliacao());
-    sqlite3_bind_text(stmt, 4, destino_codigo.GetCodigo().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 1, hospedagem.GetCodigo().GetCodigo().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, hospedagem.GetNome().GetNome().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 3, hospedagem.GetDiaria().GetDinheiro().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 4, hospedagem.GetAvaliacao().GetAvaliacao());
+    sqlite3_bind_text(stmt, 5, destino_codigo.GetCodigo().c_str(), -1, SQLITE_STATIC);
 
     if (sqlite3_step(stmt) != SQLITE_DONE) {
         sqlite3_finalize(stmt);
@@ -490,21 +658,32 @@ bool ContainerHospedagem::createHospedagem(Hospedagem hospedagem, Codigo destino
 }
 
 bool ContainerHospedagem::readHospedagem(Hospedagem* hospedagem) {
+    DatabaseManager::verifyEntityOwnership(
+        "Hospedagem H JOIN Destino D ON H.destino_codigo = D.codigo JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "H.codigo", 
+        hospedagem->GetCodigo().GetCodigo()
+    );
+
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
 
-    string sql = "SELECT * FROM Hospedagem WHERE nome = ?;";
+    string sql = "SELECT nome, diaria, avaliacao FROM Hospedagem WHERE codigo = ?;";
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
         throw runtime_error("Falha ao preparar consulta (Hospedagem): " + string(sqlite3_errmsg(db)));
     }
 
-    sqlite3_bind_text(stmt, 1, hospedagem->GetNome().GetNome().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 1, hospedagem->GetCodigo().GetCodigo().c_str(), -1, SQLITE_STATIC);
     int rc = sqlite3_step(stmt);
 
     if (rc == SQLITE_ROW) {
+        Nome nome;
+        nome.SetNome(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
+        hospedagem->SetNome(nome);
+
         Dinheiro diaria;
         diaria.SetDinheiro(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
         hospedagem->SetDiaria(diaria);
+
         Avaliacao avaliacao;
         avaliacao.SetAvaliacao(sqlite3_column_int(stmt, 2));
         hospedagem->SetAvaliacao(avaliacao);
@@ -518,10 +697,16 @@ bool ContainerHospedagem::readHospedagem(Hospedagem* hospedagem) {
 }
 
 bool ContainerHospedagem::deleteHospedagem(Codigo codigo) {
+    DatabaseManager::verifyEntityOwnership(
+        "Hospedagem H JOIN Destino D ON H.destino_codigo = D.codigo JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "H.codigo", 
+        codigo.GetCodigo()
+    );
+
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
 
-    string sql = "DELETE FROM Hospedagem WHERE nome = ?;";
+    string sql = "DELETE FROM Hospedagem WHERE codigo = ?;";
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
         throw runtime_error("Falha ao preparar exclusão (Hospedagem): " + string(sqlite3_errmsg(db)));
     }
@@ -538,17 +723,27 @@ bool ContainerHospedagem::deleteHospedagem(Codigo codigo) {
 }
 
 bool ContainerHospedagem::updateHospedagem(const Hospedagem hospedagem) {
+    DatabaseManager::verifyEntityOwnership(
+        "Hospedagem H JOIN Destino D ON H.destino_codigo = D.codigo JOIN Viagem V ON D.viagem_codigo = V.codigo",
+        "H.codigo", 
+        hospedagem.GetCodigo().GetCodigo()
+    );
+
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt;
 
-    string sql = "UPDATE Hospedagem SET diaria = ?, avaliacao = ? WHERE nome = ?;";
+    string sql = 
+        "UPDATE Hospedagem SET nome = ?, diaria = ?, avaliacao = ? "
+        "WHERE codigo = ?;";
+
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
         throw runtime_error("Falha ao preparar atualização (Hospedagem): " + string(sqlite3_errmsg(db)));
     }
 
-    sqlite3_bind_text(stmt, 1, hospedagem.GetDiaria().GetDinheiro().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_int(stmt, 2, hospedagem.GetAvaliacao().GetAvaliacao());
-    sqlite3_bind_text(stmt, 3, hospedagem.GetNome().GetNome().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 1, hospedagem.GetNome().GetNome().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, hospedagem.GetDiaria().GetDinheiro().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 3, hospedagem.GetAvaliacao().GetAvaliacao());
+    sqlite3_bind_text(stmt, 4, hospedagem.GetCodigo().GetCodigo().c_str(), -1, SQLITE_STATIC);
 
     if (sqlite3_step(stmt) != SQLITE_DONE) {
         sqlite3_finalize(stmt);
