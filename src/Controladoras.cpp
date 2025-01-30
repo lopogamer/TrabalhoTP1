@@ -62,8 +62,16 @@ void CntrControleAcesso::iniciarControle() // Alan
 
 bool CntrIAS::autenticarConta(Conta conta) {
     ContainerConta containerConta;
-    bool autenticado = containerConta.readConta(&conta);    
-    return autenticado;
+    Conta contaUX;
+    Codigo codigo;
+    codigo.SetCodigo(conta.GetCodigo().GetCodigo());
+    contaUX.SetCodigo(codigo);
+    containerConta.readConta(&contaUX);
+    if(conta.GetSenha().GetSenha() == contaUX.GetSenha().GetSenha()){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 bool CntrIAA::autenticar(Codigo *codigo) {
