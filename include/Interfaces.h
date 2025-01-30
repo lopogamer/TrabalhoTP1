@@ -61,8 +61,8 @@ public:
 class IAutenticacaoServico{
 public:
     virtual bool autenticarConta(const Conta) = 0;
+    
     virtual ~IAutenticacaoServico(){};
-
 };
 
 class IViagemServico{
@@ -77,7 +77,7 @@ public:
     virtual bool lerHospedagem(Hospedagem*) = 0;
     virtual bool atualizarHospedagem(const Hospedagem) = 0;
 
-    virtual bool criarDestino(const Destino) = 0;
+    virtual bool criarDestino(const Destino, const Codigo) = 0;
     virtual bool excluirDestino(const Codigo) = 0;
     virtual bool lerDestino(Destino*) = 0;
     virtual bool atualizarDestino(const Destino) = 0;

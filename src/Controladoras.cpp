@@ -422,36 +422,50 @@ void CntrIVA::menuCriarDestino(){ //A
     string entrada;
     Destino novoDestino;
 
+    Codigo codigoViagem;
+    Viagem viagem;
+
     while(true){
         try{
         cout << endl << "Menu de criação de destino" << endl;
-        cout << "Digite o código do destino: ";
-        cin >> entrada;
-        Codigo codigo;
-        codigo.SetCodigo(entrada);
-        novoDestino.SetCodigo(codigo);
 
-        cout << "Digite o nome do destino: ";
+        cout << "Dige o código da viagem: ";
         cin >> entrada;
-        Nome nome;
-        nome.SetNome(entrada);
-        novoDestino.SetNome(nome);
+        codigoViagem.SetCodigo(entrada);
+        viagem.SetCodigo(codigoViagem);
 
-        cout << "Digite a data de início do destino: ";
-        cin >> entrada;
-        Data dataInicio;
-        dataInicio.SetData(entrada);
-
-        cout << "Digite a data de término do destino: ";
-        cin >> entrada;
-        Data dataTermino;
-        dataTermino.SetData(entrada);
-
-        if(cntrServicoViagem->criarDestino(novoDestino)){
-            cout << "Destino criado com sucesso!" << endl;
-            break;
+        if (not(cntrServicoViagem->lerViagem(&viagem))){
+            cout << "Viagem não encontrada. Tente novamente." << endl;
+            continue;
         }else{
-            cout << "Falha ao criar destino. Destino já existente. Tente novamente." << endl;
+            cout << "Digite o código do destino: ";
+            cin >> entrada;
+            Codigo codigo;
+            codigo.SetCodigo(entrada);
+            novoDestino.SetCodigo(codigo);
+
+            cout << "Digite o nome do destino: ";
+            cin >> entrada;
+            Nome nome;
+            nome.SetNome(entrada);
+            novoDestino.SetNome(nome);
+
+            cout << "Digite a data de início do destino: ";
+            cin >> entrada;
+            Data dataInicio;
+            dataInicio.SetData(entrada);
+
+            cout << "Digite a data de término do destino: ";
+            cin >> entrada;
+            Data dataTermino;
+            dataTermino.SetData(entrada);
+
+            if(cntrServicoViagem->criarDestino(novoDestino, codigoViagem)){
+                cout << "Destino criado com sucesso!" << endl;
+                break;
+            }else{
+                cout << "Falha ao criar destino. Destino já existente. Tente novamente." << endl;
+            }
         }
         }catch(const invalid_argument &e){
             cout << "Erro ao criar destino: " << e.what() << endl;
@@ -637,6 +651,7 @@ bool CntrICS::atualizarConta(const Conta conta)
     bool resultado = containerConta.updateConta(conta);
     return resultado;
 }
+
 bool CntrIVS::criarViagem(const Viagem viagem)
 {
     ContainerViagem containerviagem;
@@ -665,7 +680,7 @@ bool CntrIVS::atualizarViagem( Viagem viagem)
     return resultado;
 }
 
-bool CntrIVS::criarHospedagem( Hospedagem hospedagem)
+bool CntrIVS::criarHospedagem(Hospedagem hospedagem)
 {
     ContainerHospedagem containerHospedagem;
     bool resultado = containerHospedagem.createHospedagem(hospedagem);
@@ -693,10 +708,11 @@ bool CntrIVS::atualizarHospedagem( Hospedagem hospedagem)
     return resultado;
 }
 
-bool CntrIVS::criarDestino( Destino destino)
+
+bool CntrIVS::criarDestino(Destino destino, Codigo codigo)
 {
     ContainerDestino containerDestino;
-    bool resultado = containerDestino.createDestino(destino);
+    bool resultado = containerDestino.createDestino(destino, codigo);
     return resultado;
 }
 
