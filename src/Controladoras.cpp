@@ -62,8 +62,16 @@ void CntrControleAcesso::iniciarControle() // Alan
 
 bool CntrIAS::autenticarConta(Conta conta) {
     ContainerConta containerConta;
-    bool autenticado = containerConta.readConta(&conta);    
-    return autenticado;
+    Conta contaUX;
+    Codigo codigo;
+    codigo.SetCodigo(conta.GetCodigo().GetCodigo());
+    contaUX.SetCodigo(codigo);
+    containerConta.readConta(&contaUX);
+    if(conta.GetSenha().GetSenha() == contaUX.GetSenha().GetSenha()){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 bool CntrIAA::autenticar(Codigo *codigo) {
@@ -195,18 +203,140 @@ void CntrIVA::menuViagem()
 }
 
 void CntrIVA::menuCriarViagem(){ //A
+    string entrada;
+    Viagem novaViagem;
+
+    while(true){
+        try{
+            cout << endl << "Menu de criação de viagem" << endl;
+
+            cout << "Digite o código da nova viagem: ";
+            cin >> entrada;
+            Codigo codigo;
+            codigo.SetCodigo(entrada);
+            novaViagem.SetCodigo(codigo);
+
+            cout << "Digite o nome da nova viagem: ";
+            cin >> entrada;
+            Nome nome;
+            nome.SetNome(entrada);
+            novaViagem.SetNome(nome);
+
+            cout << "Digite a avaliação da nova viagem: ";
+            cin >> entrada;
+            Avaliacao avaliacao;
+            avaliacao.SetAvaliacao(stoi(entrada));
+            novaViagem.SetAvaliacao(avaliacao);
+
+            if(cntrServicoViagem->criarViagem(novaViagem)){
+                cout << "Viagem criada com sucesso!" << endl;
+                break;
+            }else{
+                cout << "Falha ao criar viagem. Tente novamente." << endl;
+            }
+
+        }catch(const invalid_argument &e){
+            cout << "Erro ao criar viagem: " << e.what() << endl;
+        }catch(const exception &e){
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 
 }
 
 void CntrIVA::menuExcluirViagem(){ //A
+    string entrada;
+    Codigo codigo;
+    while(true){
+        try{
+            cout << endl << "Menu de exclusão de viagem" << endl;
 
+            cout << "Digite o código da viagem que deseja excluir: ";
+            cin >> entrada;
+            codigo.SetCodigo(entrada);
+
+            if(cntrServicoViagem->excluirViagem(codigo)){
+                cout << "Viagem excluída com sucesso!" << endl;
+                break;
+            }else{
+                cout << "Falha ao excluir viagem. Tente novamente." << endl;
+            }
+        }catch(const invalid_argument &e){
+            cout << "Erro ao excluir viagem: " << e.what() << endl;
+        }catch(const exception &e){
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 }
 
 void CntrIVA::menuLerViagem(){ //A
+    string entrada;
+    Codigo codigo;
+    Viagem viagem;
+    while(true){
+        try{
+            cout << endl << "Menu de leitura de viagem" << endl;
+
+            cout << "Digite o código da viagem que deseja ler: ";
+            cin >> entrada;
+            codigo.SetCodigo(entrada);
+            viagem.SetCodigo(codigo);
+
+            if(cntrServicoViagem->lerViagem(&viagem)){
+                cout << "Viagem lida com sucesso!" << endl;
+                cout << "Código: " << viagem.GetCodigo().GetCodigo() << endl;
+                cout << "Nome: " << viagem.GetNome().GetNome() << endl;
+                cout << "Avaliação: " << viagem.GetAvaliacao().GetAvaliacao() << endl;
+                break;
+            }else{
+                cout << "Falha ao ler viagem. Viagem já existente. Tente novamente." << endl;
+            }
+        }catch(const invalid_argument &e){
+            cout << "Erro ao ler viagem: " << e.what() << endl;
+        }catch(const exception &e){
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 
 }
 
 void CntrIVA::menuAtualizarViagem(){ //A
+    string entrada;
+    Viagem viagem;
+    while(true){
+        try{
+            cout << endl << "Menu de atualização de viagem" << endl;
+
+            cout << "Digite o código da viagem que deseja atualizar: ";
+            cin >> entrada;
+            Codigo codigo;
+            codigo.SetCodigo(entrada);
+            viagem.SetCodigo(codigo);
+
+            cout << "Digite o novo nome da viagem: ";
+            cin >> entrada;
+            Nome nome;
+            nome.SetNome(entrada);
+            viagem.SetNome(nome);
+
+            cout << "Digite a nova avaliação da viagem: ";
+            cin >> entrada;
+            Avaliacao avaliacao;
+            avaliacao.SetAvaliacao(stoi(entrada));
+            viagem.SetAvaliacao(avaliacao);
+
+            if(cntrServicoViagem->atualizarViagem(viagem)){
+                cout << "Viagem atualizada com sucesso!" << endl;
+                break;
+            }else{
+                cout << "Falha ao atualizar viagem. Tente novamente." << endl;
+            }
+        }catch(const invalid_argument &e){
+            cout << "Erro ao atualizar viagem: " << e.what() << endl;
+        }catch(const exception &e){
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 
 }
 
@@ -423,18 +553,160 @@ void CntrIVA::menuDestino() //A
 }
 
 void CntrIVA::menuCriarDestino(){ //A
+    string entrada;
+    Destino novoDestino;
 
+    Codigo codigoViagem;
+    Viagem viagem;
+
+    while(true){
+        try{
+        cout << endl << "Menu de criação de destino" << endl;
+
+        cout << "Dige o código da viagem: ";
+        cin >> entrada;
+        codigoViagem.SetCodigo(entrada);
+        viagem.SetCodigo(codigoViagem);
+
+        if (not(cntrServicoViagem->lerViagem(&viagem))){
+            cout << "Viagem não encontrada. Tente novamente." << endl;
+            continue;
+        }else{
+            cout << "Digite o código do destino: ";
+            cin >> entrada;
+            Codigo codigo;
+            codigo.SetCodigo(entrada);
+            novoDestino.SetCodigo(codigo);
+
+            cout << "Digite o nome do destino: ";
+            cin >> entrada;
+            Nome nome;
+            nome.SetNome(entrada);
+            novoDestino.SetNome(nome);
+
+            cout << "Digite a data de início do destino: ";
+            cin >> entrada;
+            Data dataInicio;
+            dataInicio.SetData(entrada);
+
+            cout << "Digite a data de término do destino: ";
+            cin >> entrada;
+            Data dataTermino;
+            dataTermino.SetData(entrada);
+
+            if(cntrServicoViagem->criarDestino(novoDestino, codigoViagem)){
+                cout << "Destino criado com sucesso!" << endl;
+                break;
+            }else{
+                cout << "Falha ao criar destino. Destino já existente. Tente novamente." << endl;
+            }
+        }
+        }catch(const invalid_argument &e){
+            cout << "Erro ao criar destino: " << e.what() << endl;
+        }catch(const exception &e){
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 }
 
 void CntrIVA::menuExcluirDestino(){ //A
+    string entrada;
+    Codigo codigo;
+    while(true){
+        try{
+        cout << endl << "Menu de exclusão de destino" << endl;
+        cout << "Digite o código do destino que deseja excluir: ";
+        cin >> entrada;
+        codigo.SetCodigo(entrada);
+
+        if(cntrServicoViagem->excluirDestino(codigo)){
+            cout << "Destino excluído com sucesso!" << endl;
+            break;
+        }else{
+            cout << "Falha ao excluir destino. Destino não existente. Tente novamente." << endl;
+        }
+        }catch(const invalid_argument &e){
+            cout << "Erro ao excluir destino: " << e.what() << endl;
+        }catch(const exception &e){
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 
 }
 
 void CntrIVA::menuLerDestino(){ //A
+    string entrada;
+    Codigo codigo;
+    Destino destino;
+    while(true){
+        try{
+        cout << endl << "Menu de leitura de destino" << endl;
+        cout << "Digite o código do destino que deseja ler: ";
+        cin >> entrada;
+        codigo.SetCodigo(entrada);
+        destino.SetCodigo(codigo);
+
+        if(cntrServicoViagem->lerDestino(&destino)){
+            cout << "Destino lido com sucesso!" << endl;
+            cout << "Código: " << destino.GetCodigo().GetCodigo() << endl;
+            cout << "Nome: " << destino.GetNome().GetNome() << endl;
+            cout << "Data de início: " << destino.GetDataInicio().GetData() << endl;
+            cout << "Data de término: " << destino.GetDataTermino().GetData() << endl;
+            break;
+        }else{
+            cout << "Falha ao ler destino. Destino não existente. Tente novamente." << endl;
+        }
+        }catch(const invalid_argument &e){
+            cout << "Erro ao ler destino: " << e.what() << endl;
+        }catch(const exception &e){
+            cout << "Erro inesperado: " << e.what() << endl;
+    }
+}
 
 }
 
 void CntrIVA::menuAtualizarDestino(){ //A
+    string entrada;
+    Destino destino;
+    while(true){
+        try{
+        cout << endl << "Menu de atualização de destino" << endl;
+        cout << "Digite o código do destino que deseja atualizar: ";
+        cin >> entrada;
+        Codigo codigo;
+        codigo.SetCodigo(entrada);
+        destino.SetCodigo(codigo);
+
+        cout << "Digite o novo nome do destino: ";
+        cin >> entrada;
+        Nome nome;
+        nome.SetNome(entrada);
+        destino.SetNome(nome);
+
+        cout << "Digite a nova data de início do destino: ";
+        cin >> entrada;
+        Data dataInicio;
+        dataInicio.SetData(entrada);
+        destino.SetDataInicio(dataInicio);
+
+        cout << "Digite a nova data de término do destino: ";
+        cin >> entrada;
+        Data dataTermino;
+        dataTermino.SetData(entrada);
+        destino.SetDataTermino(dataTermino);
+
+        if(cntrServicoViagem->atualizarDestino(destino)){
+            cout << "Destino atualizado com sucesso!" << endl;
+            break;
+        }else{
+            cout << "Falha ao atualizar destino. Tente novamente." << endl;
+        }
+        }catch(const invalid_argument &e){
+            cout << "Erro ao atualizar destino: " << e.what() << endl;
+        }catch(const exception &e){
+            cout << "Erro inesperado: " << e.what() << endl;
+        }
+    }
 
 }
 
@@ -513,6 +785,7 @@ bool CntrICS::atualizarConta(const Conta conta)
     bool resultado = containerConta.updateConta(conta);
     return resultado;
 }
+
 bool CntrIVS::criarViagem(const Viagem viagem)
 {
     ContainerViagem containerviagem;
@@ -541,7 +814,7 @@ bool CntrIVS::atualizarViagem( Viagem viagem)
     return resultado;
 }
 
-bool CntrIVS::criarHospedagem( Hospedagem hospedagem)
+bool CntrIVS::criarHospedagem(Hospedagem hospedagem)
 {
     ContainerHospedagem containerHospedagem;
     bool resultado = containerHospedagem.createHospedagem(hospedagem);
@@ -569,10 +842,11 @@ bool CntrIVS::atualizarHospedagem( Hospedagem hospedagem)
     return resultado;
 }
 
-bool CntrIVS::criarDestino( Destino destino)
+
+bool CntrIVS::criarDestino(Destino destino, Codigo codigo)
 {
     ContainerDestino containerDestino;
-    bool resultado = containerDestino.createDestino(destino);
+    bool resultado = containerDestino.createDestino(destino, codigo);
     return resultado;
 }
 

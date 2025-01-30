@@ -118,8 +118,7 @@ public:
     /// @param conta Objeto do tipo Conta contendo os dados da conta.
     /// @return true se a autenticação foi bem-sucedida, false caso contrário.
     virtual bool autenticarConta(const Conta) = 0;
-
-    /// @brief Destrutor virtual.
+    /// @brief Destrutor virtual
     virtual ~IAutenticacaoServico(){};
 };
 
@@ -166,17 +165,14 @@ public:
     /// @param hospedagem Objeto do tipo Hospedagem contendo os novos dados da hospedagem.
     /// @return true se a hospedagem foi atualizada com sucesso, false caso contrário.
     virtual bool atualizarHospedagem(const Hospedagem) = 0;
-
     /// @brief Cria um novo destino.
     /// @param destino Objeto do tipo Destino contendo os dados do destino.
     /// @return true se o destino foi criado com sucesso, false caso contrário.
     virtual bool criarDestino(const Destino) = 0;
-
     /// @brief Exclui um destino existente.
     /// @param codigo Código do destino a ser excluído.
     /// @return true se o destino foi excluído com sucesso, false caso contrário.
-    virtual bool excluirDestino(const Codigo) = 0;
-
+    virtual bool criarDestino(const Destino, const Codigo) = 0;
     /// @brief Lê os dados de um destino.
     /// @param destino Ponteiro para o objeto Destino onde os dados serão armazenados.
     /// @return true se a leitura foi bem-sucedida, false caso contrário.

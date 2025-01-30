@@ -105,7 +105,7 @@ class CntrIVS : public IViagemServico
     bool lerHospedagem(Hospedagem*);
     bool atualizarHospedagem(const Hospedagem);
 
-    bool criarDestino(const Destino);
+    bool criarDestino(const Destino, const Codigo);
     bool excluirDestino(const Codigo);
     bool lerDestino(Destino*);
     bool atualizarDestino(const Destino);
