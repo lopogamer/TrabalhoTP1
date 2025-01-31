@@ -520,7 +520,7 @@ void CntrIVA::menuExcluirHospedagem(){
     Codigo codigo;
     while (true) {
         try {
-            cout << endl << "Menu de exclusão de viagem" << endl;
+            cout << endl << "Menu de exclusão de hospedagem" << endl;
             cout << "Digite * para sair" << endl;
             cout << "Digite o código da hospedagem: ";
             cin >> entrada;
@@ -589,7 +589,7 @@ void CntrIVA::menuAtualizarHospedagem(){
 
     while (true) {
         try {
-            cout << endl << "Menu de atualização de viagem" << endl;
+            cout << endl << "Menu de atualização de hospedagem" << endl;
             cout << "Digite * para sair" << endl;
             cout << "Digite o novo código da hospedagem: ";
             cin >> entrada;
