@@ -8,7 +8,7 @@ void DatabaseManager::verifyEntityOwnership(const string& tableHierarchy, const 
     sqlite3* db = getInstance().getConnection();
     sqlite3_stmt* stmt;
     string sql = 
-        "SELECT V.conta_codigo FROM " + tableHierarchy + 
+        "SELECT conta_codigo FROM " + tableHierarchy + 
         " WHERE " + whereColumn + " = ?;";
     
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
@@ -172,7 +172,6 @@ bool ContainerConta::readConta(Conta *conta){
 bool ContainerViagem::createViagem(Viagem viagem) {
     sqlite3* db = DatabaseManager::getInstance().getConnection();
     sqlite3_stmt* stmt = nullptr;
-
     Codigo conta_codig = SessionManager::getInstance()->getCodigo();
     string sql = "INSERT INTO Viagem (codigo, nome, avaliacao, conta_codigo) VALUES (?, ?, ?, ?);";
     if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) != SQLITE_OK) {
@@ -180,12 +179,15 @@ bool ContainerViagem::createViagem(Viagem viagem) {
         sqlite3_finalize(stmt);
         throw runtime_error("Falha ao preparar o statement: " + error);
     }
+    string Viagem_Codigo = viagem.GetCodigo().GetCodigo();
+    string Viagem_Nome = viagem.GetNome().GetNome();
+    int Viagem_Avaliacao = viagem.GetAvaliacao().GetAvaliacao();
+    string Conta_Codigo = conta_codig.GetCodigo();
 
-    sqlite3_bind_text(stmt, 1, viagem.GetCodigo().GetCodigo().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 2, viagem.GetNome().GetNome().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_int(stmt, 3, viagem.GetAvaliacao().GetAvaliacao());
-    sqlite3_bind_text(stmt, 4, conta_codig.GetCodigo().c_str(), -1, SQLITE_STATIC);
-
+    sqlite3_bind_text(stmt, 1, Viagem_Codigo.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, Viagem_Nome.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 3, Viagem_Avaliacao);
+    sqlite3_bind_text(stmt, 4, Conta_Codigo.c_str(), -1, SQLITE_STATIC);
     int rc = sqlite3_step(stmt);
     if (rc != SQLITE_DONE) {
         string error = sqlite3_errmsg(db);

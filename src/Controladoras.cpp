@@ -38,9 +38,6 @@ void CntrControleAcesso::iniciarControle()
                     {
                         SessionManager::getInstance()->setCodigo(codigoUsuario);
                         cntrIVA->executar(codigoUsuario);
-                    }else
-                    {
-                        cout << "Falha na Autenticaçao" << endl;
                     }
                 break;
             }
@@ -94,8 +91,8 @@ bool CntrIAA::autenticar(Codigo *codigo) {
                 return true;
             } else {
                 cout << "Falha na autenticação. Código ou senha inválidos. Tente novamente." << endl;
+                return false;
             }
-            break;
         } catch (const std::exception& e) {
             cerr << "Erro: " << e.what() << '\n';
         }
@@ -194,12 +191,16 @@ void CntrIVA::menuViagem()
             switch (opcao){
                 case 1:
                     menuCriarViagem();
+                    break;
                 case 2:
                     menuExcluirViagem();
+                    break;
                 case 3:
                     menuLerViagem();
+                    break;
                 case 4:
                     menuAtualizarViagem();
+                    break;
                 case 5:
                     return;
             } 
@@ -252,23 +253,20 @@ void CntrIVA::menuExcluirViagem(){ //A
     string entrada;
     Codigo codigo;
     while(true){
+        cout << endl << "Menu de exclusão de viagem" << endl;
+        Codigo codigo;
+        cout << "Digite o código da viagem que deseja excluir: ";
+        cin >> entrada;
+        codigo.SetCodigo(entrada);
         try{
-            cout << endl << "Menu de exclusão de viagem" << endl;
-
-            cout << "Digite o código da viagem que deseja excluir: ";
-            cin >> entrada;
-            codigo.SetCodigo(entrada);
-
             if(cntrServicoViagem->excluirViagem(codigo)){
                 cout << "Viagem excluída com sucesso!" << endl;
                 break;
             }else{
-                cout << "Falha ao excluir viagem. Tente novamente." << endl;
+                cout << "Falha ao excluir viagem. Viagem não encontrada. Tente novamente." << endl;
             }
         }catch(const invalid_argument &e){
             cout << "Erro ao excluir viagem: " << e.what() << endl;
-        }catch(const exception &e){
-            cout << "Erro inesperado: " << e.what() << endl;
         }
     }
 }
