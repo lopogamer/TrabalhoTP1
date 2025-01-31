@@ -126,4 +126,3 @@ class ContainerHospedagem{
 };
 
 #endif // CONTAINERS_H
-#pragma once
