@@ -412,7 +412,7 @@ void CntrIVA::menuHospedagem() //J
 {
     int opcao;
     string valor;
-    int valorInt;
+    //int valorInt;
         while (true) {
             cout << endl << "--------------------------------" << endl;
             cout << "----Menu Hospedagem----" << endl;
@@ -422,18 +422,28 @@ void CntrIVA::menuHospedagem() //J
             cout << "4 - Atualizar Hospedagem" << endl;
             cout << "5 - Sair para o menu princpal" << endl;
             cout << "Digite a opção desejada: ";
-            cin >> opcao;
+            if(!(cin >> opcao)){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
             switch (opcao){
                 case 1:
                     menuCriarHospedagem();
+                    break;
                 case 2:
                     menuExcluirHospedagem();
+                    break;
                 case 3:
                     menuLerHospedagem();
+                    break;
                 case 4:
                     menuAtualizarHospedagem();
+                    break;
                 case 5:
                     return;
+                default:
+                    cout << "Opção inválida. Tente novamente." << endl;
+                    break;
             } 
         }
 }
@@ -450,26 +460,41 @@ void CntrIVA::menuCriarHospedagem(){
             Codigo codigoViagem;
             codigoViagem.SetCodigo(entrada);
 
+            cout << endl << "Menu de criação de hospedagem" << endl;
+            cout << "Digite * para sair" << endl;
+
             cout << "Digite o código da nova hospedagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Codigo codigo;
             codigo.SetCodigo(entrada); 
             novaHospedagem.SetCodigo(codigo);
 
             cout << "Digite o nome da nova hospedagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Nome nome;
             nome.SetNome(entrada); 
             novaHospedagem.SetNome(nome);
 
             cout << "Digite a diária da nova hospedagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Dinheiro diaria;
             diaria.SetDinheiro(entrada); 
             novaHospedagem.SetDiaria(diaria);
 
             cout << "Digite a avaliação da nova hospedagem: ";
             cin >> valor;
+            if(entrada == "*"){
+                return;
+            }
             Avaliacao avaliacao;
             avaliacao.SetAvaliacao(valor);
             novaHospedagem.SetAvaliacao(avaliacao);
@@ -493,11 +518,15 @@ void CntrIVA::menuCriarHospedagem(){
 void CntrIVA::menuExcluirHospedagem(){
     string entrada;
     Codigo codigo;
-
     while (true) {
         try {
+            cout << endl << "Menu de exclusão de viagem" << endl;
+            cout << "Digite * para sair" << endl;
             cout << "Digite o código da hospedagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             codigo.SetCodigo(entrada);
 
             if (cntrServicoViagem->excluirHospedagem(codigo)) {
@@ -515,6 +544,7 @@ void CntrIVA::menuExcluirHospedagem(){
 
 }
 
+
 void CntrIVA::menuLerHospedagem(){
     string entrada;
     Codigo codigo;
@@ -522,8 +552,13 @@ void CntrIVA::menuLerHospedagem(){
 
     while (true) {
         try {
-            cout << "Digite o código da hospedagem: ";
+            cout << endl << "Menu de leitura de hospedagem" << endl;
+            cout << "Digite * para sair" << endl;
+            cout << "Digite o código da hospedagem que deseja ler: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             codigo.SetCodigo(entrada); 
             hospedagem.SetCodigo(codigo);
 
@@ -554,26 +589,40 @@ void CntrIVA::menuAtualizarHospedagem(){
 
     while (true) {
         try {
+            cout << endl << "Menu de atualização de viagem" << endl;
+            cout << "Digite * para sair" << endl;
             cout << "Digite o novo código da hospedagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Codigo codigo;
             codigo.SetCodigo(entrada); 
             hospedagem.SetCodigo(codigo);
 
             cout << "Digite o novo nome da hospedagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Nome nome;
             nome.SetNome(entrada); 
             hospedagem.SetNome(nome);
 
             cout << "Digite a nova diária da hospedagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Dinheiro diaria;
             diaria.SetDinheiro(entrada); 
             hospedagem.SetDiaria(diaria);
 
             cout << "Digite a nova avaliação da hospedagem: ";
             cin >> valor;
+            if(entrada == "*"){
+                return;
+            }
             Avaliacao avaliacao;
             avaliacao.SetAvaliacao(valor);
             hospedagem.SetAvaliacao(avaliacao);
@@ -832,7 +881,7 @@ void CntrIVA::menuAtividade() //L
 {
     int opcao;
     string valor;
-    int valorInt;
+    //int valorInt;
         while (true) {
             cout << endl << "--------------------------------" << endl;
             cout << "----Menu Atividade----" << endl;
