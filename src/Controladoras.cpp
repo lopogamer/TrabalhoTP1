@@ -8,6 +8,7 @@
 #include "sqlite3.h"
 #include <string>
 #include <iostream>
+#include <limits>
 using namespace std;
 
 
@@ -31,7 +32,12 @@ void CntrControleAcesso::iniciarControle()
         cout << "2 - Criar Conta" << endl;
         cout << "3 - Sair" << endl;
         cout << "Digite a opção desejada: ";
-        cin >> opcao;
+
+        if(!(cin >> opcao)){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
         switch(opcao){
             case 1: {
                     if (cntrIAA->autenticar(&codigoUsuario))
@@ -48,6 +54,10 @@ void CntrControleAcesso::iniciarControle()
             case 3: {
                 cout << "Saindo do controle de acesso..." << endl;
                 exit(0);
+            }
+            default: {
+                cout << "Opção inválida. Tente novamente." << endl;
+                break;
             }
         }
     }catch(exception &exp){
@@ -75,14 +85,22 @@ bool CntrIAA::autenticar(Codigo *codigo) {
     string entrada;
     while (true) {
         cout << endl << "----Autenticação do Usuário----" << endl;
+        cout << "Digite * para sair" << endl;
         try {
-            cout << "Digite o código da conta: ";
+            cout << endl << "Digite o código da conta: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return false;
+            }
             codigo->SetCodigo(entrada);
 
             cout << "Digite a senha: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return false;
+            }
             senha.SetSenha(entrada);
+
             Conta conta;
             conta.SetCodigo(*codigo);
             conta.SetSenha(senha);
@@ -106,14 +124,24 @@ bool CntrICA::criarConta()
 
     while (true) {
         try {
-            cout << "Digite o código da nova conta: ";
+            cout << endl << "Menu de criação de conta" << endl;
+            cout << "Digite * para sair" << endl;
+
+            cout << endl << "Digite o código da nova conta: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return false;
+            }
             Codigo codigo;
             codigo.SetCodigo(entrada); 
             novaConta.SetCodigo(codigo);
 
             cout << "Digite a senha da nova conta: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return false;
+            }
+
             Senha senha;
             senha.SetSenha(entrada); 
             novaConta.SetSenha(senha);
@@ -143,7 +171,6 @@ void CntrIVA::executar(Codigo codigo) // A
 {
     int opcao;
     string valor;
-    int valorInt;
         while (true) {
             cout << endl << "--------------------------------" << endl;
             cout << "---- Escolha o Menu ----" << endl;
@@ -153,7 +180,10 @@ void CntrIVA::executar(Codigo codigo) // A
             cout << "4 - Atividade:" << endl;
             cout << "5 - Sair para a tela inicial" << endl;
             cout << "Digite a opção desejada: ";
-            cin >> opcao;
+            if(!(cin >> opcao)){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
             switch (opcao){
                 case 1:
                     menuViagem();
@@ -169,6 +199,9 @@ void CntrIVA::executar(Codigo codigo) // A
                     break;
                 case 5:
                     return;
+                default:
+                    cout << "Opção inválida. Tente novamente." << endl;
+                    break;
             } 
         }
 }
@@ -177,7 +210,6 @@ void CntrIVA::menuViagem()
 {
     int opcao;
     string valor;
-    int valorInt;
         while (true) {
             cout << endl << "--------------------------------" << endl;
             cout << "----Menu Viagem----" << endl;
@@ -187,7 +219,10 @@ void CntrIVA::menuViagem()
             cout << "4 - Atualizar Viagem" << endl;
             cout << "5 - Sair para o menu principal" << endl;
             cout << "Digite a opção desejada: ";
-            cin >> opcao;
+            if(!(cin >> opcao)){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
             switch (opcao){
                 case 1:
                     menuCriarViagem();
@@ -203,6 +238,9 @@ void CntrIVA::menuViagem()
                     break;
                 case 5:
                     return;
+                default:
+                    cout << "Opção inválida. Tente novamente." << endl;
+                    break;
             } 
         }
 }
@@ -214,21 +252,31 @@ void CntrIVA::menuCriarViagem(){ //A
     while(true){
         try{
             cout << endl << "Menu de criação de viagem" << endl;
+            cout << "Digite * para sair" << endl;
 
-            cout << "Digite o código da nova viagem: ";
+            cout << endl << "Digite o código da nova viagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Codigo codigo;
             codigo.SetCodigo(entrada);
             novaViagem.SetCodigo(codigo);
 
             cout << "Digite o nome da nova viagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Nome nome;
             nome.SetNome(entrada);
             novaViagem.SetNome(nome);
 
             cout << "Digite a avaliação da nova viagem: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Avaliacao avaliacao;
             avaliacao.SetAvaliacao(stoi(entrada));
             novaViagem.SetAvaliacao(avaliacao);
@@ -251,12 +299,15 @@ void CntrIVA::menuCriarViagem(){ //A
 
 void CntrIVA::menuExcluirViagem(){ //A
     string entrada;
-    Codigo codigo;
     while(true){
-        cout << endl << "Menu de exclusão de viagem" << endl;
         Codigo codigo;
-        cout << "Digite o código da viagem que deseja excluir: ";
+        cout << endl << "Menu de exclusão de viagem" << endl;
+        cout << "Digite * para sair" << endl;
+        cout << endl << "Digite o código da viagem que deseja excluir: ";
         cin >> entrada;
+        if(entrada == "*"){
+            return;
+        }
         codigo.SetCodigo(entrada);
         try{
             if(cntrServicoViagem->excluirViagem(codigo)){
@@ -273,14 +324,18 @@ void CntrIVA::menuExcluirViagem(){ //A
 
 void CntrIVA::menuLerViagem(){ //A
     string entrada;
-    Codigo codigo;
-    Viagem viagem;
     while(true){
         try{
+            Codigo codigo;
+            Viagem viagem;
             cout << endl << "Menu de leitura de viagem" << endl;
+            cout << "Digite * para sair" << endl;
 
-            cout << "Digite o código da viagem que deseja ler: ";
+            cout << endl << "Digite o código da viagem que deseja ler: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             codigo.SetCodigo(entrada);
             viagem.SetCodigo(codigo);
 
@@ -304,26 +359,36 @@ void CntrIVA::menuLerViagem(){ //A
 
 void CntrIVA::menuAtualizarViagem(){ //A
     string entrada;
-    Viagem viagem;
     while(true){
         try{
-            cout << endl << "Menu de atualização de viagem" << endl;
-
-            cout << "Digite o código da viagem que deseja atualizar: ";
-            cin >> entrada;
+            Viagem viagem;
             Codigo codigo;
+            Nome nome;
+            Avaliacao avaliacao;
+            cout << endl << "Menu de atualização de viagem" << endl;
+            cout << "Digite * para sair" << endl;
+
+            cout << endl << "Digite o código da viagem que deseja atualizar: ";
+            cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             codigo.SetCodigo(entrada);
             viagem.SetCodigo(codigo);
 
             cout << "Digite o novo nome da viagem: ";
             cin >> entrada;
-            Nome nome;
+            if(entrada == "*"){
+                return;
+            }
             nome.SetNome(entrada);
             viagem.SetNome(nome);
 
             cout << "Digite a nova avaliação da viagem: ";
             cin >> entrada;
-            Avaliacao avaliacao;
+            if(entrada == "*"){
+                return;
+            }
             avaliacao.SetAvaliacao(stoi(entrada));
             viagem.SetAvaliacao(avaliacao);
 
@@ -532,7 +597,6 @@ void CntrIVA::menuDestino() //A
 {
     int opcao;
     string valor;
-    int valorInt;
         while (true) {
             cout << endl << "--------------------------------" << endl;
             cout << "----Menu Destino----" << endl;
@@ -542,7 +606,10 @@ void CntrIVA::menuDestino() //A
             cout << "4 - Atualizar Destino" << endl;
             cout << "5 - Sair para o menu principal" << endl;
             cout << "Digite a opção desejada: ";
-            cin >> opcao;
+            if(!(cin >> opcao)){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
             switch (opcao){
                 case 1:
                     menuCriarDestino();
@@ -554,23 +621,29 @@ void CntrIVA::menuDestino() //A
                     menuAtualizarDestino();
                 case 5:
                     return;
+                default:
+                    cout << "Opção inválida. Tente novamente." << endl;
+                    break;
             } 
         }
 }
 
 void CntrIVA::menuCriarDestino(){ //A
     string entrada;
-    Destino novoDestino;
-
-    Codigo codigoViagem;
-    Viagem viagem;
 
     while(true){
+        Destino novoDestino;
+        Codigo codigoViagem;
+        Viagem viagem;
         try{
         cout << endl << "Menu de criação de destino" << endl;
+        cout << "Digite * para sair" << endl;
 
-        cout << "Dige o código da viagem: ";
+        cout << endl << "Digite o código da viagem: ";
         cin >> entrada;
+        if(entrada == "*"){
+            return;
+        }
         codigoViagem.SetCodigo(entrada);
         viagem.SetCodigo(codigoViagem);
 
@@ -580,23 +653,35 @@ void CntrIVA::menuCriarDestino(){ //A
         }else{
             cout << "Digite o código do destino: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Codigo codigo;
             codigo.SetCodigo(entrada);
             novoDestino.SetCodigo(codigo);
 
             cout << "Digite o nome do destino: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Nome nome;
             nome.SetNome(entrada);
             novoDestino.SetNome(nome);
 
             cout << "Digite a data de início do destino: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Data dataInicio;
             dataInicio.SetData(entrada);
 
             cout << "Digite a data de término do destino: ";
             cin >> entrada;
+            if(entrada == "*"){
+                return;
+            }
             Data dataTermino;
             dataTermino.SetData(entrada);
 
@@ -617,13 +702,19 @@ void CntrIVA::menuCriarDestino(){ //A
 
 void CntrIVA::menuExcluirDestino(){ //A
     string entrada;
-    Codigo codigo;
     while(true){
+        Codigo codigo;
         try{
         cout << endl << "Menu de exclusão de destino" << endl;
-        cout << "Digite o código do destino que deseja excluir: ";
+        cout << "Digite * para sair" << endl;
+
+        cout << endl << "Digite o código do destino que deseja excluir: ";
         cin >> entrada;
+        if(entrada == "*"){
+            return;
+        }
         codigo.SetCodigo(entrada);
+
         if(cntrServicoViagem->excluirDestino(codigo)){
             cout << "Destino excluído com sucesso!" << endl;
             break;
@@ -641,13 +732,19 @@ void CntrIVA::menuExcluirDestino(){ //A
 
 void CntrIVA::menuLerDestino(){ //A
     string entrada;
-    Codigo codigo;
-    Destino destino;
+    
     while(true){
+        Codigo codigo;
+        Destino destino;
         try{
         cout << endl << "Menu de leitura de destino" << endl;
-        cout << "Digite o código do destino que deseja ler: ";
+        cout << "Digite * para sair" << endl;
+
+        cout << endl << "Digite o código do destino que deseja ler: ";
         cin >> entrada;
+        if(entrada == "*"){
+            return;
+        }
         codigo.SetCodigo(entrada);
         destino.SetCodigo(codigo);
 
@@ -672,30 +769,45 @@ void CntrIVA::menuLerDestino(){ //A
 
 void CntrIVA::menuAtualizarDestino(){ //A
     string entrada;
-    Destino destino;
+    
     while(true){
+        Destino destino;
         try{
         cout << endl << "Menu de atualização de destino" << endl;
-        cout << "Digite o código do destino que deseja atualizar: ";
+        cout << "Digite * para sair" << endl;
+
+        cout << endl << "Digite o código do destino que deseja atualizar: ";
         cin >> entrada;
+        if(entrada == "*"){
+            return;
+        }
         Codigo codigo;
         codigo.SetCodigo(entrada);
         destino.SetCodigo(codigo);
 
         cout << "Digite o novo nome do destino: ";
         cin >> entrada;
+        if(entrada == "*"){
+            return;
+        }
         Nome nome;
         nome.SetNome(entrada);
         destino.SetNome(nome);
 
         cout << "Digite a nova data de início do destino: ";
         cin >> entrada;
+        if(entrada == "*"){
+            return;
+        }
         Data dataInicio;
         dataInicio.SetData(entrada);
         destino.SetDataInicio(dataInicio);
 
         cout << "Digite a nova data de término do destino: ";
         cin >> entrada;
+        if(entrada == "*"){
+            return;
+        }
         Data dataTermino;
         dataTermino.SetData(entrada);
         destino.SetDataTermino(dataTermino);
